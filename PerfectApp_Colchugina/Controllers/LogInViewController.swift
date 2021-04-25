@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LogInViewController: UIViewController {
     
     @IBOutlet weak var welcomeLable: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -15,39 +15,33 @@ class ViewController: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordLable: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBAction func signInButton(_ sender: UIButton) {
-        if loginTextField.text == "" {
-            loginTextField.backgroundColor = .red
-        }
-        else {
-            loginTextField.backgroundColor = .clear
-        }
-        if passwordTextField.text == "" {
-            passwordTextField.backgroundColor = .red
-        }
-        else {
-            passwordTextField.backgroundColor = .clear
-        }
-        if loginTextField.text == "admin" && passwordTextField.text == "admin" {
-            
-            welcomeLable.text = "BINGO 🎉"
-            logInLable.isHidden = true
-            loginTextField.isHidden = true
-            passwordLable.isHidden = true
-            passwordTextField.isHidden = true
-            sender.isHidden = true
-            
-        }
-    }
+    @IBOutlet weak var logInButtonOutlet: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //добавляем тап для скрытия клавиатуры
         let tapForHiddenKeybourd = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tapForHiddenKeybourd)
-       
+        
+        //отрисовываем нижнюю границу loginTextField и passwordTextField
+        loginTextField.useUnderline(.black, 1.0)
+        passwordTextField.useUnderline(.black, 1.0)
+        
+        //закругляем края кнопки и добавляем тень
+        logInButtonOutlet.layer.cornerRadius = logInButtonOutlet.frame.height/2
+        logInButtonOutlet.layer.shadowColor = UIColor.black.cgColor
+        logInButtonOutlet.layer.shadowOffset = CGSize(width: 0, height: 3)
+        logInButtonOutlet.layer.shadowRadius = 4
+        logInButtonOutlet.layer.shadowOpacity = 0.15
     }
+    
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -83,5 +77,40 @@ class ViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-}
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+            // Проверяем данные
+            let checkResult = checkUserData()
+            
+            // Если данные не верны, покажем ошибку
+            if !checkResult {
+                showLoginError()
+            }
+            
+            // Вернем результат
+            return checkResult
+        }
+        
+        func checkUserData() -> Bool {
+            guard let login = loginTextField.text,
+                let password = passwordTextField.text else { return false }
+            
+            if login == "admin" && password == "admin" {
+                return true
+            } else {
+                return false
+            }
+        }
+        
+        func showLoginError() {
+            // Создаем контроллер
+            let alter = UIAlertController(title: "Ошибка", message: "Введены не верные данные пользователя", preferredStyle: .alert)
+            // Создаем кнопку для UIAlertController
+            let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            // Добавляем кнопку на UIAlertController
+            alter.addAction(action)
+            // Показываем UIAlertController
+            present(alter, animated: true, completion: nil)
+        }
 
+}
