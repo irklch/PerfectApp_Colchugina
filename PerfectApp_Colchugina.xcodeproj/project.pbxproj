@@ -9,21 +9,33 @@
 /* Begin PBXBuildFile section */
 		A95DA8BE2632D98D005EA110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DA8BD2632D98D005EA110 /* AppDelegate.swift */; };
 		A95DA8C02632D98D005EA110 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */; };
-		A95DA8C22632D98D005EA110 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DA8C12632D98D005EA110 /* ViewController.swift */; };
+		A95DA8C22632D98D005EA110 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DA8C12632D98D005EA110 /* LogInViewController.swift */; };
 		A95DA8C52632D98D005EA110 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95DA8C32632D98D005EA110 /* Main.storyboard */; };
 		A95DA8C72632D98E005EA110 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A95DA8C62632D98E005EA110 /* Assets.xcassets */; };
 		A95DA8CA2632D98E005EA110 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95DA8C82632D98E005EA110 /* LaunchScreen.storyboard */; };
+		A9A71DAD26358DD2005C6DCE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A71DAC26358DD2005C6DCE /* Extensions.swift */; };
+		A9F02B842635CB4B00E6D795 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B832635CB4B00E6D795 /* TabBarController.swift */; };
+		A9F02B872635CD1E00E6D795 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B862635CD1E00E6D795 /* FriendsTableViewController.swift */; };
+		A9F02B8E2635CDE100E6D795 /* FriendsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B8D2635CDE100E6D795 /* FriendsNavigationController.swift */; };
+		A9F02B932635D3B400E6D795 /* GroupsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B922635D3B400E6D795 /* GroupsNavigationController.swift */; };
+		A9F02B982635D9ED00E6D795 /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B972635D9ED00E6D795 /* GroupsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A95DA8BA2632D98D005EA110 /* PerfectApp_Colchugina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerfectApp_Colchugina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95DA8BD2632D98D005EA110 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A95DA8C12632D98D005EA110 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A95DA8C12632D98D005EA110 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		A95DA8C42632D98D005EA110 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A95DA8C62632D98E005EA110 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A95DA8C92632D98E005EA110 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A95DA8CB2632D98E005EA110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9A71DAC26358DD2005C6DCE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A9F02B832635CB4B00E6D795 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		A9F02B862635CD1E00E6D795 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
+		A9F02B8D2635CDE100E6D795 /* FriendsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsNavigationController.swift; sourceTree = "<group>"; };
+		A9F02B922635D3B400E6D795 /* GroupsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsNavigationController.swift; sourceTree = "<group>"; };
+		A9F02B972635D9ED00E6D795 /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +68,37 @@
 		A95DA8BC2632D98D005EA110 /* PerfectApp_Colchugina */ = {
 			isa = PBXGroup;
 			children = (
+				A9F02B892635CD4400E6D795 /* Extensions */,
+				A9F02B8B2635CD7C00E6D795 /* Controllers */,
+				A95DA8C32632D98D005EA110 /* Main.storyboard */,
 				A95DA8BD2632D98D005EA110 /* AppDelegate.swift */,
 				A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */,
-				A95DA8C12632D98D005EA110 /* ViewController.swift */,
-				A95DA8C32632D98D005EA110 /* Main.storyboard */,
 				A95DA8C62632D98E005EA110 /* Assets.xcassets */,
 				A95DA8C82632D98E005EA110 /* LaunchScreen.storyboard */,
 				A95DA8CB2632D98E005EA110 /* Info.plist */,
 			);
 			path = PerfectApp_Colchugina;
+			sourceTree = "<group>";
+		};
+		A9F02B892635CD4400E6D795 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A9A71DAC26358DD2005C6DCE /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A9F02B8B2635CD7C00E6D795 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A95DA8C12632D98D005EA110 /* LogInViewController.swift */,
+				A9F02B832635CB4B00E6D795 /* TabBarController.swift */,
+				A9F02B8D2635CDE100E6D795 /* FriendsNavigationController.swift */,
+				A9F02B862635CD1E00E6D795 /* FriendsTableViewController.swift */,
+				A9F02B922635D3B400E6D795 /* GroupsNavigationController.swift */,
+				A9F02B972635D9ED00E6D795 /* GroupsTableViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +171,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A95DA8C22632D98D005EA110 /* ViewController.swift in Sources */,
+				A9A71DAD26358DD2005C6DCE /* Extensions.swift in Sources */,
+				A95DA8C22632D98D005EA110 /* LogInViewController.swift in Sources */,
+				A9F02B982635D9ED00E6D795 /* GroupsTableViewController.swift in Sources */,
+				A9F02B872635CD1E00E6D795 /* FriendsTableViewController.swift in Sources */,
+				A9F02B8E2635CDE100E6D795 /* FriendsNavigationController.swift in Sources */,
 				A95DA8BE2632D98D005EA110 /* AppDelegate.swift in Sources */,
+				A9F02B842635CB4B00E6D795 /* TabBarController.swift in Sources */,
+				A9F02B932635D3B400E6D795 /* GroupsNavigationController.swift in Sources */,
 				A95DA8C02632D98D005EA110 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

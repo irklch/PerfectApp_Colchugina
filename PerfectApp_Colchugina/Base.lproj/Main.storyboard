@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LXj-Xm-g3J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Log In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PerfectApp_Colchugina" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LogInViewController" customModule="PerfectApp_Colchugina" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -116,7 +116,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="sdA-Ek-ce8" secondAttribute="trailing" constant="52" id="1Jj-En-Fh2"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZmN-dx-HDq" secondAttribute="trailing" constant="20" symbolic="YES" id="1PP-on-yvy"/>
@@ -186,11 +186,9 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="DHj-5n-vBs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" red="0.97254901959999995" green="0.84705882349999995" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <outlet property="newTabBar" destination="DHj-5n-vBs" id="3Nd-Wz-sIs"/>
+                        <outlet property="accountTabBar" destination="DHj-5n-vBs" id="3Nd-Wz-sIs"/>
                         <segue destination="xdx-OE-GQK" kind="relationship" relationship="viewControllers" id="DVG-BZ-FJo"/>
                         <segue destination="Ifc-tY-myZ" kind="relationship" relationship="viewControllers" id="9xt-DC-SS5"/>
                     </connections>
@@ -202,22 +200,19 @@
         <!--Groups-->
         <scene sceneID="F1Z-tb-EzL">
             <objects>
-                <tableViewController id="dCX-OF-Tz6" sceneMemberID="viewController">
+                <tableViewController id="dCX-OF-Tz6" customClass="GroupsTableViewController" customModule="PerfectApp_Colchugina" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4df-0w-LSv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="SwV-Nc-lke">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupIdentifier" id="SwV-Nc-lke">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SwV-Nc-lke" id="ts8-fz-ScT">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="ltX-4V-Pko" kind="presentation" modalPresentationStyle="fullScreen" id="NJ6-y5-fHN"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -225,13 +220,27 @@
                             <outlet property="delegate" destination="dCX-OF-Tz6" id="UbU-Ca-0Bo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Groups" id="YxA-lM-az6"/>
+                    <navigationItem key="navigationItem" title="Groups" id="YxA-lM-az6">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="yXu-cs-fhv">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="dYj-kd-koE" kind="unwind" unwindAction="unwindToLogInActionWithUnwindSegue:" id="fx0-iy-b9F"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="FOO-2f-8ko">
+                            <imageReference key="image" image="plus" catalog="system" symbolScale="medium" renderingMode="original"/>
+                            <connections>
+                                <segue destination="ltX-4V-Pko" kind="show" id="EFb-cQ-XY8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WOg-hv-1wq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="dYj-kd-koE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1577" y="352"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Add group-->
         <scene sceneID="yf9-dX-vKn">
             <objects>
                 <tableViewController id="ltX-4V-Pko" sceneMemberID="viewController">
@@ -254,6 +263,7 @@
                             <outlet property="delegate" destination="ltX-4V-Pko" id="NQK-lL-cjz"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Add group" id="KFm-Yb-7Ri"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LWi-Mb-kls" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -262,13 +272,13 @@
         <!--Friends-->
         <scene sceneID="WJk-ej-tPY">
             <objects>
-                <tableViewController id="mRe-HZ-4Qy" sceneMemberID="viewController">
+                <tableViewController id="mRe-HZ-4Qy" customClass="FriendsTableViewController" customModule="PerfectApp_Colchugina" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q7c-5U-ZZ7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="93b-nG-IES">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendCellIdentifier" id="93b-nG-IES">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="93b-nG-IES" id="0c3-xq-bAs">
@@ -276,7 +286,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="pd5-Ty-kds" kind="presentation" modalPresentationStyle="fullScreen" id="Y4v-uF-vrw"/>
+                                    <segue destination="pd5-Ty-kds" kind="show" id="MD3-jF-n8V"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -285,9 +295,17 @@
                             <outlet property="delegate" destination="mRe-HZ-4Qy" id="5Ky-51-pER"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Friends" id="wxl-Ge-mUp"/>
+                    <navigationItem key="navigationItem" title="Friends" id="wxl-Ge-mUp">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="gLL-zP-x4S">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="X8Z-R0-5Wp" kind="unwind" unwindAction="unwindToLogInActionWithUnwindSegue:" id="jAi-tx-gcO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G0s-HB-GIa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="X8Z-R0-5Wp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1576.8115942028987" y="-362.27678571428572"/>
         </scene>
@@ -299,6 +317,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iHI-23-lc0">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -320,6 +339,9 @@
                             <outlet property="delegate" destination="pd5-Ty-kds" id="k3D-TH-iBH"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="Dh2-yu-vnD">
+                        <barButtonItem key="backBarButtonItem" title="back to friends list" id="cO5-Wr-fer"/>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SQI-YV-8OT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -328,19 +350,24 @@
         <!--Friends-->
         <scene sceneID="6b5-UE-Lgg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xdx-OE-GQK" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xdx-OE-GQK" customClass="FriendsNavigationController" customModule="PerfectApp_Colchugina" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" id="g6P-o4-MVo">
-                        <imageReference key="image" image="person.circle" catalog="system" symbolScale="large" renderingMode="original"/>
+                        <imageReference key="image" image="person.circle" catalog="system" symbolScale="large"/>
                         <imageReference key="selectedImage" image="person.crop.circle.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="991-Py-9FZ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.97254901959999995" green="0.84705882349999995" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
+                        <outlet property="tapBarItem" destination="g6P-o4-MVo" id="tk3-NY-GJz"/>
                         <segue destination="mRe-HZ-4Qy" kind="relationship" relationship="rootViewController" id="6Xf-my-RvY"/>
                     </connections>
                 </navigationController>
@@ -351,18 +378,21 @@
         <!--Groups-->
         <scene sceneID="9J1-ZP-6ze">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ifc-tY-myZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Groups" selectedImage="person.2.circle.fill" catalog="system" id="cug-T4-HKC">
-                        <imageReference key="image" image="person.2.circle" catalog="system" renderingMode="original"/>
-                    </tabBarItem>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ifc-tY-myZ" customClass="GroupsNavigationController" customModule="PerfectApp_Colchugina" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Groups" image="person.2.circle" catalog="system" selectedImage="person.2.circle.fill" id="cug-T4-HKC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="onF-Yu-gzF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.97254901959999995" green="0.84705882349999995" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
+                        <outlet property="tapBarItem" destination="cug-T4-HKC" id="Mqi-rS-jkA"/>
                         <segue destination="dCX-OF-Tz6" kind="relationship" relationship="rootViewController" id="aK1-HV-hNU"/>
                     </connections>
                 </navigationController>
@@ -377,6 +407,7 @@
         <image name="person.2.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

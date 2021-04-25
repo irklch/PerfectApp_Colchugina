@@ -9,25 +9,10 @@ import UIKit
 
 class TabBarController: UITabBarController {
 
-    @IBOutlet var newTabBar: UITabBar!
+    @IBOutlet var accountTabBar: UITabBar!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        newTabBar.tintColor = UIColor.yellow
-        newTabBar.barTintColor = UIColor.red
-        newTabBar.unselectedItemTintColor = UIColor.blue
-    
+        accountTabBar.tintColor = UIColor(red: 0.972, green: 0.845, blue: 0.286, alpha: 1.0)
+        accountTabBar.unselectedItemTintColor = UIColor.black
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

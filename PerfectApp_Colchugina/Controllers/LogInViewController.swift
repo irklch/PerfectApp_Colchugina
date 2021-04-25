@@ -9,6 +9,7 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    @IBAction func unwindToLogInAction(unwindSegue: UIStoryboardSegue) {}
     @IBOutlet weak var welcomeLable: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var logInLable: UILabel!
@@ -96,6 +97,8 @@ class LogInViewController: UIViewController {
                 let password = passwordTextField.text else { return false }
             
             if login == "admin" && password == "admin" {
+                loginTextField.text = ""
+                passwordTextField.text = ""
                 return true
             } else {
                 return false
