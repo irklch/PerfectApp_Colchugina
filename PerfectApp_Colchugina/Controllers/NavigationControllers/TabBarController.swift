@@ -13,6 +13,14 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         accountTabBar.tintColor = UIColor(red: 0.972, green: 0.845, blue: 0.286, alpha: 1.0)
-        accountTabBar.unselectedItemTintColor = UIColor.black
+        switch overrideUserInterfaceStyle{
+        case .dark:
+            accountTabBar.unselectedItemTintColor = UIColor.white
+        case .light:
+            accountTabBar.unselectedItemTintColor = UIColor.black
+        default:
+            return
+        }
+        
     }
 }
