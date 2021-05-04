@@ -15,6 +15,7 @@
 		A91DF281263F30AD001CE958 /* AllGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF280263F30AD001CE958 /* AllGroupTableViewCell.swift */; };
 		A91DF284263F31A9001CE958 /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF283263F31A9001CE958 /* GroupList.swift */; };
 		A91DF286263F3625001CE958 /* AllGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF285263F3625001CE958 /* AllGroupsTableViewController.swift */; };
+		A91DF28A2641A4D0001CE958 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF2892641A4D0001CE958 /* LikeControl.swift */; };
 		A95DA8BE2632D98D005EA110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DA8BD2632D98D005EA110 /* AppDelegate.swift */; };
 		A95DA8C02632D98D005EA110 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */; };
 		A95DA8C22632D98D005EA110 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DA8C12632D98D005EA110 /* LogInViewController.swift */; };
@@ -38,6 +39,7 @@
 		A91DF280263F30AD001CE958 /* AllGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupTableViewCell.swift; sourceTree = "<group>"; };
 		A91DF283263F31A9001CE958 /* GroupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupList.swift; sourceTree = "<group>"; };
 		A91DF285263F3625001CE958 /* AllGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsTableViewController.swift; sourceTree = "<group>"; };
+		A91DF2892641A4D0001CE958 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		A95DA8BA2632D98D005EA110 /* PerfectApp_Colchugina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerfectApp_Colchugina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95DA8BD2632D98D005EA110 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				A91DF279263EAA57001CE958 /* Cells */,
 				A91DF282263F316D001CE958 /* Model */,
 				A95DA8C32632D98D005EA110 /* Main.storyboard */,
+				A91DF2892641A4D0001CE958 /* LikeControl.swift */,
 				A95DA8BD2632D98D005EA110 /* AppDelegate.swift */,
 				A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */,
 				A95DA8C62632D98E005EA110 /* Assets.xcassets */,
@@ -235,6 +238,7 @@
 				A9F02B842635CB4B00E6D795 /* TabBarController.swift in Sources */,
 				A9F02B932635D3B400E6D795 /* GroupsNavigationController.swift in Sources */,
 				A95DA8C02632D98D005EA110 /* SceneDelegate.swift in Sources */,
+				A91DF28A2641A4D0001CE958 /* LikeControl.swift in Sources */,
 				A91DF27B263EB6E0001CE958 /* FriendsList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
