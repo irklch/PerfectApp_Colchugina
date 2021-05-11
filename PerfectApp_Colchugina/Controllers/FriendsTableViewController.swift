@@ -8,42 +8,60 @@
 import UIKit
 
 class FriendsTableViewController: UITableViewController {
+    private var friends = [[Friends]]()
+    private var lettersSection = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        var sortedFriends = Friends.list
+        sortedFriends.sort { $0.name < $1.name }
+        lettersSection = Array(Set(sortedFriends.map({ String($0.name.first ?? "*") }))).sorted()
+        for letter in lettersSection {
+            let someFriend = sortedFriendOnSection(letter, sortedFriends)
+            friends.append(someFriend)
+        }
+        
+    }
+    func sortedFriendOnSection (_ letter: String, _ arr: [Friends]) -> [Friends] {
+        return arr.filter { String($0.name.first ?? "*") == letter }
     }
 
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
        
-        return 1
+        return friends.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Friends.list.count
+        return friends[section].count
     }
     
     
-   
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendsTableViewCell.reuseId, for: indexPath) as! FriendsTableViewCell
-        let someFriend = Friends.list[indexPath.row]
+        let someFriend = friends[indexPath.section][indexPath.row]
         cell.config(name: someFriend.name, photo: someFriend.photo[0])
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return lettersSection[section]
+    }
+    
+   
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard
             segue.identifier == "FriendPhotosViewController",
             let destinationController = segue.destination as? FriendPhotosViewController,
-            let index = tableView.indexPathForSelectedRow?.row
+            let index = tableView.indexPathForSelectedRow
         else {
             return
         }
-        destinationController.selectedFriend = index
+       
+        destinationController.selectedFriend = friends[index.section][index.row]
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

@@ -12,26 +12,26 @@ class FriendPhotosViewController: UIViewController, UICollectionViewDataSource, 
     @IBOutlet var mainPhotoImageView: UIImageView!
     @IBOutlet var nameLable: UILabel!
     @IBOutlet var photosCollectoinView: UICollectionView!
-    var selectedFriend: Int!
+    var selectedFriend: Friends!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.photosCollectoinView.delegate = self
         self.photosCollectoinView.dataSource = self
-        nameLable.text = Friends.list[selectedFriend].name
-        mainPhotoImageView.image = UIImage(named: Friends.list[selectedFriend].photo[0])
+        nameLable.text = selectedFriend.name
+        mainPhotoImageView.image = UIImage(named: selectedFriend.photo[0])
         mainPhotoImageView.contentMode = .scaleAspectFill
         mainPhotoImageView.clipsToBounds = true
         mainPhotoImageView.layer.cornerRadius = mainPhotoImageView.frame.height/2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Friends.list[selectedFriend].photo.count
+        return selectedFriend.photo.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.reuseId, for: indexPath) as! PhotosCollectionViewCell
-        cell.photoImageView.image = UIImage(named: Friends.list[selectedFriend].photo[indexPath.row])
+        cell.photoImageView.image = UIImage(named: selectedFriend.photo[indexPath.row])
         cell.photoImageView.contentMode = .scaleAspectFill
         cell.photoImageView.clipsToBounds = true
         
