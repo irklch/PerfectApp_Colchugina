@@ -22,12 +22,16 @@
 		A95DA8C52632D98D005EA110 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95DA8C32632D98D005EA110 /* Main.storyboard */; };
 		A95DA8C72632D98E005EA110 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A95DA8C62632D98E005EA110 /* Assets.xcassets */; };
 		A95DA8CA2632D98E005EA110 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95DA8C82632D98E005EA110 /* LaunchScreen.storyboard */; };
-		A9A71DAD26358DD2005C6DCE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A71DAC26358DD2005C6DCE /* Extensions.swift */; };
+		A9A71DAD26358DD2005C6DCE /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A71DAC26358DD2005C6DCE /* UITextFieldExtension.swift */; };
+		A9E8D775264ED318000805CF /* FeedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E8D774264ED318000805CF /* FeedControl.swift */; };
 		A9F02B842635CB4B00E6D795 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B832635CB4B00E6D795 /* TabBarController.swift */; };
 		A9F02B872635CD1E00E6D795 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B862635CD1E00E6D795 /* FriendsTableViewController.swift */; };
-		A9F02B8E2635CDE100E6D795 /* FriendsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B8D2635CDE100E6D795 /* FriendsNavigationController.swift */; };
-		A9F02B932635D3B400E6D795 /* GroupsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B922635D3B400E6D795 /* GroupsNavigationController.swift */; };
 		A9F02B982635D9ED00E6D795 /* MyGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B972635D9ED00E6D795 /* MyGroupsTableViewController.swift */; };
+		A9F8354D264D2BCC001B1023 /* HeaderSectionForFriendsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F8354C264D2BCC001B1023 /* HeaderSectionForFriendsTable.swift */; };
+		A9F83566264D3AD8001B1023 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F83565264D3AD8001B1023 /* UIColorExtension.swift */; };
+		A9F8356C264D8099001B1023 /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F8356B264D8099001B1023 /* NewsFeedTableViewCell.swift */; };
+		A9F83571264D86D5001B1023 /* NewsFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F83570264D86D5001B1023 /* NewsFeedTableViewController.swift */; };
+		A9F83573264D8737001B1023 /* NewsFeedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F83572264D8737001B1023 /* NewsFeedList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,12 +52,16 @@
 		A95DA8C62632D98E005EA110 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A95DA8C92632D98E005EA110 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A95DA8CB2632D98E005EA110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A9A71DAC26358DD2005C6DCE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A9A71DAC26358DD2005C6DCE /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		A9E8D774264ED318000805CF /* FeedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedControl.swift; sourceTree = "<group>"; };
 		A9F02B832635CB4B00E6D795 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A9F02B862635CD1E00E6D795 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
-		A9F02B8D2635CDE100E6D795 /* FriendsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsNavigationController.swift; sourceTree = "<group>"; };
-		A9F02B922635D3B400E6D795 /* GroupsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsNavigationController.swift; sourceTree = "<group>"; };
 		A9F02B972635D9ED00E6D795 /* MyGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsTableViewController.swift; sourceTree = "<group>"; };
+		A9F8354C264D2BCC001B1023 /* HeaderSectionForFriendsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionForFriendsTable.swift; sourceTree = "<group>"; };
+		A9F83565264D3AD8001B1023 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		A9F8356B264D8099001B1023 /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
+		A9F83570264D86D5001B1023 /* NewsFeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewController.swift; sourceTree = "<group>"; };
+		A9F83572264D8737001B1023 /* NewsFeedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,36 +75,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A91DF276263EA778001CE958 /* NavigationControllers */ = {
-			isa = PBXGroup;
-			children = (
-				A9F02B8D2635CDE100E6D795 /* FriendsNavigationController.swift */,
-				A9F02B922635D3B400E6D795 /* GroupsNavigationController.swift */,
-				A9F02B832635CB4B00E6D795 /* TabBarController.swift */,
-			);
-			path = NavigationControllers;
-			sourceTree = "<group>";
-		};
-		A91DF279263EAA57001CE958 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				A91DF27C263EE0F3001CE958 /* FriendsTableViewCell.swift */,
-				A91DF277263EAA53001CE958 /* PhotosCollectionViewCell.swift */,
-				A91DF27E263F30A1001CE958 /* MyGroupTableViewCell.swift */,
-				A91DF280263F30AD001CE958 /* AllGroupTableViewCell.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		A91DF282263F316D001CE958 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				A91DF27A263EB6E0001CE958 /* FriendsList.swift */,
-				A91DF283263F31A9001CE958 /* GroupList.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		A95DA8B12632D98D005EA110 = {
 			isa = PBXGroup;
 			children = (
@@ -116,16 +94,11 @@
 		A95DA8BC2632D98D005EA110 /* PerfectApp_Colchugina */ = {
 			isa = PBXGroup;
 			children = (
-				A9F02B892635CD4400E6D795 /* Extensions */,
-				A9F02B8B2635CD7C00E6D795 /* Controllers */,
-				A91DF279263EAA57001CE958 /* Cells */,
-				A91DF282263F316D001CE958 /* Model */,
 				A95DA8C32632D98D005EA110 /* Main.storyboard */,
-				A91DF2892641A4D0001CE958 /* LikeControl.swift */,
-				A95DA8BD2632D98D005EA110 /* AppDelegate.swift */,
-				A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */,
-				A95DA8C62632D98E005EA110 /* Assets.xcassets */,
-				A95DA8C82632D98E005EA110 /* LaunchScreen.storyboard */,
+				A9F02B892635CD4400E6D795 /* Extensions */,
+				A9F83557264D2D10001B1023 /* UI */,
+				A9F83556264D2D06001B1023 /* AppDelegate */,
+				A9F83554264D2CB1001B1023 /* Resourses */,
 				A95DA8CB2632D98E005EA110 /* Info.plist */,
 			);
 			path = PerfectApp_Colchugina;
@@ -134,22 +107,237 @@
 		A9F02B892635CD4400E6D795 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				A9A71DAC26358DD2005C6DCE /* Extensions.swift */,
+				A9A71DAC26358DD2005C6DCE /* UITextFieldExtension.swift */,
+				A9F83565264D3AD8001B1023 /* UIColorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		A9F02B8B2635CD7C00E6D795 /* Controllers */ = {
+		A9F02B8B2635CD7C00E6D795 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				A91DF276263EA778001CE958 /* NavigationControllers */,
+				A9F02B832635CB4B00E6D795 /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		A9F8354E264D2BEC001B1023 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				A9F83550264D2C01001B1023 /* MyFriends */,
+				A9F83551264D2C0C001B1023 /* Photos */,
+				A9F83558264D2D57001B1023 /* Model */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		A9F8354F264D2BF6001B1023 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				A9F83560264D2E14001B1023 /* Model */,
+				A9F83553264D2C64001B1023 /* MyGroups */,
+				A9F83552264D2C5C001B1023 /* AllGroups */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		A9F83550264D2C01001B1023 /* MyFriends */ = {
+			isa = PBXGroup;
+			children = (
+				A9F8355B264D2D89001B1023 /* Controller */,
+				A9F8355C264D2DCE001B1023 /* TableHeader */,
+				A9F8355A264D2D81001B1023 /* Cell */,
+			);
+			path = MyFriends;
+			sourceTree = "<group>";
+		};
+		A9F83551264D2C0C001B1023 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				A9F8355D264D2DE6001B1023 /* Controller */,
+				A9F8355E264D2DF4001B1023 /* Cell */,
+			);
+			path = Photos;
+			sourceTree = "<group>";
+		};
+		A9F83552264D2C5C001B1023 /* AllGroups */ = {
+			isa = PBXGroup;
+			children = (
+				A9F83563264D2E2F001B1023 /* Controller */,
+				A9F83564264D2E35001B1023 /* Cell */,
+			);
+			path = AllGroups;
+			sourceTree = "<group>";
+		};
+		A9F83553264D2C64001B1023 /* MyGroups */ = {
+			isa = PBXGroup;
+			children = (
+				A9F83561264D2E21001B1023 /* Controller */,
+				A9F83562264D2E27001B1023 /* Cell */,
+			);
+			path = MyGroups;
+			sourceTree = "<group>";
+		};
+		A9F83554264D2CB1001B1023 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				A95DA8C62632D98E005EA110 /* Assets.xcassets */,
+				A95DA8C82632D98E005EA110 /* LaunchScreen.storyboard */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
+		A9F83555264D2CF3001B1023 /* Login */ = {
+			isa = PBXGroup;
+			children = (
 				A95DA8C12632D98D005EA110 /* LogInViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		A9F83556264D2D06001B1023 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				A95DA8BD2632D98D005EA110 /* AppDelegate.swift */,
+				A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		A9F83557264D2D10001B1023 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A9F83569264D8041001B1023 /* NewsFeed */,
+				A9F8354E264D2BEC001B1023 /* Friends */,
+				A9F8354F264D2BF6001B1023 /* Groups */,
+				A9F02B8B2635CD7C00E6D795 /* TabBar */,
+				A9F83555264D2CF3001B1023 /* Login */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		A9F83558264D2D57001B1023 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A91DF27A263EB6E0001CE958 /* FriendsList.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A9F8355A264D2D81001B1023 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A91DF27C263EE0F3001CE958 /* FriendsTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A9F8355B264D2D89001B1023 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				A9F02B862635CD1E00E6D795 /* FriendsTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A9F8355C264D2DCE001B1023 /* TableHeader */ = {
+			isa = PBXGroup;
+			children = (
+				A9F8354C264D2BCC001B1023 /* HeaderSectionForFriendsTable.swift */,
+			);
+			path = TableHeader;
+			sourceTree = "<group>";
+		};
+		A9F8355D264D2DE6001B1023 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				A91DF274263EA3DC001CE958 /* FriendPhotosViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A9F8355E264D2DF4001B1023 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A91DF2892641A4D0001CE958 /* LikeControl.swift */,
+				A91DF277263EAA53001CE958 /* PhotosCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A9F83560264D2E14001B1023 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A91DF283263F31A9001CE958 /* GroupList.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A9F83561264D2E21001B1023 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				A9F02B972635D9ED00E6D795 /* MyGroupsTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A9F83562264D2E27001B1023 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A91DF27E263F30A1001CE958 /* MyGroupTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A9F83563264D2E2F001B1023 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				A91DF285263F3625001CE958 /* AllGroupsTableViewController.swift */,
 			);
-			path = Controllers;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A9F83564264D2E35001B1023 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A91DF280263F30AD001CE958 /* AllGroupTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A9F83569264D8041001B1023 /* NewsFeed */ = {
+			isa = PBXGroup;
+			children = (
+				A9F83574264D873D001B1023 /* Model */,
+				A9F8356A264D808C001B1023 /* Cell */,
+				A9F8356F264D82E7001B1023 /* Controller */,
+			);
+			path = NewsFeed;
+			sourceTree = "<group>";
+		};
+		A9F8356A264D808C001B1023 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A9F8356B264D8099001B1023 /* NewsFeedTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A9F8356F264D82E7001B1023 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A9F83570264D86D5001B1023 /* NewsFeedTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A9F83574264D873D001B1023 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A9F83572264D8737001B1023 /* NewsFeedList.swift */,
+				A9E8D774264ED318000805CF /* FeedControl.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,21 +410,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9A71DAD26358DD2005C6DCE /* Extensions.swift in Sources */,
+				A9A71DAD26358DD2005C6DCE /* UITextFieldExtension.swift in Sources */,
 				A95DA8C22632D98D005EA110 /* LogInViewController.swift in Sources */,
+				A9F83573264D8737001B1023 /* NewsFeedList.swift in Sources */,
 				A9F02B982635D9ED00E6D795 /* MyGroupsTableViewController.swift in Sources */,
 				A91DF284263F31A9001CE958 /* GroupList.swift in Sources */,
 				A9F02B872635CD1E00E6D795 /* FriendsTableViewController.swift in Sources */,
+				A9F8356C264D8099001B1023 /* NewsFeedTableViewCell.swift in Sources */,
+				A9E8D775264ED318000805CF /* FeedControl.swift in Sources */,
 				A91DF27D263EE0F3001CE958 /* FriendsTableViewCell.swift in Sources */,
-				A9F02B8E2635CDE100E6D795 /* FriendsNavigationController.swift in Sources */,
 				A91DF278263EAA53001CE958 /* PhotosCollectionViewCell.swift in Sources */,
+				A9F83571264D86D5001B1023 /* NewsFeedTableViewController.swift in Sources */,
 				A91DF27F263F30A1001CE958 /* MyGroupTableViewCell.swift in Sources */,
 				A95DA8BE2632D98D005EA110 /* AppDelegate.swift in Sources */,
 				A91DF275263EA3DC001CE958 /* FriendPhotosViewController.swift in Sources */,
 				A91DF286263F3625001CE958 /* AllGroupsTableViewController.swift in Sources */,
+				A9F83566264D3AD8001B1023 /* UIColorExtension.swift in Sources */,
 				A91DF281263F30AD001CE958 /* AllGroupTableViewCell.swift in Sources */,
 				A9F02B842635CB4B00E6D795 /* TabBarController.swift in Sources */,
-				A9F02B932635D3B400E6D795 /* GroupsNavigationController.swift in Sources */,
+				A9F8354D264D2BCC001B1023 /* HeaderSectionForFriendsTable.swift in Sources */,
 				A95DA8C02632D98D005EA110 /* SceneDelegate.swift in Sources */,
 				A91DF28A2641A4D0001CE958 /* LikeControl.swift in Sources */,
 				A91DF27B263EB6E0001CE958 /* FriendsList.swift in Sources */,
