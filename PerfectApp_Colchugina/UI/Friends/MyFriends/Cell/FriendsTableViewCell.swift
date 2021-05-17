@@ -31,7 +31,7 @@ class FriendsTableViewCell: UITableViewCell {
             self.updateShadowRadius()
         }
     }
-    
+   
     
     private func updateShadowColor() {
         shadowView.layer.shadowColor = shadowColor.cgColor
@@ -45,25 +45,21 @@ class FriendsTableViewCell: UITableViewCell {
     }
   
     
-    func config (name: String, photo: String) {
-        photoImageView.image = UIImage(named: photo)
-        nameLabel.text = name
-        //вопрос: Я создала imageView, задала ему констреинты, заполнила уже его фоткой, но фреймы (photoImageView.frame.height) у него 0.0 . ПОЧЕМУУУУУУУ?
-        
-        photoImageView.layer.cornerRadius = 25
-        photoImageView.layer.masksToBounds = true
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
+       setViews()
+        
+    }
+    
+    
+    func setViews() {
         
         //добавляем nameLabel и задаём констреинты
-        let margins = self.layoutMarginsGuide
         self.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             nameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor)
+            nameLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor)
             
         ])
         
@@ -101,7 +97,13 @@ class FriendsTableViewCell: UITableViewCell {
         //подгоняем размер фото под вьюшку
         photoImageView.contentMode = .scaleAspectFill
         photoImageView.clipsToBounds = true
-        
+    }
+    
+    func config (name: String, photo: String) {
+        photoImageView.image = UIImage(named: photo)
+        nameLabel.text = name
+        photoImageView.layer.cornerRadius = 25
+        photoImageView.layer.masksToBounds = true
     }
     
     

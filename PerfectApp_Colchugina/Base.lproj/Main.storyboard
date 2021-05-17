@@ -109,7 +109,7 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="1" scale="large" weight="thin"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="LXj-Xm-g3J" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="APv-cQ-G9S"/>
+                                                    <segue destination="xAf-cQ-1Hh" kind="presentation" modalPresentationStyle="fullScreen" id="vvF-kk-AQJ"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -172,7 +172,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1046" y="-56"/>
+            <point key="canvasLocation" x="-1796" y="-56"/>
+        </scene>
+        <!--Loading View Controller-->
+        <scene sceneID="ThX-IA-rMt">
+            <objects>
+                <viewController id="xAf-cQ-1Hh" customClass="LoadingViewController" customModule="PerfectApp_Colchugina" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="REI-wr-ivc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="pYy-Dy-BZb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fO1-Si-DTi"/>
+                    <connections>
+                        <segue destination="LXj-Xm-g3J" kind="presentation" identifier="LoadingViewController" modalPresentationStyle="fullScreen" id="XGE-NV-1gx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4BG-br-kpm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1007" y="-56"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Gil-5i-Dmy">
@@ -433,6 +452,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="413" height="469"/>
                                         <connections>
+                                            <outlet property="likeCintrol" destination="O4d-oR-bPQ" id="7Wr-DV-r1C"/>
                                             <outlet property="photoImageView" destination="TNG-VZ-08R" id="I7t-Wz-0RO"/>
                                         </connections>
                                     </collectionViewCell>
@@ -618,6 +638,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="feedControl" destination="OIH-km-JEI" id="CZ1-hF-TZL"/>
                                     <outlet property="groupIconImageView" destination="XRN-1s-AIc" id="OmN-vI-jvJ"/>
                                     <outlet property="groupNameLable" destination="MaH-9m-C0g" id="pGA-fb-xbk"/>
                                     <outlet property="newsImageView" destination="UF7-49-J9B" id="ixI-OR-4vT"/>

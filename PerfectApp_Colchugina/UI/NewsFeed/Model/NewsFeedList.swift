@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct News {
+struct NewsFeed {
     
     var groupName: String
     var groupIcon: String
@@ -19,7 +19,7 @@ struct News {
     var viewCount: Int
     
     static var list = [
-        News.init(
+        NewsFeed.init(
             groupName: "Код Дурова",
             groupIcon: "Код Дурова",
             newsImage: "Код Дурова новость",
@@ -32,7 +32,7 @@ struct News {
             commentCount: Int.random(in: 0...100),
             shareCount: Int.random(in: 0...100),
             viewCount: Int.random(in: 0...100)),
-        News.init(
+        NewsFeed.init(
             groupName: "Эксплойт",
             groupIcon: "Эксплойт",
             newsImage: "Эксплойт новость",
@@ -44,7 +44,7 @@ struct News {
             commentCount: Int.random(in: 0...100),
             shareCount: Int.random(in: 0...100),
             viewCount: Int.random(in: 0...100)),
-        News.init(
+        NewsFeed.init(
             groupName: "СТАС БОМБИТ",
             groupIcon: "СТАС БОМБИТ",
             newsImage: "СТАС БОМБИТ новость",
@@ -56,7 +56,7 @@ struct News {
             commentCount: Int.random(in: 0...100),
             shareCount: Int.random(in: 0...100),
             viewCount: Int.random(in: 0...100)),
-        News.init(
+        NewsFeed.init(
             groupName: "Терабит- it технологии",
             groupIcon: "Терабит- it технологии",
             newsImage: "Терабит- it технологии новость",
@@ -68,7 +68,7 @@ struct News {
             commentCount: Int.random(in: 0...100),
             shareCount: Int.random(in: 0...100),
             viewCount: Int.random(in: 0...100)),
-        News.init(
+        NewsFeed.init(
             groupName: "Книги для программистов",
             groupIcon: "Книги для программистов",
             newsImage: "Книги для программистов новость",
@@ -82,7 +82,7 @@ struct News {
             commentCount: Int.random(in: 0...100),
             shareCount: Int.random(in: 0...100),
             viewCount: Int.random(in: 0...100)),
-        News.init(
+        NewsFeed.init(
             groupName: "Утечки информации",
             groupIcon: "Утечки информации",
             newsImage: "Утечки информации новость",
@@ -96,7 +96,7 @@ struct News {
             commentCount: Int.random(in: 0...100),
             shareCount: Int.random(in: 0...100),
             viewCount: Int.random(in: 0...100)),
-        News.init(
+        NewsFeed.init(
             groupName: "IT и СОРМ",
             groupIcon: "IT и СОРМ",
             newsImage: "IT и СОРМ новость",
@@ -110,7 +110,7 @@ struct News {
             commentCount: Int.random(in: 0...100),
             shareCount: Int.random(in: 0...100),
             viewCount: Int.random(in: 0...100)),
-        News.init(
+        NewsFeed.init(
             groupName: "Библиотека программиста",
             groupIcon: "Библиотека программиста",
             newsImage: "Библиотека программиста новость",
@@ -124,7 +124,7 @@ struct News {
             commentCount: Int.random(in: 0...100),
             shareCount: Int.random(in: 0...100),
             viewCount: Int.random(in: 0...100)),
-        News.init(
+        NewsFeed.init(
             groupName: "NOP--Nuances of programming",
             groupIcon: "NOP--Nuances of programming",
             newsImage: "NOP--Nuances of programming новость",

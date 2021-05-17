@@ -14,23 +14,21 @@ class NewsFeedTableViewCell: UITableViewCell {
     @IBOutlet var newsTitleLabel: UILabel!
     @IBOutlet var newsTextLabel: UILabel!
     @IBOutlet var newsImageView: UIImageView!
+    @IBOutlet var feedControl: FeedControl!
+    
     
     var isToggled: Bool = false
     
     static var reuseId = "NewsFeedTableViewCell"
     
-    func config (_ groupName: String, _ groupPhoto: String, _ title: String, _ text: String, _ image: String, _ likeCount: Int, _ commentCount: Int, _ shareCount: Int, _ viewCount: Int) {
+    
+    func config (_ groupName: String, _ groupPhoto: String, _ title: String, _ text: String, _ image: String) {
         groupIconImageView.layer.cornerRadius = CGFloat(20)
         groupNameLable.text = groupName
         groupIconImageView.image = UIImage(named: groupPhoto)
         newsTitleLabel.text = title
         newsTextLabel.text = text
         newsImageView.image = UIImage(named: image)
-
-//        feed.likeCountLabel.text = "10"
-//        feed.commentCountLabel.text = "\(commentCount)"
-//        feed.shareCountLabel.text = "\(commentCount)"
-//        feed.viewCountLabel.text = "\(viewCount)"
        
         
     }

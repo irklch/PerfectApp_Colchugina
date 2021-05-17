@@ -12,10 +12,12 @@ class FriendPhotosViewController: UIViewController, UICollectionViewDataSource, 
     @IBOutlet var mainPhotoImageView: UIImageView!
     @IBOutlet var nameLable: UILabel!
     @IBOutlet var photosCollectoinView: UICollectionView!
+    var listIndex = 0
     var selectedFriend: Friends!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        selectedFriend = Friends.list[listIndex]
         self.photosCollectoinView.delegate = self
         self.photosCollectoinView.dataSource = self
         nameLable.text = selectedFriend.name
@@ -31,13 +33,12 @@ class FriendPhotosViewController: UIViewController, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.reuseId, for: indexPath) as! PhotosCollectionViewCell
-        cell.photoImageView.image = UIImage(named: selectedFriend.photo[indexPath.row])
-        cell.photoImageView.contentMode = .scaleAspectFill
-        cell.photoImageView.clipsToBounds = true
-        
+        cell.config(selectedFriend.photo[indexPath.row])
         return cell
 
     }
+    
+    
     
     
     
