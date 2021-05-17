@@ -25,6 +25,24 @@ class MyGroupTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        animatePhoto()
+    }
+    
+    func animatePhoto () {
+        
+        groupPhotoImageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        UIView.animate(
+            withDuration: 1,
+            delay: 0,
+            usingSpringWithDamping: 0.6,
+            initialSpringVelocity: 0.2,
+            options: .curveEaseInOut,
+            animations: {
+                self.groupPhotoImageView.transform = .identity
+     },
+            completion: nil)
+        
+
     }
 
 }

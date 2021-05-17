@@ -9,9 +9,10 @@ import UIKit
 
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     private var friends = [[Friends]]()
+    private var friendsCopy = [[Friends]]()
     private var lettersSection = [String]()
+    private var lettersSectionCopy = [String]()
     @IBOutlet weak var searchBar: UISearchBar!
-    private var friendsFromSearch = [Friends]()
     var searchActive: Bool {
         if searchBar.text!.isEmpty {
             return false
@@ -24,7 +25,6 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        self.friendsFromSearch = Friends.list
         var sortedFriends = Friends.list
         sortedFriends.sort { $0.name < $1.name }
         lettersSection = Array(Set(sortedFriends.map({ String($0.name.first ?? "*") }))).sorted()
@@ -37,10 +37,11 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
             let tapForHiddenKeybourd = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
             view.addGestureRecognizer(tapForHiddenKeybourd)
         }
+        friendsCopy = friends
+        lettersSectionCopy = lettersSection
     }
     
     @objc func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
     
@@ -55,20 +56,12 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if searchActive {
-            return 1
-        } else {
-            return friends.count
-        }
+        return friends.count
     }
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchActive {
-            return friendsFromSearch.count
-        } else {
-            return friends[section].count
-        }
+        return friends[section].count
         
     }
     
@@ -76,30 +69,17 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendsTableViewCell.reuseId, for: indexPath) as! FriendsTableViewCell
-        if searchActive {
-            let someFriend = friendsFromSearch[indexPath.row]
-            cell.config(name: someFriend.name, photo: someFriend.photo[0])
-            
-        } else {
-            let someFriend = friends[indexPath.section][indexPath.row]
-            cell.config(name: someFriend.name, photo: someFriend.photo[0])
-            
-        }
+        let someFriend = friends[indexPath.section][indexPath.row]
+        cell.config(name: someFriend.name, photo: someFriend.photo[0])
+    
         return cell
     }
     
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderSectionForFriendsTable.reuseId) as? HeaderSectionForFriendsTable
-        if searchActive {
-            header?.configure(title: "TOP NAME MATCHES")
-        }
-        else {
-            let title = lettersSection[section]
-            header?.configure(title: title)
-            
-            
-        }
+        let title = lettersSection[section]
+        header?.configure(title: title)
         return header
         
     }
@@ -117,14 +97,17 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         else {
             return
         }
+        for item in 0..<Friends.list.count {
+            if Friends.list[item].name == friends[index.section][index.row].name{
+                destinationController.listIndex = item
+            }
+        }
         
-        destinationController.selectedFriend = friends[index.section][index.row]
     }
     
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
             Friends.list.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -133,23 +116,30 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     //MARK: - SearchBar Configurations
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchBar.setShowsCancelButton(true, animated: true)
-        friendsFromSearch = []
         
+        searchBar.setShowsCancelButton(true, animated: true)
+        var friendsSearch = [Friends]()
         for item in Friends.list {
+            friends.removeAll()
+            lettersSection.removeAll()
             let itemString = "\(item.name)"
             if itemString.lowercased().contains(searchText.lowercased()) {
-                friendsFromSearch.append(item)
+                friendsSearch.append(item)
             }
-            
+            friends.append(friendsSearch)
+            lettersSection.append("Search result")
             self.tableView.reloadData()
-            
         }
+        
     }
+    
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(false, animated: true)
+        friends = friendsCopy
+        lettersSection = lettersSectionCopy
         view.endEditing(true)
+        tableView.reloadData()
     }
     
     

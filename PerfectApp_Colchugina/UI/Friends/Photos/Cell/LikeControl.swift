@@ -15,9 +15,9 @@ class LikeControl: UIControl {
     
 private func setViews() {
     
-    
     buttonLike.setImage(UIImage.init(systemName: "suit.heart"), for: .normal)
-    buttonLike.tintColor = .black
+    buttonLike.tintColor = .systemGray
+    likeCountLabel.tintColor = .systemGray
     buttonLike.addTarget(self, action: #selector(tapToLike(_:)), for: .touchUpInside)
     self.addTarget(self, action: #selector(tapToLike(_:)), for: .touchUpInside)
     
@@ -55,18 +55,41 @@ required init?(coder: NSCoder) {
 
 @objc func tapToLike(_ button: UIButton) {
     isToggled.toggle()
-    
+    buttonLike.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
 
     if isToggled {
-        likeCountLabel.text = "\(likeCount + 1)"
-        buttonLike.setImage(UIImage.init(systemName: "suit.heart.fill"), for: .normal)
-        buttonLike.tintColor = .red
-        likeCountLabel.textColor = .red
+        UIView.animate(
+            withDuration: 1,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 0.5,
+            options: .curveEaseInOut,
+            animations: {
+                self.buttonLike.transform = .identity
+                self.buttonLike.setImage(UIImage.init(systemName: "suit.heart.fill"), for: .normal)
+                self.buttonLike.tintColor = .red
+                self.likeCountLabel.textColor = .red
+                self.likeCountLabel.text = "\(self.likeCount + 1)"
+     },
+            completion: nil)
+        
     } else {
-        buttonLike.setImage(UIImage.init(systemName: "suit.heart"), for: .normal)
-        likeCountLabel.text = "\(likeCount)"
-        buttonLike.tintColor = .black
-        likeCountLabel.textColor = .black
+        UIView.animate(
+            withDuration: 1,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 0.5,
+            options: .curveEaseInOut,
+            animations: {
+                self.buttonLike.transform = .identity
+                self.buttonLike.setImage(UIImage.init(systemName: "suit.heart"), for: .normal)
+                self.buttonLike.tintColor = .systemGray
+                self.likeCountLabel.textColor = .systemGray
+                self.likeCountLabel.text = "\(self.likeCount)"
+     },
+            completion: nil)
+        
+        
     }
    
 }

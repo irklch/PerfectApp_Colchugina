@@ -49,8 +49,14 @@ class MyGroupsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: MyGroupTableViewCell.reuseId, for: indexPath) as! MyGroupTableViewCell
         let someGroup = Groups.myList[indexPath.row]
         cell.config(name: someGroup.name, photo: someGroup.photo)
-        cell.selectionStyle = .none
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.cellForRow(at: indexPath)?.setSelected(true, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
     

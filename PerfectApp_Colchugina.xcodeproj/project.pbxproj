@@ -24,6 +24,7 @@
 		A95DA8CA2632D98E005EA110 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95DA8C82632D98E005EA110 /* LaunchScreen.storyboard */; };
 		A9A71DAD26358DD2005C6DCE /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A71DAC26358DD2005C6DCE /* UITextFieldExtension.swift */; };
 		A9E8D775264ED318000805CF /* FeedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E8D774264ED318000805CF /* FeedControl.swift */; };
+		A9E8D77726501FD7000805CF /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E8D77626501FD7000805CF /* LoadingViewController.swift */; };
 		A9F02B842635CB4B00E6D795 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B832635CB4B00E6D795 /* TabBarController.swift */; };
 		A9F02B872635CD1E00E6D795 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B862635CD1E00E6D795 /* FriendsTableViewController.swift */; };
 		A9F02B982635D9ED00E6D795 /* MyGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B972635D9ED00E6D795 /* MyGroupsTableViewController.swift */; };
@@ -54,6 +55,7 @@
 		A95DA8CB2632D98E005EA110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9A71DAC26358DD2005C6DCE /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		A9E8D774264ED318000805CF /* FeedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedControl.swift; sourceTree = "<group>"; };
+		A9E8D77626501FD7000805CF /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		A9F02B832635CB4B00E6D795 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A9F02B862635CD1E00E6D795 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		A9F02B972635D9ED00E6D795 /* MyGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsTableViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				A95DA8C12632D98D005EA110 /* LogInViewController.swift */,
+				A9E8D77626501FD7000805CF /* LoadingViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				A9F83571264D86D5001B1023 /* NewsFeedTableViewController.swift in Sources */,
 				A91DF27F263F30A1001CE958 /* MyGroupTableViewCell.swift in Sources */,
 				A95DA8BE2632D98D005EA110 /* AppDelegate.swift in Sources */,
+				A9E8D77726501FD7000805CF /* LoadingViewController.swift in Sources */,
 				A91DF275263EA3DC001CE958 /* FriendPhotosViewController.swift in Sources */,
 				A91DF286263F3625001CE958 /* AllGroupsTableViewController.swift in Sources */,
 				A9F83566264D3AD8001B1023 /* UIColorExtension.swift in Sources */,
