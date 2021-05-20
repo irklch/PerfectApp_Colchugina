@@ -8,6 +8,7 @@
 import UIKit
 
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
+    @IBAction func unwindToFriendsAction(unwindSegue: UIStoryboardSegue) {}
     private var friends = [[Friends]]()
     private var friendsCopy = [[Friends]]()
     private var lettersSection = [String]()

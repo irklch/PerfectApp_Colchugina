@@ -7,13 +7,20 @@
 
 import UIKit
 
-class FriendPhotosViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class FriendPhotosViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate {
     
+
     @IBOutlet var mainPhotoImageView: UIImageView!
     @IBOutlet var nameLable: UILabel!
     @IBOutlet var photosCollectoinView: UICollectionView!
+    
+    private var indexPathFriend = 0
     var listIndex = 0
     var selectedFriend: Friends!
+    
+    private var viewPhoto = UIView()
+    private var photoImageView = UIImageView()
+    private var backButton = UIButton(type: .system)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +32,8 @@ class FriendPhotosViewController: UIViewController, UICollectionViewDataSource, 
         mainPhotoImageView.contentMode = .scaleAspectFill
         mainPhotoImageView.clipsToBounds = true
         mainPhotoImageView.layer.cornerRadius = mainPhotoImageView.frame.height/2
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -38,10 +47,174 @@ class FriendPhotosViewController: UIViewController, UICollectionViewDataSource, 
 
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        photoImageView.image = UIImage(named: selectedFriend.photo[indexPath.row])
+        print("\(indexPath.row)")
+        openPhoto(indexPhoto: indexPath.row)
+        indexPathFriend = indexPath.row
+           
+    }
     
     
+    private func openPhoto (indexPhoto: Int) {
+       
+        view.addSubview(viewPhoto)
+        viewPhoto.alpha = 0
+        viewPhoto.backgroundColor = .black
+        viewPhoto.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            viewPhoto.topAnchor.constraint(equalTo: view.topAnchor),
+            viewPhoto.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            viewPhoto.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            viewPhoto.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        viewPhoto.addSubview(photoImageView)
+        photoImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            photoImageView.centerYAnchor.constraint(equalTo: viewPhoto.centerYAnchor),
+            photoImageView.trailingAnchor.constraint(equalTo: viewPhoto.trailingAnchor, constant: 0),
+            photoImageView.leadingAnchor.constraint(equalTo: viewPhoto.leadingAnchor, constant: 0),
+            photoImageView.heightAnchor.constraint(equalToConstant: 500)
+        ])
+        photoImageView.image = UIImage(named: selectedFriend.photo[indexPhoto])
+        photoImageView.clipsToBounds = true
+        photoImageView.contentMode = .scaleAspectFill
+        
+        viewPhoto.addSubview(backButton)
+        backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        backButton.setTitle(" Back", for: .normal)
+        backButton.tintColor = .white
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            backButton.topAnchor.constraint(equalTo: viewPhoto.topAnchor, constant: 50),
+            backButton.leadingAnchor.constraint(equalTo: viewPhoto.leadingAnchor, constant: 10)
+        ])
+        backButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+            self.viewPhoto.alpha = 1
+           
+        }, completion: nil)
+        
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.photoPan(_:)))
+        let swipeUp = UISwipeGestureRecognizer()
+        swipeUp.direction = [.up, .down]
+        swipeUp.delegate = self
+        swipeUp.addTarget(self, action: #selector(swipeUpGesture))
+        viewPhoto.addGestureRecognizer(swipeUp)
+        viewPhoto.addGestureRecognizer(panGestureRecognizer)
+        
+    }
+    
+    @objc func buttonAction() {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+            self.viewPhoto.alpha = 0
+           
+        }, completion: { completion in
+            self.viewPhoto.removeFromSuperview()
+            self.viewPhoto.alpha = 1
+            
+        })
+        
+    }
+    
+    //свайп вниз и вверх для закрытия фото
+    @objc func swipeUpGesture(_ swipeUp: UISwipeGestureRecognizer) {
+        buttonAction()
+    }
     
     
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
     
+    //перелистывание фото
+    @objc func photoPan ( _ recognizer: UIPanGestureRecognizer) {
+        let photoCount = selectedFriend.photo.count
+        var fullSwipe: CGFloat = 0
+        switch recognizer.state {
+        
+        case .changed:
+            photoImageView.transform = CGAffineTransform(translationX: recognizer.translation(in: view).x, y: 0)
+            
+            //если последняя фотография - стоп перелистывания
+            if recognizer.translation(in: view).x < 0 && indexPathFriend == photoCount - 1 {
+                if recognizer.translation(in: view).x > -50 {
+                    return self.photoImageView.transform = CGAffineTransform(translationX: recognizer.translation(in: view).x, y: 0)
+                } else {
+                    return self.photoImageView.transform = CGAffineTransform(translationX: -50, y: 0)
+                   
+                }
+            }
+            
+            //если первая фотография - стоп перелистывания
+            else if recognizer.translation(in: view).x > 0 && indexPathFriend == 0  {
+                if recognizer.translation(in: view).x < 50 {
+                    return self.photoImageView.transform = CGAffineTransform(translationX: recognizer.translation(in: view).x, y: 0)
+                }
+                else {
+                    return self.photoImageView.transform = CGAffineTransform(translationX: 50, y: 0)
+                    
+                }
+            }
+            
+            
+            
+        case .ended:
+            
+            // возвращает фото в исходное положение, если фото первое или последнее
+            if (recognizer.translation(in: view).x < 0 && indexPathFriend == photoCount - 1) || (recognizer.translation(in: view).x > 0 && indexPathFriend == 0) {
+                return UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                    self.photoImageView.transform = .identity
+                }, completion: nil)
+
+            }
+            
+            
+            //возвращает фото в исходное положение, если недостаточно сильно смахнули
+            guard recognizer.translation(in: view).x > 50 || recognizer.translation(in: view).x < -50 else {
+                return UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                    self.photoImageView.transform = .identity
+                }, completion: nil)
+
+            }
+            
+            //определяет направление перелистывания фото и изменяет индекс фотографии
+            if recognizer.translation(in: view).x < 0 {
+                fullSwipe = recognizer.translation(in: view).x - 300
+                indexPathFriend += 1
+                }
+            else {
+                fullSwipe = recognizer.translation(in: view).x + 300
+                indexPathFriend -= 1
+            }
+            
+            
+            //перелистывает фото
+            UIView.animate(withDuration: 0.3) {[self] in
+                self.photoImageView.transform = CGAffineTransform(translationX: fullSwipe, y: 0)
+            } completion: { _ in
+                self.photoImageView.image = UIImage(named: self.selectedFriend.photo[self.indexPathFriend])
+                self.photoImageView.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
+                UIView.animate(
+                    withDuration: 0.3,
+                    delay: 0,
+                    usingSpringWithDamping: 0.5,
+                    initialSpringVelocity: 0.2,
+                    options: .curveEaseInOut,
+                    animations: {
+                        self.photoImageView.transform = .identity
+                    },
+                    completion: nil)
+            }
+            
+            
+            
+            
+        default:
+            break
+        }
+    }
 
 }
