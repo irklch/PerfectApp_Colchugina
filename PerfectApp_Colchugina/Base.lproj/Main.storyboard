@@ -266,10 +266,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Groups" id="YxA-lM-az6">
-                        <barButtonItem key="leftBarButtonItem" title="Log out" style="done" id="yXu-cs-fhv">
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="yXu-cs-fhv">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="dYj-kd-koE" kind="unwind" unwindAction="unwindToLogInActionWithUnwindSegue:" id="XoM-Ev-Rn5"/>
+                                <segue destination="dYj-kd-koE" kind="unwind" unwindAction="unwindToLogInActionWithUnwindSegue:" id="C1b-Ti-FEB"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" id="FOO-2f-8ko">
@@ -324,6 +324,7 @@
                                         <constraint firstItem="9NH-gA-1nX" firstAttribute="leading" secondItem="3FN-pO-VVn" secondAttribute="leadingMargin" id="g3C-Ac-NwO"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <connections>
                                     <outlet property="groupNameLabel" destination="9NH-gA-1nX" id="jYV-jz-eJX"/>
                                     <outlet property="groupPhotoImageView" destination="9Hf-Bw-TPf" id="Wzb-dA-gJi"/>
@@ -366,7 +367,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="PTK-dG-Vyb" kind="presentation" identifier="FriendPhotosViewController" modalPresentationStyle="currentContext" modalTransitionStyle="coverVertical" id="e2i-9h-Fu7"/>
+                                    <segue destination="PTK-dG-Vyb" kind="show" identifier="FriendPhotosViewController" id="e2i-9h-Fu7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -376,10 +377,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Friends" id="wxl-Ge-mUp">
-                        <barButtonItem key="leftBarButtonItem" title="Log out" style="done" id="gLL-zP-x4S">
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="gLL-zP-x4S">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="X8Z-R0-5Wp" kind="unwind" unwindAction="unwindToLogInActionWithUnwindSegue:" id="sP1-N2-bQ9"/>
+                                <segue destination="X8Z-R0-5Wp" kind="unwind" unwindAction="unwindToLogInActionWithUnwindSegue:" id="Er7-TU-PHT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -400,21 +401,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uty-LV-Txj">
-                                <rect key="frame" x="183" y="116" width="48" height="25"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5BR-OY-MNK">
-                                <rect key="frame" x="182" y="60" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Dj8-3Q-NfN"/>
-                                    <constraint firstAttribute="height" constant="50" id="d5N-NM-P6o"/>
-                                </constraints>
-                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kz5-y1-eRV">
-                                <rect key="frame" x="0.0" y="149" width="414" height="747"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3ci-d0-D71">
                                     <size key="itemSize" width="413" height="469"/>
@@ -459,59 +447,30 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1k2-tH-4Bm">
-                                <rect key="frame" x="12" y="74.5" width="88.5" height="21.5"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content=" Friends">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <font key="NSFont" metaFont="system" size="18"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="clipping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                    <imageReference key="image" image="chevron.down" catalog="system" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="bold"/>
-                                </state>
-                                <connections>
-                                    <segue destination="4z7-cR-j2W" kind="unwind" unwindAction="unwindToFriendsActionWithUnwindSegue:" id="LUC-X3-iDj"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DGs-EX-tHf"/>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.8980392157" blue="0.56630862670000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" red="0.96862745100000003" green="0.8980392157" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="uty-LV-Txj" firstAttribute="top" secondItem="5BR-OY-MNK" secondAttribute="bottom" constant="6" id="5NG-Ih-ltT"/>
-                            <constraint firstItem="Kz5-y1-eRV" firstAttribute="top" secondItem="uty-LV-Txj" secondAttribute="bottom" constant="8" symbolic="YES" id="Dmj-dD-ZzW"/>
                             <constraint firstItem="Kz5-y1-eRV" firstAttribute="trailing" secondItem="1KO-rx-6Vb" secondAttribute="trailing" id="GyI-bk-xKE"/>
-                            <constraint firstItem="1k2-tH-4Bm" firstAttribute="centerY" secondItem="5BR-OY-MNK" secondAttribute="centerY" id="K1I-vh-6od"/>
                             <constraint firstItem="Kz5-y1-eRV" firstAttribute="leading" secondItem="1KO-rx-6Vb" secondAttribute="leading" id="Lvd-8O-vTE"/>
-                            <constraint firstItem="Kz5-y1-eRV" firstAttribute="top" secondItem="DGs-EX-tHf" secondAttribute="top" constant="105" id="Pg4-Iw-lac"/>
-                            <constraint firstItem="1k2-tH-4Bm" firstAttribute="leading" secondItem="DGs-EX-tHf" secondAttribute="leading" constant="12" id="YZ8-pM-yMh"/>
-                            <constraint firstItem="5BR-OY-MNK" firstAttribute="centerX" secondItem="DGs-EX-tHf" secondAttribute="centerX" id="j11-Ti-Uys"/>
+                            <constraint firstItem="Kz5-y1-eRV" firstAttribute="top" secondItem="DGs-EX-tHf" secondAttribute="top" id="gF6-ra-aUc"/>
                             <constraint firstAttribute="bottom" secondItem="Kz5-y1-eRV" secondAttribute="bottom" id="nic-sl-i4G"/>
-                            <constraint firstItem="uty-LV-Txj" firstAttribute="centerX" secondItem="DGs-EX-tHf" secondAttribute="centerX" id="vnp-ff-Rac"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SEN-fI-Ohr"/>
                     <connections>
-                        <outlet property="mainPhotoImageView" destination="5BR-OY-MNK" id="YpR-N8-7u3"/>
-                        <outlet property="nameLable" destination="uty-LV-Txj" id="1Cs-XP-QLg"/>
                         <outlet property="photosCollectoinView" destination="Kz5-y1-eRV" id="m1x-Nz-tCE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CFp-eq-Bl2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="4z7-cR-j2W" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2398.5507246376815" y="-362.27678571428572"/>
         </scene>
         <!--Friends-->
         <scene sceneID="6b5-UE-Lgg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xdx-OE-GQK" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xdx-OE-GQK" customClass="CustomFriendsNavigationController" customModule="PerfectApp_Colchugina" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" id="g6P-o4-MVo">
                         <imageReference key="image" image="person" catalog="system" symbolScale="large"/>
                         <imageReference key="selectedImage" image="person.fill" catalog="system" symbolScale="large"/>
@@ -539,7 +498,7 @@
         <!--Groups-->
         <scene sceneID="9J1-ZP-6ze">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ifc-tY-myZ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ifc-tY-myZ" customClass="CustomGroupsNavigationController" customModule="PerfectApp_Colchugina" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Groups" image="person.2" catalog="system" id="cug-T4-HKC">
                         <imageReference key="selectedImage" image="person.2.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
@@ -677,9 +636,17 @@
                             <outlet property="delegate" destination="iqC-Zr-wya" id="yN9-Ki-bM5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="News feed" id="IPb-kw-Jgt"/>
+                    <navigationItem key="navigationItem" title="News feed" id="IPb-kw-Jgt">
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="um1-kc-9b2">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <segue destination="NUs-8H-VTu" kind="unwind" unwindAction="unwindToLogInActionWithUnwindSegue:" id="0XG-RO-Hrb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BMe-C1-dvX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="NUs-8H-VTu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1576.8115942028987" y="1099.5535714285713"/>
         </scene>
@@ -697,7 +664,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" red="0.97647058823529409" green="0.87450980392156863" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.96862745098039216" green="0.89803921568627454" blue="0.51372549019607838" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -719,7 +686,6 @@
     </scenes>
     <color key="tintColor" red="0.97254901959999995" green="0.84705882349999995" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
-        <image name="chevron.down" catalog="system" width="128" height="72"/>
         <image name="newspaper" catalog="system" width="128" height="108"/>
         <image name="newspaper.fill" catalog="system" width="128" height="111"/>
         <image name="person" catalog="system" width="128" height="117"/>
@@ -729,6 +695,9 @@
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

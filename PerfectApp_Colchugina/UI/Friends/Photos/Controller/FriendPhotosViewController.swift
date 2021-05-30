@@ -10,8 +10,6 @@ import UIKit
 class FriendPhotosViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate {
     
 
-    @IBOutlet var mainPhotoImageView: UIImageView!
-    @IBOutlet var nameLable: UILabel!
     @IBOutlet var photosCollectoinView: UICollectionView!
     
     private var indexPathFriend = 0
@@ -27,12 +25,7 @@ class FriendPhotosViewController: UIViewController, UICollectionViewDataSource, 
         selectedFriend = Friends.list[listIndex]
         self.photosCollectoinView.delegate = self
         self.photosCollectoinView.dataSource = self
-        nameLable.text = selectedFriend.name
-        mainPhotoImageView.image = UIImage(named: selectedFriend.photo[0])
-        mainPhotoImageView.contentMode = .scaleAspectFill
-        mainPhotoImageView.clipsToBounds = true
-        mainPhotoImageView.layer.cornerRadius = mainPhotoImageView.frame.height/2
-        
+        title = selectedFriend.name
         
     }
     

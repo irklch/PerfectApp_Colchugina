@@ -8,7 +8,6 @@
 import UIKit
 
 class LoadingViewController: UIViewController {
-    
     let point1 = UIView()
     let point2 = UIView()
     let point3 = UIView()
