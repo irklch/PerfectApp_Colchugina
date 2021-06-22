@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+class Session {
+    static var shared = Session()
+    
+    private init() {}
+    
+    var token: String?
+    var id: Int?
+
+}
