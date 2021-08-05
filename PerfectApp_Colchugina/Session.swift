@@ -7,7 +7,9 @@
 
 import Foundation
 
-class Session {
+final class Session {
+    var id: Int?
+    var token: String?
     static var shared = Session()
     
     private init() {}
