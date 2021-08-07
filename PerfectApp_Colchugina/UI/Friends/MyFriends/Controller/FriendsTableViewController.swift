@@ -7,39 +7,31 @@
 
 import UIKit
 
-class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
+class FriendsTableViewController: UITableViewController {
+
+
     @IBAction func unwindToFriendsAction(unwindSegue: UIStoryboardSegue) {}
     private var friends = [[Friends]]()
     private var friendsCopy = [[Friends]]()
-    private var lettersSection = [String]()
+    private var lettersList = [String]()
     private var lettersSectionCopy = [String]()
     @IBOutlet weak var searchBar: UISearchBar!
-    var searchActive: Bool {
-        if searchBar.text!.isEmpty {
-            return false
-        }
-        else {
-            return true
-        }
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
-        var sortedFriends = Friends.list
-        sortedFriends.sort { $0.name < $1.name }
-        lettersSection = Array(Set(sortedFriends.map({ String($0.name.first ?? "*") }))).sorted()
-        for letter in lettersSection {
-            let someFriend = sortedFriendOnSection(letter, sortedFriends)
-            friends.append(someFriend)
-        }
+        setConfigurations()
+
+    }
+
+    private func setConfigurations() {
+        delegate()
+        startSortItems()
+        registerHead()
+    }
+
+    private func registerHead() {
         tableView.register(HeaderSectionForFriendsTable.self, forHeaderFooterViewReuseIdentifier: HeaderSectionForFriendsTable.reuseId)
-        if searchActive {
-            let tapForHiddenKeybourd = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-            view.addGestureRecognizer(tapForHiddenKeybourd)
-        }
-        friendsCopy = friends
-        lettersSectionCopy = lettersSection
     }
     
     @objc func dismissKeyboard() {
@@ -47,7 +39,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     
-    func sortedFriendOnSection (_ letter: String, _ arr: [Friends]) -> [Friends] {
+    func sortFriendBySection (_ letter: String, _ arr: [Friends]) -> [Friends] {
         return arr.filter { String($0.name.first ?? "*") == letter }
     }
     
@@ -79,7 +71,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderSectionForFriendsTable.reuseId) as? HeaderSectionForFriendsTable
-        let title = lettersSection[section]
+        let title = lettersList[section]
         header?.configure(title: title)
         return header
         
@@ -114,35 +106,64 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         }
     }
     
-    //MARK: - SearchBar Configurations
-    
+}
+
+
+extension FriendsTableViewController: UISearchBarDelegate{
+
+    private var isSearchBarActive: Bool {
+        if searchBar.text == nil {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+
+    private func delegate() {
+        searchBar.delegate = self
+    }
+
+    private func startSortItems() {
+        var friendsList = Friends.list
+        friendsList.sort { $0.name < $1.name }
+        lettersList = Array(Set(friendsList.map({ String($0.name.first ?? "*") }))).sorted()
+        for letter in lettersList {
+            let friend = sortFriendBySection(letter, friendsList)
+            friends.append(friend)
+        }
+
+        if isSearchBarActive {
+            let tapForHiddenKeybourd = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+            view.addGestureRecognizer(tapForHiddenKeybourd)
+        }
+        friendsCopy = friends
+        lettersSectionCopy = lettersList
+    }
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+
         searchBar.setShowsCancelButton(true, animated: true)
         var friendsSearch = [Friends]()
         for item in Friends.list {
             friends.removeAll()
-            lettersSection.removeAll()
+            lettersList.removeAll()
             let itemString = "\(item.name)"
             if itemString.lowercased().contains(searchText.lowercased()) {
                 friendsSearch.append(item)
             }
             friends.append(friendsSearch)
-            lettersSection.append("Search result")
+            lettersList.append("Search result")
             self.tableView.reloadData()
         }
-        
+
     }
-    
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+
+    func clickSearchBarCancelButton(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(false, animated: true)
         friends = friendsCopy
-        lettersSection = lettersSectionCopy
+        lettersList = lettersSectionCopy
         view.endEditing(true)
         tableView.reloadData()
     }
-    
-    
-    
 }
