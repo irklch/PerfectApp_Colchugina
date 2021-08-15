@@ -34,7 +34,7 @@ class LoadingViewController: UIViewController {
             point2.heightAnchor.constraint(equalToConstant: pointSize)
         ])
         topConstraint = point2.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
-
+        
         
         self.view.addSubview(point1)
         point1.layer.cornerRadius = pointSize/2
@@ -70,7 +70,7 @@ class LoadingViewController: UIViewController {
                        delay: 5,
                        options: [.curveEaseInOut]) {
             
-                self.point1.backgroundColor = UIColor.black
+            self.point1.backgroundColor = UIColor.black
             
         } completion: { comleted in
             
@@ -98,11 +98,11 @@ class LoadingViewController: UIViewController {
                                     
                                    })
                 }
-
+                
             }
-
+            
         }
-
+        
     }
-
+    
 }

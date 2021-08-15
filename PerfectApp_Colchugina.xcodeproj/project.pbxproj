@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,6 +32,11 @@
 		A982CFDF26BD586900A070AE /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A982CFDE26BD586900A070AE /* WebViewController.swift */; };
 		A982CFE126BD819800A070AE /* VKAPIRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A982CFE026BD819800A070AE /* VKAPIRequests.swift */; };
 		A9A71DAD26358DD2005C6DCE /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A71DAC26358DD2005C6DCE /* UITextFieldExtension.swift */; };
+		A9BDADCF26C3DB79004463CA /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BDADCE26C3DB79004463CA /* URLs.swift */; };
+		A9BDADD126C3F267004463CA /* PhotosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BDADD026C3F267004463CA /* PhotosList.swift */; };
+		A9BDADD526C40DDD004463CA /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = A9BDADD426C40DDD004463CA /* SwiftyJSON */; };
+		A9BDADD826C40DFF004463CA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A9BDADD726C40DFF004463CA /* Kingfisher */; };
+		A9BDADDA26C56A68004463CA /* MappingJsonToNewStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BDADD926C56A68004463CA /* MappingJsonToNewStruct.swift */; };
 		A9E8D775264ED318000805CF /* FeedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E8D774264ED318000805CF /* FeedControl.swift */; };
 		A9E8D77726501FD7000805CF /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E8D77626501FD7000805CF /* LoadingViewController.swift */; };
 		A9F02B842635CB4B00E6D795 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B832635CB4B00E6D795 /* TabBarController.swift */; };
@@ -73,6 +78,9 @@
 		A982CFDE26BD586900A070AE /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		A982CFE026BD819800A070AE /* VKAPIRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAPIRequests.swift; sourceTree = "<group>"; };
 		A9A71DAC26358DD2005C6DCE /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		A9BDADCE26C3DB79004463CA /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
+		A9BDADD026C3F267004463CA /* PhotosList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosList.swift; sourceTree = "<group>"; };
+		A9BDADD926C56A68004463CA /* MappingJsonToNewStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingJsonToNewStruct.swift; sourceTree = "<group>"; };
 		A9E8D774264ED318000805CF /* FeedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedControl.swift; sourceTree = "<group>"; };
 		A9E8D77626501FD7000805CF /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		A9F02B832635CB4B00E6D795 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -91,6 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9BDADD826C40DFF004463CA /* Kingfisher in Frameworks */,
+				A9BDADD526C40DDD004463CA /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,13 +127,16 @@
 			isa = PBXGroup;
 			children = (
 				A95DA8C32632D98D005EA110 /* Main.storyboard */,
+				A95DA8BD2632D98D005EA110 /* AppDelegate.swift */,
+				A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */,
 				A9F7412626BBE38700C1B591 /* Session.swift */,
 				A9F02B892635CD4400E6D795 /* Extensions */,
 				A9F83557264D2D10001B1023 /* UI */,
-				A982CFE226BD81A500A070AE /* API */,
-				A9F83556264D2D06001B1023 /* Delegate */,
-				A9F83554264D2CB1001B1023 /* Resourses */,
+				A9BDADCB26C3D75D004463CA /* Core */,
+				A9BDADCC26C3DB53004463CA /* Helpers */,
+				A9F83554264D2CB1001B1023 /* Suppots */,
 				A95DA8CB2632D98E005EA110 /* Info.plist */,
+				A95DA8C82632D98E005EA110 /* LaunchScreen.storyboard */,
 			);
 			path = PerfectApp_Colchugina;
 			sourceTree = "<group>";
@@ -149,12 +162,45 @@
 			path = CunstomTransition;
 			sourceTree = "<group>";
 		};
-		A982CFE226BD81A500A070AE /* API */ = {
+		A982CFE226BD81A500A070AE /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
 				A982CFE026BD819800A070AE /* VKAPIRequests.swift */,
+				A9BDADD926C56A68004463CA /* MappingJsonToNewStruct.swift */,
 			);
-			path = API;
+			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		A9BDADCB26C3D75D004463CA /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A982CFE226BD81A500A070AE /* NetworkLayer */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A9BDADCC26C3DB53004463CA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A9BDADCD26C3DB64004463CA /* URLs */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		A9BDADCD26C3DB64004463CA /* URLs */ = {
+			isa = PBXGroup;
+			children = (
+				A9BDADCE26C3DB79004463CA /* URLs.swift */,
+			);
+			path = URLs;
+			sourceTree = "<group>";
+		};
+		A9BDADD226C3F278004463CA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A9BDADD026C3F267004463CA /* PhotosList.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A9F02B892635CD4400E6D795 /* Extensions */ = {
@@ -180,7 +226,6 @@
 				A966117D2663A4AD0041422B /* CunstomTransition */,
 				A9F83550264D2C01001B1023 /* MyFriends */,
 				A9F83551264D2C0C001B1023 /* Photos */,
-				A9F83558264D2D57001B1023 /* Model */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -199,8 +244,8 @@
 		A9F83550264D2C01001B1023 /* MyFriends */ = {
 			isa = PBXGroup;
 			children = (
+				A9F83558264D2D57001B1023 /* Model */,
 				A9F8355B264D2D89001B1023 /* Controller */,
-				A9F8355C264D2DCE001B1023 /* TableHeader */,
 				A9F8355A264D2D81001B1023 /* Cell */,
 			);
 			path = MyFriends;
@@ -209,6 +254,7 @@
 		A9F83551264D2C0C001B1023 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				A9BDADD226C3F278004463CA /* Model */,
 				A9F8355D264D2DE6001B1023 /* Controller */,
 				A9F8355E264D2DF4001B1023 /* Cell */,
 			);
@@ -233,13 +279,12 @@
 			path = MyGroups;
 			sourceTree = "<group>";
 		};
-		A9F83554264D2CB1001B1023 /* Resourses */ = {
+		A9F83554264D2CB1001B1023 /* Suppots */ = {
 			isa = PBXGroup;
 			children = (
 				A95DA8C62632D98E005EA110 /* Assets.xcassets */,
-				A95DA8C82632D98E005EA110 /* LaunchScreen.storyboard */,
 			);
-			path = Resourses;
+			path = Suppots;
 			sourceTree = "<group>";
 		};
 		A9F83555264D2CF3001B1023 /* Login */ = {
@@ -252,23 +297,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		A9F83556264D2D06001B1023 /* Delegate */ = {
-			isa = PBXGroup;
-			children = (
-				A95DA8BD2632D98D005EA110 /* AppDelegate.swift */,
-				A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */,
-			);
-			path = Delegate;
-			sourceTree = "<group>";
-		};
 		A9F83557264D2D10001B1023 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				A9F83569264D8041001B1023 /* NewsFeed */,
+				A9F83555264D2CF3001B1023 /* Login */,
 				A9F8354E264D2BEC001B1023 /* Friends */,
+				A9F83569264D8041001B1023 /* NewsFeed */,
 				A9F8354F264D2BF6001B1023 /* Groups */,
 				A9F02B8B2635CD7C00E6D795 /* TabBar */,
-				A9F83555264D2CF3001B1023 /* Login */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -292,6 +328,7 @@
 		A9F8355B264D2D89001B1023 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A9F8355C264D2DCE001B1023 /* TableHeader */,
 				A9F02B862635CD1E00E6D795 /* FriendsTableViewController.swift */,
 			);
 			path = Controller;
@@ -413,6 +450,10 @@
 			dependencies = (
 			);
 			name = PerfectApp_Colchugina;
+			packageProductDependencies = (
+				A9BDADD426C40DDD004463CA /* SwiftyJSON */,
+				A9BDADD726C40DFF004463CA /* Kingfisher */,
+			);
 			productName = PerfectApp_Colchugina;
 			productReference = A95DA8BA2632D98D005EA110 /* PerfectApp_Colchugina.app */;
 			productType = "com.apple.product-type.application";
@@ -440,6 +481,10 @@
 				Base,
 			);
 			mainGroup = A95DA8B12632D98D005EA110;
+			packageReferences = (
+				A9BDADD326C40DDD004463CA /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				A9BDADD626C40DFF004463CA /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = A95DA8BB2632D98D005EA110 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -470,15 +515,18 @@
 				A9A71DAD26358DD2005C6DCE /* UITextFieldExtension.swift in Sources */,
 				A966117C26639DF10041422B /* PopZoomAnimator.swift in Sources */,
 				A95DA8C22632D98D005EA110 /* LogInViewController.swift in Sources */,
+				A9BDADCF26C3DB79004463CA /* URLs.swift in Sources */,
 				A9F83573264D8737001B1023 /* NewsFeedList.swift in Sources */,
 				A9F02B982635D9ED00E6D795 /* MyGroupsTableViewController.swift in Sources */,
 				A91DF284263F31A9001CE958 /* GroupList.swift in Sources */,
+				A9BDADDA26C56A68004463CA /* MappingJsonToNewStruct.swift in Sources */,
 				A9F02B872635CD1E00E6D795 /* FriendsTableViewController.swift in Sources */,
 				A966117A26639DDB0041422B /* PushZoomAnimator.swift in Sources */,
 				A9F8356C264D8099001B1023 /* NewsFeedTableViewCell.swift in Sources */,
 				A96611852663A5720041422B /* PopSliderAnimator.swift in Sources */,
 				A9E8D775264ED318000805CF /* FeedControl.swift in Sources */,
 				A91DF27D263EE0F3001CE958 /* FriendsTableViewCell.swift in Sources */,
+				A9BDADD126C3F267004463CA /* PhotosList.swift in Sources */,
 				A9F7412726BBE38700C1B591 /* Session.swift in Sources */,
 				A91DF278263EAA53001CE958 /* PhotosCollectionViewCell.swift in Sources */,
 				A966117F2663A4C20041422B /* CustomFriendsNavigationController.swift in Sources */,
@@ -701,6 +749,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A9BDADD326C40DDD004463CA /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+		A9BDADD626C40DFF004463CA /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A9BDADD426C40DDD004463CA /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A9BDADD326C40DDD004463CA /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		A9BDADD726C40DFF004463CA /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A9BDADD626C40DFF004463CA /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A95DA8B22632D98D005EA110 /* Project object */;
 }

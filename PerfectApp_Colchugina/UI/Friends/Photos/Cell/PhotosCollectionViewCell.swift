@@ -7,20 +7,29 @@
 
 import UIKit
 
-class PhotosCollectionViewCell: UICollectionViewCell {
-    @IBOutlet var photoImageView: UIImageView!
-    @IBOutlet var likeCintrol: LikeControl!
+final class PhotosCollectionViewCell: UICollectionViewCell {
+    
+    //MARK:- Public properties
+    
     static let reuseId = "PhotosCollectionViewCell"
-   
+    
+    //MARK:- Private properties
+    
+    @IBOutlet private var photoImageView: UIImageView!
+    @IBOutlet private var likeCintrol: LikeControl!
+    
+    //MARK:- Life cycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
+    //MARK:- Public methods
+    
     func config (_ photo: String) {
-        self.photoImageView.image = UIImage(named: photo)
+        guard let url = URL(string: photo) else {return}
+        self.photoImageView.kf.setImage(with: url)
         self.photoImageView.contentMode = .scaleAspectFill
         self.photoImageView.clipsToBounds = true
     }
-    
-   
 }

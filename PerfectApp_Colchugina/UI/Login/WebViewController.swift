@@ -10,22 +10,28 @@ import WebKit
 
 final class WebViewController: UIViewController, WKNavigationDelegate {
 
+    //MARK:- Private property
+
     private let vkRequest = VKRequests()
+
+    //MARK:- Public property
+
     @IBOutlet var vkWebView: WKWebView! {
         didSet {
             vkWebView.navigationDelegate = self
         }
     }
 
+    //MARK:- Life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         openVKAuth()
-        
-        
     }
 
-    private func openVKAuth() {
+    //MARK:- Private methods
 
+    private func openVKAuth() {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "oauth.vk.com"
@@ -40,14 +46,18 @@ final class WebViewController: UIViewController, WKNavigationDelegate {
         ]
 
         guard let url = urlComponents.url else {return}
-         let request = URLRequest.init(url: url)
-
+        let request = URLRequest.init(url: url)
         vkWebView.load(request)
-
     }
 
-     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        
+    private func presentNavigationBarController() {
+        self.performSegue(withIdentifier: "presentTabBar", sender: nil)
+    }
+
+    //MARK:- Public method
+
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+
         guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment else {
             decisionHandler(.allow)
             return
@@ -56,32 +66,22 @@ final class WebViewController: UIViewController, WKNavigationDelegate {
         let params = fragment.components(separatedBy: "&")
             .map{$0.components(separatedBy: "=")}
             .reduce([String:String]()) { result, param in
-            var dict = result
-            let key = param[0]
-            let value = param[1]
-            dict[key] = value
-            return dict
-        }
+                var dict = result
+                let key = param[0]
+                let value = param[1]
+                dict[key] = value
+                return dict
+            }
 
         guard let token = params["access_token"] else {return}
         Session.shared.token = token
-//        print(Session.shared.token)
+        print(Session.shared.token)
 
         guard let id = params["user_id"] else {return}
         Session.shared.id = id
-//        print(Session.shared.id)
+        print(Session.shared.id)
 
         decisionHandler(.cancel)
         presentNavigationBarController()
-
-        vkRequest.getFriendList()
-        vkRequest.getGroupList()
-        vkRequest.getFriendsPhotoList()
-        vkRequest.getGroupListFromSearch(groupName: "book")
-
-    }
-
-    private func presentNavigationBarController() {
-        self.performSegue(withIdentifier: "presentTabBar", sender: nil)
     }
 }
