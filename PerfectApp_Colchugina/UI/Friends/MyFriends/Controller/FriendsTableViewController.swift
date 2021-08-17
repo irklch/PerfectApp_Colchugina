@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class FriendsTableViewController: UITableViewController {
     
@@ -16,12 +17,13 @@ final class FriendsTableViewController: UITableViewController {
     private var lettersLists = [String]()
     private var lettersSortReserveLists = [String]()
     @IBOutlet private weak var searchBar: UISearchBar!
-    
+
     //MARK:- Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setConfigurations()
+        setSearchBarPlaceholder()
     }
     
     //MARK:- Private methods
@@ -43,14 +45,32 @@ final class FriendsTableViewController: UITableViewController {
             case .failure(let error):
                 print (error)
             case .success(let friends):
-                self.friendsLists = mapping.createNewFriendStruct(oldStruct: friends.response.items)
+                mapping.createNewFriendStruct(oldStruct: friends.response.items)
+                
                 DispatchQueue.main.async {
+                    self.readRealm()
                     self.startSortItems()
                     self.tableView.reloadData()
+                    
                 }
             }
         }
     }
+    private func readRealm() {
+        let friendsRealmLists: Results<Friends>?
+        do {
+            let realm = try Realm()
+            let friendsData = realm.objects(Friends.self)
+            friendsRealmLists = friendsData
+            guard let items = friendsRealmLists else {return}
+            items.forEach { item in
+                friendsLists.append(item)
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
     
     private func registerHead() {
         tableView.register(HeaderSectionForFriendsTable.self,
@@ -84,7 +104,7 @@ final class FriendsTableViewController: UITableViewController {
         
         return cell
     }
-
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderSectionForFriendsTable.reuseId) as? HeaderSectionForFriendsTable
         let title = lettersLists[section]
@@ -102,7 +122,6 @@ final class FriendsTableViewController: UITableViewController {
             let destinationController = segue.destination as? FriendPhotosViewController,
             let index = tableView.indexPathForSelectedRow
         else {return}
-
         friendsLists.forEach { item in
             if item.lastName == friendsSortLists[index.section][index.row].lastName
             {
@@ -136,7 +155,6 @@ extension FriendsTableViewController: UISearchBarDelegate{
         var friendsList = friendsLists
         friendsList.sort { $0.lastName < $1.lastName }
         lettersLists = Array(Set(friendsList.map({ String($0.lastName.first ?? "*") }))).sorted()
-
         lettersLists.forEach { letter in
             let friend = sortFriendBySection(letter, friendsList)
             friendsSortLists.append(friend)
@@ -149,19 +167,15 @@ extension FriendsTableViewController: UISearchBarDelegate{
         friendsReseveLists = friendsSortLists
         lettersSortReserveLists = lettersLists
     }
-    
-    private func clickSearchBarCancelButton(_ searchBar: UISearchBar) {
-        searchBar.setShowsCancelButton(false, animated: true)
-        friendsSortLists = friendsReseveLists
-        lettersLists = lettersSortReserveLists
-        view.endEditing(true)
-        tableView.reloadData()
+
+    private func setSearchBarPlaceholder() {
+        searchBar.placeholder = "Search friend"
     }
-    
+
     //MARK:- Public methods
+
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         searchBar.setShowsCancelButton(true, animated: true)
         var friendsSearch = [Friends]()
         for item in friendsLists {
@@ -176,4 +190,13 @@ extension FriendsTableViewController: UISearchBarDelegate{
             self.tableView.reloadData()
         }
     }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+        friendsSortLists = friendsReseveLists
+        lettersLists = lettersSortReserveLists
+        view.endEditing(true)
+        tableView.reloadData()
+    }
 }
+

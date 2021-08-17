@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 //MARK:- Public properties
 
@@ -24,9 +25,20 @@ struct FriendsList: Decodable {
     var photo_200_orig: String
 }
 
-struct Friends {
-    var firstName = ""
-    var lastName = ""
-    var photo = ""
-    var id = 0
+class Friends: RealmSwift.Object {
+    @objc dynamic var firstName: String = ""
+    @objc dynamic var lastName: String = ""
+    @objc dynamic var photo: String = ""
+    @objc dynamic var id: Int = 0
+
+    convenience init(firstName: String, lastName: String, photo: String, id: Int) {
+        self.init()
+
+        self.firstName = firstName
+        self.lastName = lastName
+        self.photo = photo
+        self.id = id
+    }
 }
+
+

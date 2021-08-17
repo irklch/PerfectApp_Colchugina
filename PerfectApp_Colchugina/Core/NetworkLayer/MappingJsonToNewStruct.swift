@@ -6,42 +6,69 @@
 //
 
 import Foundation
+import RealmSwift
 
 class MappingJson {
-    func createNewFriendStruct (oldStruct: [FriendsList]) -> [Friends] {
-        var newStruct = [Friends](repeating: .init(firstName: "",
-                                                   lastName: "",
-                                                   photo: "",
-                                                   id: 0),
-                                  count: oldStruct.count)
-        for item in 0..<oldStruct.count {
-            newStruct[item].firstName = oldStruct[item].first_name
-            newStruct[item].lastName = oldStruct[item].last_name
-            newStruct[item].photo = oldStruct[item].photo_200_orig
-            newStruct[item].id = oldStruct[item].id
+    func createNewFriendStruct (oldStruct: [FriendsList]) {
+        var newStruct = [Friends]()
+        oldStruct.forEach { friend in
+            let itemFriend = Friends()
+            itemFriend.firstName = friend.first_name
+            itemFriend.lastName = friend.last_name
+            itemFriend.photo = friend.photo_200_orig
+            itemFriend.id = friend.id
+            newStruct.append(itemFriend)
         }
-        return newStruct
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            let oldFriends = realm.objects(Friends.self)
+            realm.delete(oldFriends)
+            realm.add(newStruct)
+            try realm.commitWrite()
+        } catch {
+            print(error)
+        }
     }
 
-    func createNewPhotoStruct (oldStruct: [PhotosSizes]) -> [PhotosFriend] {
-        var newStruct = [PhotosFriend](repeating: .init(url: ""),
-                                       count: oldStruct.count)
-        for item in 0..<oldStruct.count {
-            if let photo = oldStruct[item].sizes.last {
-                newStruct[item].url = String(photo.url)
+    func createNewPhotoStruct (oldStruct: [PhotosSizes]) {
+        var newStruct = [PhotosFriend]()
+        oldStruct.forEach { photo in
+            if let oldPhoto = photo.sizes.last {
+                let itemPhoto = PhotosFriend()
+                itemPhoto.url = oldPhoto.url
+                newStruct.append(itemPhoto)
             }
         }
-        return newStruct
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            let oldFriends = realm.objects(PhotosFriend.self)
+            realm.delete(oldFriends)
+            realm.add(newStruct)
+            try realm.commitWrite()
+        } catch {
+            print(error)
+        }
     }
 
-    func createNewGoupsStruct (oldStruct: [GroupsList]) -> [Groups] {
-        var newStruct = [Groups](repeating: .init(name: "",
-                                                  photo: ""),
-                                 count: oldStruct.count)
-        for item in 0..<oldStruct.count {
-            newStruct[item].name = oldStruct[item].name
-            newStruct[item].photo = oldStruct[item].photo_200
+    func createNewGoupsStruct (oldStruct: [GroupsList]) {
+        var newStruct = [Groups]()
+        oldStruct.forEach { group in
+            let itemGroup = Groups()
+            itemGroup.name = group.name
+            itemGroup.photo = group.photo_200
+            newStruct.append(itemGroup)
         }
-        return newStruct
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            let oldFriends = realm.objects(Groups.self)
+            realm.delete(oldFriends)
+            realm.add(newStruct)
+            try realm.commitWrite()
+        } catch {
+            print(error)
+        }
     }
 }

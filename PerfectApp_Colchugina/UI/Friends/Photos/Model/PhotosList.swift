@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 //MARK:- Public properties
 
@@ -24,6 +25,12 @@ struct PhotosUrl: Decodable {
     var url: String
 }
 
-struct PhotosFriend {
-    var url = ""
+class PhotosFriend: Object {
+    @objc dynamic var url = ""
+
+    convenience init (url: String) {
+        self.init()
+
+        self.url = url
+    }
 }
