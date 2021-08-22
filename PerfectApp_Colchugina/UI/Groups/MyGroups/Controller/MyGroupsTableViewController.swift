@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class MyGroupsTableViewController: UITableViewController {
 
@@ -31,11 +32,28 @@ final class MyGroupsTableViewController: UITableViewController {
             case .failure(let error):
                 print (error)
             case .success(let groups):
-                self.groupsList = mapping.createNewGoupsStruct(oldStruct: groups.response.items)
+                mapping.createNewGoupsStruct(oldStruct: groups.response.items)
+                
                 DispatchQueue.main.async {
+                    self.readRealm()
                     self.tableView.reloadData()
                 }
             }
+        }
+    }
+
+    private func readRealm() {
+        let groupsRealmList: Results<Groups>?
+        do {
+            let realm = try Realm()
+            let groupsData = realm.objects(Groups.self)
+            groupsRealmList = groupsData
+            guard let items = groupsRealmList else {return}
+            items.forEach { item in
+                groupsList.append(item)
+            }
+        } catch {
+            print(error)
         }
     }
 

@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate {
     
@@ -14,7 +15,7 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
     
     @IBOutlet var photosCollectoinView: UICollectionView!
     private var selectedPhoto = 0
-    private var photoList = [PhotosFriend]()
+    private var photosLists = [PhotosFriend]()
     var selectedFriend = Friends()
     private var viewPhoto = UIView()
     private var photoImageView = UIImageView()
@@ -39,11 +40,28 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
             case .failure(let error):
                 print (error)
             case .success(let photos):
-                self.photoList = mapping.createNewPhotoStruct(oldStruct: photos.response.items)
+                mapping.createNewPhotoStruct(oldStruct: photos.response.items)
+                
                 DispatchQueue.main.async {
+                    self.readRealm()
                     self.photosCollectoinView.reloadData()
                 }
             }
+        }
+    }
+    
+    private func readRealm() {
+        let photosRealmLists: Results<PhotosFriend>?
+        do {
+            let realm = try Realm()
+            let photosData = realm.objects(PhotosFriend.self)
+            photosRealmLists = photosData
+            guard let items = photosRealmLists else {return}
+            items.forEach { item in
+                photosLists.append(item)
+            }
+        } catch {
+            print(error)
         }
     }
     
@@ -69,14 +87,13 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
             photoImageView.heightAnchor.constraint(equalToConstant: 500)
         ])
         
-        guard let url = URL(string: photoList[indexPhoto].url) else {return}
+        guard let url = URL(string: photosLists[indexPhoto].url) else {return}
         photoImageView.kf.setImage(with: url)
         photoImageView.clipsToBounds = true
         photoImageView.contentMode = .scaleAspectFill
         
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
             self.viewPhoto.alpha = 1
-            
         }, completion: nil)
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(photoPan))
@@ -106,7 +123,7 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
     
     //перелистывание фото
     @objc func photoPan ( _ recognizer: UIPanGestureRecognizer) {
-        let photoCount = photoList.count
+        let photoCount = photosLists.count
         var fullSwipe: CGFloat = 0
         switch recognizer.state {
         
@@ -162,7 +179,7 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
             UIView.animate(withDuration: 0.3) {[self] in
                 self.photoImageView.transform = CGAffineTransform(translationX: fullSwipe, y: 0)
             } completion: { _ in
-                guard let url = URL(string: self.photoList[self.selectedPhoto].url) else {return}
+                guard let url = URL(string: self.photosLists[self.selectedPhoto].url) else {return}
                 self.photoImageView.kf.setImage(with: url)
                 self.photoImageView.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
                 UIView.animate(
@@ -192,17 +209,17 @@ extension FriendPhotosViewController: UICollectionViewDataSource, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoList.count
+        return photosLists.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.reuseId, for: indexPath) as! PhotosCollectionViewCell
-        cell.config(photoList[indexPath.row].url)
+        cell.config(photosLists[indexPath.row].url)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let url = URL(string: photoList[indexPath.row].url) else {return}
+        guard let url = URL(string: photosLists[indexPath.row].url) else {return}
         photoImageView.kf.setImage(with: url)
         openPhoto(indexPhoto: indexPath.row)
         selectedPhoto = indexPath.row

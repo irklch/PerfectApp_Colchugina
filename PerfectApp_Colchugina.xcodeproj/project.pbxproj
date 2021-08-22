@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A90C4FE126CAAE6800C62BAF /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A90C4FE026CAAE6800C62BAF /* RealmSwift */; };
 		A91DF275263EA3DC001CE958 /* FriendPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF274263EA3DC001CE958 /* FriendPhotosViewController.swift */; };
 		A91DF278263EAA53001CE958 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF277263EAA53001CE958 /* PhotosCollectionViewCell.swift */; };
 		A91DF27B263EB6E0001CE958 /* FriendsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF27A263EB6E0001CE958 /* FriendsList.swift */; };
@@ -99,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A90C4FE126CAAE6800C62BAF /* RealmSwift in Frameworks */,
 				A9BDADD826C40DFF004463CA /* Kingfisher in Frameworks */,
 				A9BDADD526C40DDD004463CA /* SwiftyJSON in Frameworks */,
 			);
@@ -453,6 +455,7 @@
 			packageProductDependencies = (
 				A9BDADD426C40DDD004463CA /* SwiftyJSON */,
 				A9BDADD726C40DFF004463CA /* Kingfisher */,
+				A90C4FE026CAAE6800C62BAF /* RealmSwift */,
 			);
 			productName = PerfectApp_Colchugina;
 			productReference = A95DA8BA2632D98D005EA110 /* PerfectApp_Colchugina.app */;
@@ -484,6 +487,7 @@
 			packageReferences = (
 				A9BDADD326C40DDD004463CA /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				A9BDADD626C40DFF004463CA /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				A90C4FDF26CAAE6800C62BAF /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = A95DA8BB2632D98D005EA110 /* Products */;
 			projectDirPath = "";
@@ -751,6 +755,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A90C4FDF26CAAE6800C62BAF /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.12.0;
+			};
+		};
 		A9BDADD326C40DDD004463CA /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
@@ -770,6 +782,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A90C4FE026CAAE6800C62BAF /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A90C4FDF26CAAE6800C62BAF /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
 		A9BDADD426C40DDD004463CA /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A9BDADD326C40DDD004463CA /* XCRemoteSwiftPackageReference "SwiftyJSON" */;

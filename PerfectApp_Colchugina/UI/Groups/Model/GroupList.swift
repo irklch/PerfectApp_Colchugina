@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 //MARK:- Public properties
 
@@ -22,9 +23,16 @@ struct GroupsList: Decodable {
     var photo_200: String
 }
 
-struct Groups {
-    var name = ""
-    var photo = ""
+class Groups: Object {
+    @objc dynamic var name = ""
+    @objc dynamic var photo = ""
+
+    convenience init(name: String, photo: String) {
+        self.init()
+
+        self.name = name
+        self.photo = photo
+    }
 }
 
 
