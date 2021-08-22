@@ -7,95 +7,57 @@
 
 import UIKit
 
-class MyGroupsTableViewController: UITableViewController {
+final class MyGroupsTableViewController: UITableViewController {
 
+    //MARK:- Private properties
+
+    private var groupsList = [Groups]()
+
+    //MARK:- Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getGroupsList()
     }
 
-    @IBAction func addGroup(segue: UIStoryboardSegue) {
-          
-        guard
-            segue.identifier == "addGroup",
-            let sourceController = segue.source as? AllGroupsTableViewController,
-            let index = sourceController.tableView.indexPathForSelectedRow
-        else {
-            return
-        }
+    //MARK:- Private methods
 
-        let someGroup = Groups.allList[index.row]
-        if !Groups.myList.contains(where: { $0.name == someGroup.name}) {
-            Groups.myList.append(someGroup)
-            tableView.reloadData()
+    private func getGroupsList() {
+        let vkRequest = VKRequests()
+        let mapping = MappingJson()
+        vkRequest.getGroupList { [weak self] result in
+            guard let self = self else {return}
+
+            switch result{
+            case .failure(let error):
+                print (error)
+            case .success(let groups):
+                self.groupsList = mapping.createNewGoupsStruct(oldStruct: groups.response.items)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
-        Groups.allList.remove(at: index.row)
-       
     }
 
+    //MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-      
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
-        return Groups.myList.count
+        return groupsList.count
     }
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MyGroupTableViewCell.reuseId, for: indexPath) as! MyGroupTableViewCell
-        let someGroup = Groups.myList[indexPath.row]
+        let someGroup = groupsList[indexPath.row]
         cell.config(name: someGroup.name, photo: someGroup.photo)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.cellForRow(at: indexPath)?.setSelected(true, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
-    
-    
-   //right swipe button - delete
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
-        // delete
-        let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
-            Groups.allList.append(Groups.myList[indexPath.row])
-            Groups.myList.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-          completionHandler(true)
-        }
-        delete.image = UIImage(systemName: "trash")
-        delete.backgroundColor = .red
-        
-        
-        // swipe
-        let swipe = UISwipeActionsConfiguration(actions: [delete])
-        return swipe
-        
-      }
-    
-    
-    //left swipe button - add new group
-    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        // add new group
-        
-        let add = UIContextualAction(style: .normal, title: "add") { (action, view, completionHandler) in
-            let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "AllGroupsTableViewController") as! AllGroupsTableViewController
-            self.navigationController!.pushViewController(VC1, animated: true)
-          completionHandler(true)
-        }
-        add.image = UIImage(systemName: "plus")
-        add.backgroundColor = .systemGreen
-        
-        // swipe
-        let swipe = UISwipeActionsConfiguration(actions: [add])
-        return swipe
-      }
-
 }

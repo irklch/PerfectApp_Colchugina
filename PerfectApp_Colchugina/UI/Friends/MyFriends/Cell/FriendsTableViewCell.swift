@@ -6,32 +6,53 @@
 //
 
 import UIKit
+import Kingfisher
 
-class FriendsTableViewCell: UITableViewCell {
+final class FriendsTableViewCell: UITableViewCell {
     
+    //MARK:- Public properties
     
-    let nameLabel = UILabel()
-    let photoImageView = UIImageView()
-    let shadowView = UIView()
     static var reuseId = "FriendsTableViewCell"
     
-    @IBInspectable var shadowColor: UIColor = .black {
+    //MARK:- Private properies
+    
+    private let nameLabel = UILabel()
+    private let photoImageView = UIImageView()
+    private let shadowView = UIView()
+    
+    @IBInspectable private var shadowColor: UIColor = .black {
         didSet {
             self.updateShadowColor()
         }
     }
-    @IBInspectable var shadowOpacity: Float = 0.4 {
+    @IBInspectable private var shadowOpacity: Float = 0.4 {
         didSet {
             self.updateShadowOpacity()
         }
     }
     
-    @IBInspectable var shadowRadius: CGFloat = 8 {
+    @IBInspectable private var shadowRadius: CGFloat = 8 {
         didSet {
             self.updateShadowRadius()
         }
     }
-   
+    //MARK:- Life cycle
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setViews()
+    }
+    
+    //MARK:- Public properties
+    func config (firstName: String, lastName: String, photo: String) {
+        guard let url = URL(string: photo) else {return}
+        photoImageView.kf.setImage(with: url)
+        nameLabel.text = ("\(lastName) \(firstName)")
+        photoImageView.layer.cornerRadius = 25
+        photoImageView.layer.masksToBounds = true
+    }
+    
+    //MARK:- Private methods
     
     private func updateShadowColor() {
         shadowView.layer.shadowColor = shadowColor.cgColor
@@ -40,31 +61,22 @@ class FriendsTableViewCell: UITableViewCell {
     private func updateShadowOpacity() {
         shadowView.layer.shadowOpacity = shadowOpacity
     }
+
     private func updateShadowRadius() {
         shadowView.layer.shadowRadius = shadowRadius
     }
-  
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-       setViews()
+    private func setViews() {
         
-    }
-    
-    
-    func setViews() {
-        
-        //добавляем nameLabel и задаём констреинты
+        //добавить nameLabel и задаём констреинты
         self.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             nameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor)
-            
         ])
         
-        
-        //добавляем вьюшку для тени и задаём констреинты
+        //добавить вьюшку для тени и задать констреинты
         self.addSubview(shadowView)
         shadowView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -73,17 +85,15 @@ class FriendsTableViewCell: UITableViewCell {
             shadowView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 15),
             shadowView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -15),
             shadowView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20)
-            
         ])
         
-        //настройки самой тени
+        //настроить тень
         self.updateShadowColor()
         self.updateShadowRadius()
         self.updateShadowOpacity()
         shadowView.layer.shadowOffset = CGSize.zero
         
-        
-        //добавляем photoImageView и задаём констреинты
+        //добавить photoImageView и задать констреинты
         shadowView.addSubview(photoImageView)
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -92,25 +102,14 @@ class FriendsTableViewCell: UITableViewCell {
             photoImageView.topAnchor.constraint(equalTo: shadowView.topAnchor),
             photoImageView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor),
             photoImageView.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor)
-            
         ])
-        //подгоняем размер фото под вьюшку
+        
+        //подогнать размер фото под вьюшку
         photoImageView.contentMode = .scaleAspectFill
         photoImageView.clipsToBounds = true
     }
     
-    func config (name: String, photo: String) {
-        photoImageView.image = UIImage(named: photo)
-        nameLabel.text = name
-        photoImageView.layer.cornerRadius = 25
-        photoImageView.layer.masksToBounds = true
-    }
-    
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        
     }
-    
 }
