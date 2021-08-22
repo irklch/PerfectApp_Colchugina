@@ -29,12 +29,15 @@
 		A966117F2663A4C20041422B /* CustomFriendsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A966117E2663A4C20041422B /* CustomFriendsNavigationController.swift */; };
 		A96611832663A5670041422B /* PushSliderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96611822663A5670041422B /* PushSliderAnimator.swift */; };
 		A96611852663A5720041422B /* PopSliderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96611842663A5720041422B /* PopSliderAnimator.swift */; };
+		A982CFDF26BD586900A070AE /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A982CFDE26BD586900A070AE /* WebViewController.swift */; };
+		A982CFE126BD819800A070AE /* VKAPIRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A982CFE026BD819800A070AE /* VKAPIRequests.swift */; };
 		A9A71DAD26358DD2005C6DCE /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A71DAC26358DD2005C6DCE /* UITextFieldExtension.swift */; };
 		A9E8D775264ED318000805CF /* FeedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E8D774264ED318000805CF /* FeedControl.swift */; };
 		A9E8D77726501FD7000805CF /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E8D77626501FD7000805CF /* LoadingViewController.swift */; };
 		A9F02B842635CB4B00E6D795 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B832635CB4B00E6D795 /* TabBarController.swift */; };
 		A9F02B872635CD1E00E6D795 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B862635CD1E00E6D795 /* FriendsTableViewController.swift */; };
 		A9F02B982635D9ED00E6D795 /* MyGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B972635D9ED00E6D795 /* MyGroupsTableViewController.swift */; };
+		A9F7412726BBE38700C1B591 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F7412626BBE38700C1B591 /* Session.swift */; };
 		A9F8354D264D2BCC001B1023 /* HeaderSectionForFriendsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F8354C264D2BCC001B1023 /* HeaderSectionForFriendsTable.swift */; };
 		A9F83566264D3AD8001B1023 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F83565264D3AD8001B1023 /* UIColorExtension.swift */; };
 		A9F8356C264D8099001B1023 /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F8356B264D8099001B1023 /* NewsFeedTableViewCell.swift */; };
@@ -67,12 +70,15 @@
 		A966117E2663A4C20041422B /* CustomFriendsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFriendsNavigationController.swift; sourceTree = "<group>"; };
 		A96611822663A5670041422B /* PushSliderAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSliderAnimator.swift; sourceTree = "<group>"; };
 		A96611842663A5720041422B /* PopSliderAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopSliderAnimator.swift; sourceTree = "<group>"; };
+		A982CFDE26BD586900A070AE /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		A982CFE026BD819800A070AE /* VKAPIRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAPIRequests.swift; sourceTree = "<group>"; };
 		A9A71DAC26358DD2005C6DCE /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		A9E8D774264ED318000805CF /* FeedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedControl.swift; sourceTree = "<group>"; };
 		A9E8D77626501FD7000805CF /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		A9F02B832635CB4B00E6D795 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A9F02B862635CD1E00E6D795 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		A9F02B972635D9ED00E6D795 /* MyGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsTableViewController.swift; sourceTree = "<group>"; };
+		A9F7412626BBE38700C1B591 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		A9F8354C264D2BCC001B1023 /* HeaderSectionForFriendsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionForFriendsTable.swift; sourceTree = "<group>"; };
 		A9F83565264D3AD8001B1023 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		A9F8356B264D8099001B1023 /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
@@ -111,9 +117,11 @@
 			isa = PBXGroup;
 			children = (
 				A95DA8C32632D98D005EA110 /* Main.storyboard */,
+				A9F7412626BBE38700C1B591 /* Session.swift */,
 				A9F02B892635CD4400E6D795 /* Extensions */,
 				A9F83557264D2D10001B1023 /* UI */,
-				A9F83556264D2D06001B1023 /* AppDelegate */,
+				A982CFE226BD81A500A070AE /* API */,
+				A9F83556264D2D06001B1023 /* Delegate */,
 				A9F83554264D2CB1001B1023 /* Resourses */,
 				A95DA8CB2632D98E005EA110 /* Info.plist */,
 			);
@@ -139,6 +147,14 @@
 				A96611842663A5720041422B /* PopSliderAnimator.swift */,
 			);
 			path = CunstomTransition;
+			sourceTree = "<group>";
+		};
+		A982CFE226BD81A500A070AE /* API */ = {
+			isa = PBXGroup;
+			children = (
+				A982CFE026BD819800A070AE /* VKAPIRequests.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		A9F02B892635CD4400E6D795 /* Extensions */ = {
@@ -229,19 +245,20 @@
 		A9F83555264D2CF3001B1023 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				A982CFDE26BD586900A070AE /* WebViewController.swift */,
 				A95DA8C12632D98D005EA110 /* LogInViewController.swift */,
 				A9E8D77626501FD7000805CF /* LoadingViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
 		};
-		A9F83556264D2D06001B1023 /* AppDelegate */ = {
+		A9F83556264D2D06001B1023 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
 				A95DA8BD2632D98D005EA110 /* AppDelegate.swift */,
 				A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */,
 			);
-			path = AppDelegate;
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 		A9F83557264D2D10001B1023 /* UI */ = {
@@ -462,8 +479,11 @@
 				A96611852663A5720041422B /* PopSliderAnimator.swift in Sources */,
 				A9E8D775264ED318000805CF /* FeedControl.swift in Sources */,
 				A91DF27D263EE0F3001CE958 /* FriendsTableViewCell.swift in Sources */,
+				A9F7412726BBE38700C1B591 /* Session.swift in Sources */,
 				A91DF278263EAA53001CE958 /* PhotosCollectionViewCell.swift in Sources */,
 				A966117F2663A4C20041422B /* CustomFriendsNavigationController.swift in Sources */,
+				A982CFDF26BD586900A070AE /* WebViewController.swift in Sources */,
+				A982CFE126BD819800A070AE /* VKAPIRequests.swift in Sources */,
 				A9F83571264D86D5001B1023 /* NewsFeedTableViewController.swift in Sources */,
 				A91DF27F263F30A1001CE958 /* MyGroupTableViewCell.swift in Sources */,
 				A966117626639DAF0041422B /* CustomGroupsNavigationController.swift in Sources */,
