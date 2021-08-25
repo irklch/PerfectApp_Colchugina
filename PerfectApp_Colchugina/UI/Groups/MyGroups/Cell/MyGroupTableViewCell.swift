@@ -7,29 +7,24 @@
 
 import UIKit
 
-class MyGroupTableViewCell: UITableViewCell {
-    @IBOutlet var groupNameLabel: UILabel!
-    @IBOutlet var groupPhotoImageView: UIImageView!
+final class MyGroupTableViewCell: UITableViewCell {
     
+    //MARK:- Public properties
     static var reuseId = "MyGroupTableViewCell"
+    
+    //MARK:- Private properties
+    @IBOutlet private var groupNameLabel: UILabel!
+    @IBOutlet private var groupPhotoImageView: UIImageView!
+    
+    //MARK:- Public methods
     func config (name: String, photo: String) {
         groupNameLabel.text = name
-        groupPhotoImageView.image = UIImage(named: photo)
-       
+        guard let url = URL(string: photo) else {return}
+        groupPhotoImageView.kf.setImage(with: url)
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        groupPhotoImageView.layer.cornerRadius = CGFloat(10)
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        animatePhoto()
-    }
-    
-    func animatePhoto () {
-        
+    //MARK:- Private properties
+    private func animatePhoto () {
         groupPhotoImageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         UIView.animate(
             withDuration: 1,
@@ -39,10 +34,23 @@ class MyGroupTableViewCell: UITableViewCell {
             options: .curveEaseInOut,
             animations: {
                 self.groupPhotoImageView.transform = .identity
-     },
+            },
             completion: nil)
-        
-
     }
-
+    
+    private func setCorneerRadious() {
+        groupPhotoImageView.layer.cornerRadius = CGFloat(10)
+    }
+    
+    
+    //MARK:- Life cycle
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setCorneerRadious()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        animatePhoto()
+    }
 }
