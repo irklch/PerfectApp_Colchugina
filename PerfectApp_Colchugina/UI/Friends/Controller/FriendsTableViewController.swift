@@ -16,28 +16,26 @@ final class FriendsTableViewController: UITableViewController {
     private var friendsReseveLists = [[Friends]]()
     private var lettersLists = [String]()
     private var lettersSortReserveLists = [String]()
+    private var realmToken: NotificationToken?
     @IBOutlet private weak var searchBar: UISearchBar!
 
     //MARK:- Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setConfigurations()
+        getFriendsList()
+        delegate()
+        registerHead()
         setSearchBarPlaceholder()
     }
     
     //MARK:- Private methods
     
     @IBAction func unwindToFriendsAction(unwindSegue: UIStoryboardSegue) {}
-    private func setConfigurations() {
-        getFriendsList()
-        delegate()
-        registerHead()
-    }
     
     private func getFriendsList() {
         let vkRequest = VKRequests()
-        let mapping = MappingJson()
+        let mapping = RealmLoader()
         vkRequest.getFriendList { [weak self] result in
             guard let self = self else {return}
             
@@ -45,10 +43,11 @@ final class FriendsTableViewController: UITableViewController {
             case .failure(let error):
                 print (error)
             case .success(let friends):
-                mapping.createNewFriendStruct(oldStruct: friends.response.items)
+                mapping.saveFriends(jsonItems: friends.response.items)
                 
                 DispatchQueue.main.async {
                     self.readRealm()
+                    self.pairTableAndRealm()
                     self.startSortItems()
                     self.tableView.reloadData()
                     
@@ -68,6 +67,29 @@ final class FriendsTableViewController: UITableViewController {
             }
         } catch {
             print(error)
+        }
+    }
+
+    private func pairTableAndRealm() {
+        guard let realm = try? Realm() else {return}
+        let friends = realm.objects(Friends.self)
+        realmToken = friends.observe { [weak self]  (changes: RealmCollectionChange) in
+            guard let tableView = self?.tableView else {return}
+            switch changes {
+            case .initial: tableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                tableView.beginUpdates()
+                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+                                     with: .automatic)
+                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.endUpdates()
+            case .error(let error):
+                fatalError("\(error)")
+
+            }
         }
     }
     
