@@ -19,19 +19,25 @@ struct GroupsItems: Decodable {
 }
 
 struct GroupsList: Decodable {
+    var id: Int
     var name: String
     var photo_200: String
 }
 
-class Groups: Object {
-    @objc dynamic var name = ""
-    @objc dynamic var photo = ""
+class Groups: RealmSwift.Object {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var photo: String = ""
 
-    convenience init(name: String, photo: String) {
+    convenience init(id: Int, name: String, photo: String) {
         self.init()
-
+        self.id = id
         self.name = name
         self.photo = photo
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }
 

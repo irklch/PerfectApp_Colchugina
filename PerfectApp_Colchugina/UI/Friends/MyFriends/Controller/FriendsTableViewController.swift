@@ -9,49 +9,48 @@ import UIKit
 import RealmSwift
 
 final class FriendsTableViewController: UITableViewController {
-    
+
     //MARK:- Private properties
     private var friendsLists = [Friends]()
     private var friendsSortLists = [[Friends]]()
     private var friendsReseveLists = [[Friends]]()
     private var lettersLists = [String]()
     private var lettersSortReserveLists = [String]()
+    private var realmToken: NotificationToken?
     @IBOutlet private weak var searchBar: UISearchBar!
 
     //MARK:- Life cycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setConfigurations()
-        setSearchBarPlaceholder()
-    }
-    
-    //MARK:- Private methods
-    
-    @IBAction func unwindToFriendsAction(unwindSegue: UIStoryboardSegue) {}
-    private func setConfigurations() {
         getFriendsList()
         delegate()
         registerHead()
+        setSearchBarPlaceholder()
     }
-    
+
+    //MARK:- Private methods
+
+    @IBAction func unwindToFriendsAction(unwindSegue: UIStoryboardSegue) {}
+
     private func getFriendsList() {
         let vkRequest = VKRequests()
-        let mapping = MappingJson()
+        let mapping = RealmLoader()
         vkRequest.getFriendList { [weak self] result in
             guard let self = self else {return}
-            
+
             switch result{
             case .failure(let error):
                 print (error)
             case .success(let friends):
-                mapping.createNewFriendStruct(oldStruct: friends.response.items)
-                
+                mapping.saveFriends(jsonItems: friends.response.items)
+
                 DispatchQueue.main.async {
                     self.readRealm()
+                    self.pairTableAndRealm()
                     self.startSortItems()
                     self.tableView.reloadData()
-                    
+
                 }
             }
         }
@@ -70,52 +69,75 @@ final class FriendsTableViewController: UITableViewController {
             print(error)
         }
     }
-    
-    
+
+    private func pairTableAndRealm() {
+        guard let realm = try? Realm() else {return}
+        let friends = realm.objects(Friends.self)
+        realmToken = friends.observe { [weak self]  (changes: RealmCollectionChange) in
+            guard let tableView = self?.tableView else {return}
+            switch changes {
+            case .initial: tableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                tableView.beginUpdates()
+                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+                                     with: .automatic)
+                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.endUpdates()
+            case .error(let error):
+                fatalError("\(error)")
+
+            }
+        }
+    }
+
+
     private func registerHead() {
         tableView.register(HeaderSectionForFriendsTable.self,
                            forHeaderFooterViewReuseIdentifier: HeaderSectionForFriendsTable.reuseId)
     }
-    
+
     @objc
     private func dismissKeyboard() {
         view.endEditing(true)
     }
-    
+
     private func sortFriendBySection (_ letter: String, _ arr: [Friends]) -> [Friends] {
         return arr.filter { String($0.lastName.first ?? "*") == letter }
     }
-    
+
     // MARK: - Table view data source
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return friendsSortLists.count
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friendsSortLists[section].count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendsTableViewCell.reuseId,
                                                  for: indexPath) as! FriendsTableViewCell
         let someFriend = friendsSortLists[indexPath.section][indexPath.row]
         cell.config(firstName: someFriend.firstName, lastName: someFriend.lastName, photo: someFriend.photo)
-        
+
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderSectionForFriendsTable.reuseId) as? HeaderSectionForFriendsTable
         let title = lettersLists[section]
         header?.configure(title: title)
         return header
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         CGFloat.leastNormalMagnitude
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard
             segue.identifier == "FriendPhotosViewController",
@@ -135,9 +157,9 @@ final class FriendsTableViewController: UITableViewController {
 //MARK:- Extension
 
 extension FriendsTableViewController: UISearchBarDelegate{
-    
+
     //MARK:- Private methods
-    
+
     private var isSearchBarActive: Bool {
         if searchBar.text == nil {
             return false
@@ -146,11 +168,11 @@ extension FriendsTableViewController: UISearchBarDelegate{
             return true
         }
     }
-    
+
     private func delegate() {
         searchBar.delegate = self
     }
-    
+
     private func startSortItems() {
         var friendsList = friendsLists
         friendsList.sort { $0.lastName < $1.lastName }
@@ -159,7 +181,7 @@ extension FriendsTableViewController: UISearchBarDelegate{
             let friend = sortFriendBySection(letter, friendsList)
             friendsSortLists.append(friend)
         }
-        
+
         if isSearchBarActive {
             let tapForHiddenKeybourd = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
             view.addGestureRecognizer(tapForHiddenKeybourd)
@@ -174,7 +196,7 @@ extension FriendsTableViewController: UISearchBarDelegate{
 
     //MARK:- Public methods
 
-    
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.setShowsCancelButton(true, animated: true)
         var friendsSearch = [Friends]()
