@@ -12,16 +12,7 @@ protocol VKRequestsProtocol: AnyObject{
     func getGroupList (completion: @escaping(Result<GroupsResponse, Error>) -> Void)
 }
 
-final class VKRequests: VKRequestsProtocol {
-    func getFriendList(completion: @escaping(Result<FriendsResponse, Error>) -> Void) {
-        downloadJson(url: URLs.friendsList, completion: completion)
-    }
-    func getFriendsPhotoList(idFriend: String, completion: @escaping(Result<PhotosResponse, Error>) -> Void) {
-        downloadJson(url: URLs.friendsPhotoList(idFriend: idFriend), completion: completion)
-    }
-    func getGroupList (completion: @escaping(Result<GroupsResponse, Error>) -> Void) {
-        downloadJson(url: URLs.groupList, completion: completion)
-    }
+final class VKRequests {
 
     private func downloadJson<T: Decodable>(url: String, completion: @escaping(Result<T, Error>) -> Void) {
         guard let url = URL(string: url) else {return}
@@ -41,5 +32,17 @@ final class VKRequests: VKRequestsProtocol {
                 }
             }
         }.resume()
+    }
+}
+
+extension VKRequests: VKRequestsProtocol {
+    func getFriendList(completion: @escaping(Result<FriendsResponse, Error>) -> Void) {
+        downloadJson(url: URLs.friendsList, completion: completion)
+    }
+    func getFriendsPhotoList(idFriend: String, completion: @escaping(Result<PhotosResponse, Error>) -> Void) {
+        downloadJson(url: URLs.friendsPhotoList(idFriend: idFriend), completion: completion)
+    }
+    func getGroupList (completion: @escaping(Result<GroupsResponse, Error>) -> Void) {
+        downloadJson(url: URLs.groupList, completion: completion)
     }
 }

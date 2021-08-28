@@ -20,6 +20,7 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
     private var viewPhoto = UIView()
     private var photoImageView = UIImageView()
     private var backButton = UIButton(type: .system)
+    private var realmToken: NotificationToken?
     
     // MARK: - Life cycle
     
@@ -33,17 +34,18 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
     
     private func getPhotoList() {
         let vkRequest = VKRequests()
-        let mapping = MappingJson()
+        let mapping = RealmLoader()
         vkRequest.getFriendsPhotoList(idFriend: String(selectedFriend.id)) { [weak self] result in
             guard let self = self else {return}
             switch result{
             case .failure(let error):
                 print (error)
             case .success(let photos):
-                mapping.createNewPhotoStruct(oldStruct: photos.response.items)
+                mapping.savePhotos(jsonItems: photos.response.items)
                 
                 DispatchQueue.main.async {
                     self.readRealm()
+                    self.pairTableAndRealm()
                     self.photosCollectoinView.reloadData()
                 }
             }
@@ -62,6 +64,21 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
             }
         } catch {
             print(error)
+        }
+    }
+    
+    private func pairTableAndRealm() {
+        guard let realm = try? Realm() else {return}
+        let friends = realm.objects(Friends.self)
+        realmToken = friends.observe { [weak self]  (changes: RealmCollectionChange) in
+            guard let collectionView = self?.photosCollectoinView else {return}
+            switch changes {
+            case .initial: collectionView.reloadData()
+            case .update: collectionView.reloadData()
+            case .error(let error):
+                fatalError("\(error)")
+                
+            }
         }
     }
     
