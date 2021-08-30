@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AllGroupsTableViewController: UITableViewController {
+class NewGroupsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

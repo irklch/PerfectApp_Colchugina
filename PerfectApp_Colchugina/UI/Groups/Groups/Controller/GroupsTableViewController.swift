@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-final class MyGroupsTableViewController: UITableViewController {
+final class GroupsTableViewController: UITableViewController {
 
     //MARK:- Private properties
 

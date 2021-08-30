@@ -12,11 +12,10 @@ class RealmLoader {
     func saveFriends (jsonItems: [FriendsList]) {
         var friendsList = [Friends]()
         jsonItems.forEach { jsonItem in
-            let friend = Friends()
-            friend.firstName = jsonItem.first_name
-            friend.lastName = jsonItem.last_name
-            friend.photo = jsonItem.photo_200_orig
-            friend.id = jsonItem.id
+            let friend = Friends(firstName: jsonItem.first_name,
+                                 lastName: jsonItem.last_name, 
+                                 photo: jsonItem.photo_200_orig, 
+                                 id: jsonItem.id)
             friendsList.append(friend)
         }
         do {
@@ -33,8 +32,7 @@ class RealmLoader {
         var photosList = [PhotosFriend]()
         jsonItems.forEach { jsonItem in
             if let jsonPhoto = jsonItem.sizes.last {
-                let photo = PhotosFriend()
-                photo.url = jsonPhoto.url
+                let photo = PhotosFriend(url: jsonPhoto.url)
                 photosList.append(photo)
             }
         }
@@ -51,12 +49,12 @@ class RealmLoader {
     }
 
     func saveGroups (jsonItems: [GroupsList]) {
+        saveGroupsInFirebase(jsonItems: jsonItems)
         var groupsList = [Groups]()
         jsonItems.forEach { jsonItem in
-            let group = Groups()
-            group.name = jsonItem.name
-            group.photo = jsonItem.photo_200
-            group.id = jsonItem.id
+            let group = Groups(id: jsonItem.id,
+                               name: jsonItem.name,
+                               photo: jsonItem.photo_200)
             groupsList.append(group)
         }
         do {
@@ -68,4 +66,16 @@ class RealmLoader {
             print(error)
         }
     }
+
+    private func saveGroupsInFirebase(jsonItems: [GroupsList]) {
+        var groupsList = [GroupsForFirebase]()
+        jsonItems.forEach { jsonItem in
+            let group = GroupsForFirebase(id: jsonItem.id,
+                                          name: jsonItem.name,
+                                          photo: jsonItem.photo_200)
+            groupsList.append(group)
+        }
+        FirebaseLoader.saveLoggedUser(groups: groupsList)
+    }
+    
 }

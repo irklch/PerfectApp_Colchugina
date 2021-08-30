@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsFeedTableViewController: UITableViewController {
+class FeedTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

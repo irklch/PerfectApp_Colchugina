@@ -15,7 +15,7 @@
 		A91DF27F263F30A1001CE958 /* MyGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF27E263F30A1001CE958 /* MyGroupTableViewCell.swift */; };
 		A91DF281263F30AD001CE958 /* AllGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF280263F30AD001CE958 /* AllGroupTableViewCell.swift */; };
 		A91DF284263F31A9001CE958 /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF283263F31A9001CE958 /* GroupList.swift */; };
-		A91DF286263F3625001CE958 /* AllGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF285263F3625001CE958 /* AllGroupsTableViewController.swift */; };
+		A91DF286263F3625001CE958 /* NewGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF285263F3625001CE958 /* NewGroupsTableViewController.swift */; };
 		A91DF28A2641A4D0001CE958 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF2892641A4D0001CE958 /* LikeControl.swift */; };
 		A95DA8BE2632D98D005EA110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DA8BD2632D98D005EA110 /* AppDelegate.swift */; };
 		A95DA8C02632D98D005EA110 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */; };
@@ -23,6 +23,10 @@
 		A95DA8C52632D98D005EA110 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95DA8C32632D98D005EA110 /* Main.storyboard */; };
 		A95DA8C72632D98E005EA110 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A95DA8C62632D98E005EA110 /* Assets.xcassets */; };
 		A95DA8CA2632D98E005EA110 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95DA8C82632D98E005EA110 /* LaunchScreen.storyboard */; };
+		A95F702326DBB45100E69219 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A95F702226DBB45100E69219 /* GoogleService-Info.plist */; };
+		A95F702626DC231400E69219 /* FirebaseLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95F702526DC231400E69219 /* FirebaseLoader.swift */; };
+		A95F702926DC246500E69219 /* LoggedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95F702826DC246500E69219 /* LoggedUser.swift */; };
+		A95F702D26DC594600E69219 /* FirebaseDatabaseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95F702C26DC594600E69219 /* FirebaseDatabaseInfo.swift */; };
 		A966117626639DAF0041422B /* CustomGroupsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A966117526639DAF0041422B /* CustomGroupsNavigationController.swift */; };
 		A966117826639DC90041422B /* CustomGroupsInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A966117726639DC90041422B /* CustomGroupsInteractiveTransition.swift */; };
 		A966117A26639DDB0041422B /* PushZoomAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A966117926639DDB0041422B /* PushZoomAnimator.swift */; };
@@ -37,21 +41,23 @@
 		A9BDADD126C3F267004463CA /* PhotosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BDADD026C3F267004463CA /* PhotosList.swift */; };
 		A9BDADD526C40DDD004463CA /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = A9BDADD426C40DDD004463CA /* SwiftyJSON */; };
 		A9BDADD826C40DFF004463CA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A9BDADD726C40DFF004463CA /* Kingfisher */; };
-		A9BDADDA26C56A68004463CA /* MappingJsonToNewStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BDADD926C56A68004463CA /* MappingJsonToNewStruct.swift */; };
+		A9BDADDA26C56A68004463CA /* RealmLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BDADD926C56A68004463CA /* RealmLoader.swift */; };
 		A9E8D775264ED318000805CF /* FeedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E8D774264ED318000805CF /* FeedControl.swift */; };
 		A9E8D77726501FD7000805CF /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E8D77626501FD7000805CF /* LoadingViewController.swift */; };
 		A9F02B842635CB4B00E6D795 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B832635CB4B00E6D795 /* TabBarController.swift */; };
 		A9F02B872635CD1E00E6D795 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B862635CD1E00E6D795 /* FriendsTableViewController.swift */; };
-		A9F02B982635D9ED00E6D795 /* MyGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B972635D9ED00E6D795 /* MyGroupsTableViewController.swift */; };
+		A9F02B982635D9ED00E6D795 /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F02B972635D9ED00E6D795 /* GroupsTableViewController.swift */; };
 		A9F7412726BBE38700C1B591 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F7412626BBE38700C1B591 /* Session.swift */; };
 		A9F8354D264D2BCC001B1023 /* HeaderSectionForFriendsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F8354C264D2BCC001B1023 /* HeaderSectionForFriendsTable.swift */; };
 		A9F83566264D3AD8001B1023 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F83565264D3AD8001B1023 /* UIColorExtension.swift */; };
 		A9F8356C264D8099001B1023 /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F8356B264D8099001B1023 /* NewsFeedTableViewCell.swift */; };
-		A9F83571264D86D5001B1023 /* NewsFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F83570264D86D5001B1023 /* NewsFeedTableViewController.swift */; };
+		A9F83571264D86D5001B1023 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F83570264D86D5001B1023 /* FeedTableViewController.swift */; };
 		A9F83573264D8737001B1023 /* NewsFeedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F83572264D8737001B1023 /* NewsFeedList.swift */; };
+		EE75CD94263F4A461A0927FE /* Pods_PerfectApp_Colchugina.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644C6C3C2D3927A58DAAAA2C /* Pods_PerfectApp_Colchugina.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		644C6C3C2D3927A58DAAAA2C /* Pods_PerfectApp_Colchugina.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerfectApp_Colchugina.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A91DF274263EA3DC001CE958 /* FriendPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotosViewController.swift; sourceTree = "<group>"; };
 		A91DF277263EAA53001CE958 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		A91DF27A263EB6E0001CE958 /* FriendsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsList.swift; sourceTree = "<group>"; };
@@ -59,7 +65,7 @@
 		A91DF27E263F30A1001CE958 /* MyGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupTableViewCell.swift; sourceTree = "<group>"; };
 		A91DF280263F30AD001CE958 /* AllGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupTableViewCell.swift; sourceTree = "<group>"; };
 		A91DF283263F31A9001CE958 /* GroupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupList.swift; sourceTree = "<group>"; };
-		A91DF285263F3625001CE958 /* AllGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsTableViewController.swift; sourceTree = "<group>"; };
+		A91DF285263F3625001CE958 /* NewGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupsTableViewController.swift; sourceTree = "<group>"; };
 		A91DF2892641A4D0001CE958 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		A95DA8BA2632D98D005EA110 /* PerfectApp_Colchugina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerfectApp_Colchugina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95DA8BD2632D98D005EA110 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +75,10 @@
 		A95DA8C62632D98E005EA110 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A95DA8C92632D98E005EA110 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A95DA8CB2632D98E005EA110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A95F702226DBB45100E69219 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A95F702526DC231400E69219 /* FirebaseLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseLoader.swift; sourceTree = "<group>"; };
+		A95F702826DC246500E69219 /* LoggedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedUser.swift; sourceTree = "<group>"; };
+		A95F702C26DC594600E69219 /* FirebaseDatabaseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseInfo.swift; sourceTree = "<group>"; };
 		A966117526639DAF0041422B /* CustomGroupsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGroupsNavigationController.swift; sourceTree = "<group>"; };
 		A966117726639DC90041422B /* CustomGroupsInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGroupsInteractiveTransition.swift; sourceTree = "<group>"; };
 		A966117926639DDB0041422B /* PushZoomAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushZoomAnimator.swift; sourceTree = "<group>"; };
@@ -81,18 +91,20 @@
 		A9A71DAC26358DD2005C6DCE /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		A9BDADCE26C3DB79004463CA /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		A9BDADD026C3F267004463CA /* PhotosList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosList.swift; sourceTree = "<group>"; };
-		A9BDADD926C56A68004463CA /* MappingJsonToNewStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingJsonToNewStruct.swift; sourceTree = "<group>"; };
+		A9BDADD926C56A68004463CA /* RealmLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLoader.swift; sourceTree = "<group>"; };
 		A9E8D774264ED318000805CF /* FeedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedControl.swift; sourceTree = "<group>"; };
 		A9E8D77626501FD7000805CF /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		A9F02B832635CB4B00E6D795 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A9F02B862635CD1E00E6D795 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
-		A9F02B972635D9ED00E6D795 /* MyGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsTableViewController.swift; sourceTree = "<group>"; };
+		A9F02B972635D9ED00E6D795 /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
 		A9F7412626BBE38700C1B591 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		A9F8354C264D2BCC001B1023 /* HeaderSectionForFriendsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionForFriendsTable.swift; sourceTree = "<group>"; };
 		A9F83565264D3AD8001B1023 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		A9F8356B264D8099001B1023 /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
-		A9F83570264D86D5001B1023 /* NewsFeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewController.swift; sourceTree = "<group>"; };
+		A9F83570264D86D5001B1023 /* FeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		A9F83572264D8737001B1023 /* NewsFeedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedList.swift; sourceTree = "<group>"; };
+		D249E33CCCCFC5F4673F8E74 /* Pods-PerfectApp_Colchugina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerfectApp_Colchugina.release.xcconfig"; path = "Target Support Files/Pods-PerfectApp_Colchugina/Pods-PerfectApp_Colchugina.release.xcconfig"; sourceTree = "<group>"; };
+		F6FDE1CC37F339DE337D65CD /* Pods-PerfectApp_Colchugina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerfectApp_Colchugina.debug.xcconfig"; path = "Target Support Files/Pods-PerfectApp_Colchugina/Pods-PerfectApp_Colchugina.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,17 +115,37 @@
 				A90C4FE126CAAE6800C62BAF /* RealmSwift in Frameworks */,
 				A9BDADD826C40DFF004463CA /* Kingfisher in Frameworks */,
 				A9BDADD526C40DDD004463CA /* SwiftyJSON in Frameworks */,
+				EE75CD94263F4A461A0927FE /* Pods_PerfectApp_Colchugina.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47F0CD4B619C532C9DB73788 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				644C6C3C2D3927A58DAAAA2C /* Pods_PerfectApp_Colchugina.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		77DC7F8420707B6C82083E86 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F6FDE1CC37F339DE337D65CD /* Pods-PerfectApp_Colchugina.debug.xcconfig */,
+				D249E33CCCCFC5F4673F8E74 /* Pods-PerfectApp_Colchugina.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A95DA8B12632D98D005EA110 = {
 			isa = PBXGroup;
 			children = (
 				A95DA8BC2632D98D005EA110 /* PerfectApp_Colchugina */,
 				A95DA8BB2632D98D005EA110 /* Products */,
+				77DC7F8420707B6C82083E86 /* Pods */,
+				47F0CD4B619C532C9DB73788 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,9 +170,52 @@
 				A9BDADCC26C3DB53004463CA /* Helpers */,
 				A9F83554264D2CB1001B1023 /* Suppots */,
 				A95DA8CB2632D98E005EA110 /* Info.plist */,
+				A95F702226DBB45100E69219 /* GoogleService-Info.plist */,
 				A95DA8C82632D98E005EA110 /* LaunchScreen.storyboard */,
 			);
 			path = PerfectApp_Colchugina;
+			sourceTree = "<group>";
+		};
+		A95F702426DC229000E69219 /* RealmLoader */ = {
+			isa = PBXGroup;
+			children = (
+				A9BDADD926C56A68004463CA /* RealmLoader.swift */,
+			);
+			path = RealmLoader;
+			sourceTree = "<group>";
+		};
+		A95F702726DC231900E69219 /* FirebaseLoader */ = {
+			isa = PBXGroup;
+			children = (
+				A95F702526DC231400E69219 /* FirebaseLoader.swift */,
+			);
+			path = FirebaseLoader;
+			sourceTree = "<group>";
+		};
+		A95F702A26DC246E00E69219 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A95F702826DC246500E69219 /* LoggedUser.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A95F702B26DC248E00E69219 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A982CFDE26BD586900A070AE /* WebViewController.swift */,
+				A95DA8C12632D98D005EA110 /* LogInViewController.swift */,
+				A9E8D77626501FD7000805CF /* LoadingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A95F702E26DC5AFD00E69219 /* FirebaseDatabaseInfo */ = {
+			isa = PBXGroup;
+			children = (
+				A95F702C26DC594600E69219 /* FirebaseDatabaseInfo.swift */,
+			);
+			path = FirebaseDatabaseInfo;
 			sourceTree = "<group>";
 		};
 		A966117426639DA10041422B /* CunstomTransition */ = {
@@ -168,7 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				A982CFE026BD819800A070AE /* VKAPIRequests.swift */,
-				A9BDADD926C56A68004463CA /* MappingJsonToNewStruct.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -176,7 +250,9 @@
 		A9BDADCB26C3D75D004463CA /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A95F702426DC229000E69219 /* RealmLoader */,
 				A982CFE226BD81A500A070AE /* NetworkLayer */,
+				A95F702726DC231900E69219 /* FirebaseLoader */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -185,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				A9BDADCD26C3DB64004463CA /* URLs */,
+				A95F702E26DC5AFD00E69219 /* FirebaseDatabaseInfo */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -222,63 +299,46 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		A9F8354E264D2BEC001B1023 /* Friends */ = {
+		A9F83550264D2C01001B1023 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
 				A966117D2663A4AD0041422B /* CunstomTransition */,
-				A9F83550264D2C01001B1023 /* MyFriends */,
-				A9F83551264D2C0C001B1023 /* Photos */,
-			);
-			path = Friends;
-			sourceTree = "<group>";
-		};
-		A9F8354F264D2BF6001B1023 /* Groups */ = {
-			isa = PBXGroup;
-			children = (
-				A966117426639DA10041422B /* CunstomTransition */,
-				A9F83560264D2E14001B1023 /* Model */,
-				A9F83553264D2C64001B1023 /* MyGroups */,
-				A9F83552264D2C5C001B1023 /* AllGroups */,
-			);
-			path = Groups;
-			sourceTree = "<group>";
-		};
-		A9F83550264D2C01001B1023 /* MyFriends */ = {
-			isa = PBXGroup;
-			children = (
 				A9F83558264D2D57001B1023 /* Model */,
 				A9F8355B264D2D89001B1023 /* Controller */,
 				A9F8355A264D2D81001B1023 /* Cell */,
 			);
-			path = MyFriends;
+			path = Friends;
 			sourceTree = "<group>";
 		};
-		A9F83551264D2C0C001B1023 /* Photos */ = {
+		A9F83551264D2C0C001B1023 /* FriendsPhotos */ = {
 			isa = PBXGroup;
 			children = (
 				A9BDADD226C3F278004463CA /* Model */,
 				A9F8355D264D2DE6001B1023 /* Controller */,
 				A9F8355E264D2DF4001B1023 /* Cell */,
 			);
-			path = Photos;
+			path = FriendsPhotos;
 			sourceTree = "<group>";
 		};
-		A9F83552264D2C5C001B1023 /* AllGroups */ = {
+		A9F83552264D2C5C001B1023 /* NewGroups */ = {
 			isa = PBXGroup;
 			children = (
 				A9F83563264D2E2F001B1023 /* Controller */,
 				A9F83564264D2E35001B1023 /* Cell */,
 			);
-			path = AllGroups;
+			path = NewGroups;
 			sourceTree = "<group>";
 		};
-		A9F83553264D2C64001B1023 /* MyGroups */ = {
+		A9F83553264D2C64001B1023 /* Groups */ = {
 			isa = PBXGroup;
 			children = (
+				A966117426639DA10041422B /* CunstomTransition */,
+				A9F83560264D2E14001B1023 /* Model */,
 				A9F83561264D2E21001B1023 /* Controller */,
 				A9F83562264D2E27001B1023 /* Cell */,
 			);
-			path = MyGroups;
+			name = Groups;
+			path = Groups/Groups;
 			sourceTree = "<group>";
 		};
 		A9F83554264D2CB1001B1023 /* Suppots */ = {
@@ -292,9 +352,8 @@
 		A9F83555264D2CF3001B1023 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				A982CFDE26BD586900A070AE /* WebViewController.swift */,
-				A95DA8C12632D98D005EA110 /* LogInViewController.swift */,
-				A9E8D77626501FD7000805CF /* LoadingViewController.swift */,
+				A95F702A26DC246E00E69219 /* Model */,
+				A95F702B26DC248E00E69219 /* Controller */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -303,9 +362,11 @@
 			isa = PBXGroup;
 			children = (
 				A9F83555264D2CF3001B1023 /* Login */,
-				A9F8354E264D2BEC001B1023 /* Friends */,
-				A9F83569264D8041001B1023 /* NewsFeed */,
-				A9F8354F264D2BF6001B1023 /* Groups */,
+				A9F83550264D2C01001B1023 /* Friends */,
+				A9F83551264D2C0C001B1023 /* FriendsPhotos */,
+				A9F83553264D2C64001B1023 /* Groups */,
+				A9F83552264D2C5C001B1023 /* NewGroups */,
+				A9F83569264D8041001B1023 /* Feed */,
 				A9F02B8B2635CD7C00E6D795 /* TabBar */,
 			);
 			path = UI;
@@ -372,7 +433,7 @@
 		A9F83561264D2E21001B1023 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A9F02B972635D9ED00E6D795 /* MyGroupsTableViewController.swift */,
+				A9F02B972635D9ED00E6D795 /* GroupsTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -388,7 +449,7 @@
 		A9F83563264D2E2F001B1023 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A91DF285263F3625001CE958 /* AllGroupsTableViewController.swift */,
+				A91DF285263F3625001CE958 /* NewGroupsTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -401,14 +462,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		A9F83569264D8041001B1023 /* NewsFeed */ = {
+		A9F83569264D8041001B1023 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
 				A9F83574264D873D001B1023 /* Model */,
 				A9F8356A264D808C001B1023 /* Cell */,
 				A9F8356F264D82E7001B1023 /* Controller */,
 			);
-			path = NewsFeed;
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		A9F8356A264D808C001B1023 /* Cell */ = {
@@ -423,7 +484,7 @@
 		A9F8356F264D82E7001B1023 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A9F83570264D86D5001B1023 /* NewsFeedTableViewController.swift */,
+				A9F83570264D86D5001B1023 /* FeedTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -443,9 +504,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A95DA8CE2632D98E005EA110 /* Build configuration list for PBXNativeTarget "PerfectApp_Colchugina" */;
 			buildPhases = (
+				386D749BDE14A4C76623F524 /* [CP] Check Pods Manifest.lock */,
 				A95DA8B62632D98D005EA110 /* Sources */,
 				A95DA8B72632D98D005EA110 /* Frameworks */,
 				A95DA8B82632D98D005EA110 /* Resources */,
+				6CC131AA8F568A7DB4BE9C3A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -504,6 +567,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A95DA8CA2632D98E005EA110 /* LaunchScreen.storyboard in Resources */,
+				A95F702326DBB45100E69219 /* GoogleService-Info.plist in Resources */,
 				A95DA8C72632D98E005EA110 /* Assets.xcassets in Resources */,
 				A95DA8C52632D98D005EA110 /* Main.storyboard in Resources */,
 			);
@@ -511,19 +575,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		386D749BDE14A4C76623F524 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PerfectApp_Colchugina-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6CC131AA8F568A7DB4BE9C3A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PerfectApp_Colchugina/Pods-PerfectApp_Colchugina-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PerfectApp_Colchugina/Pods-PerfectApp_Colchugina-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PerfectApp_Colchugina/Pods-PerfectApp_Colchugina-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A95DA8B62632D98D005EA110 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A95F702926DC246500E69219 /* LoggedUser.swift in Sources */,
 				A9A71DAD26358DD2005C6DCE /* UITextFieldExtension.swift in Sources */,
 				A966117C26639DF10041422B /* PopZoomAnimator.swift in Sources */,
 				A95DA8C22632D98D005EA110 /* LogInViewController.swift in Sources */,
 				A9BDADCF26C3DB79004463CA /* URLs.swift in Sources */,
 				A9F83573264D8737001B1023 /* NewsFeedList.swift in Sources */,
-				A9F02B982635D9ED00E6D795 /* MyGroupsTableViewController.swift in Sources */,
+				A95F702D26DC594600E69219 /* FirebaseDatabaseInfo.swift in Sources */,
+				A9F02B982635D9ED00E6D795 /* GroupsTableViewController.swift in Sources */,
 				A91DF284263F31A9001CE958 /* GroupList.swift in Sources */,
-				A9BDADDA26C56A68004463CA /* MappingJsonToNewStruct.swift in Sources */,
+				A9BDADDA26C56A68004463CA /* RealmLoader.swift in Sources */,
 				A9F02B872635CD1E00E6D795 /* FriendsTableViewController.swift in Sources */,
 				A966117A26639DDB0041422B /* PushZoomAnimator.swift in Sources */,
 				A9F8356C264D8099001B1023 /* NewsFeedTableViewCell.swift in Sources */,
@@ -536,18 +644,19 @@
 				A966117F2663A4C20041422B /* CustomFriendsNavigationController.swift in Sources */,
 				A982CFDF26BD586900A070AE /* WebViewController.swift in Sources */,
 				A982CFE126BD819800A070AE /* VKAPIRequests.swift in Sources */,
-				A9F83571264D86D5001B1023 /* NewsFeedTableViewController.swift in Sources */,
+				A9F83571264D86D5001B1023 /* FeedTableViewController.swift in Sources */,
 				A91DF27F263F30A1001CE958 /* MyGroupTableViewCell.swift in Sources */,
 				A966117626639DAF0041422B /* CustomGroupsNavigationController.swift in Sources */,
 				A966117826639DC90041422B /* CustomGroupsInteractiveTransition.swift in Sources */,
 				A95DA8BE2632D98D005EA110 /* AppDelegate.swift in Sources */,
 				A9E8D77726501FD7000805CF /* LoadingViewController.swift in Sources */,
 				A91DF275263EA3DC001CE958 /* FriendPhotosViewController.swift in Sources */,
-				A91DF286263F3625001CE958 /* AllGroupsTableViewController.swift in Sources */,
+				A91DF286263F3625001CE958 /* NewGroupsTableViewController.swift in Sources */,
 				A9F83566264D3AD8001B1023 /* UIColorExtension.swift in Sources */,
 				A91DF281263F30AD001CE958 /* AllGroupTableViewCell.swift in Sources */,
 				A9F02B842635CB4B00E6D795 /* TabBarController.swift in Sources */,
 				A9F8354D264D2BCC001B1023 /* HeaderSectionForFriendsTable.swift in Sources */,
+				A95F702626DC231400E69219 /* FirebaseLoader.swift in Sources */,
 				A95DA8C02632D98D005EA110 /* SceneDelegate.swift in Sources */,
 				A96611832663A5670041422B /* PushSliderAnimator.swift in Sources */,
 				A91DF28A2641A4D0001CE958 /* LikeControl.swift in Sources */,
@@ -695,6 +804,7 @@
 		};
 		A95DA8CF2632D98E005EA110 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6FDE1CC37F339DE337D65CD /* Pods-PerfectApp_Colchugina.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -714,6 +824,7 @@
 		};
 		A95DA8D02632D98E005EA110 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D249E33CCCCFC5F4673F8E74 /* Pods-PerfectApp_Colchugina.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
