@@ -290,8 +290,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="groupNameLabel" destination="RMM-wh-0mO" id="pSM-Aa-tDN"/>
-                                    <outlet property="groupPhotoImageView" destination="py4-Gh-fwK" id="dUl-9h-lTb"/>
+                                    <outlet property="nameLabel" destination="RMM-wh-0mO" id="jTe-NH-0Rq"/>
+                                    <outlet property="photoImageView" destination="py4-Gh-fwK" id="1i9-Zt-Vt7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -447,7 +447,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotosCollectionViewCell" id="Hux-b9-vy6" customClass="PhotosCollectionViewCell" customModule="PerfectApp_Colchugina" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="413" height="469"/>
+                                        <rect key="frame" x="1" y="0.0" width="413" height="469"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ziu-2h-ORx">
                                             <rect key="frame" x="0.0" y="0.0" width="413" height="469"/>
@@ -730,7 +730,7 @@
         <image name="person.2" catalog="system" width="128" height="81"/>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="plus" catalog="system" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

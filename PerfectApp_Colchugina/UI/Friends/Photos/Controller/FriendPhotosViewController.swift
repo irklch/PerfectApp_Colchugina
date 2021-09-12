@@ -10,9 +10,9 @@ import Kingfisher
 import RealmSwift
 
 class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate {
-    
+
     // MARK: - Private Property
-    
+
     @IBOutlet var photosCollectoinView: UICollectionView!
     private var selectedPhoto = 0
     private var photosLists = [PhotosFriend]()
@@ -20,36 +20,38 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
     private var viewPhoto = UIView()
     private var photoImageView = UIImageView()
     private var backButton = UIButton(type: .system)
-    
+    private var realmToken: NotificationToken?
+
     // MARK: - Life cycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate()
         getPhotoList()
     }
-    
+
     // MARK: - Private methods
-    
+
     private func getPhotoList() {
         let vkRequest = VKRequests()
-        let mapping = MappingJson()
+        let mapping = RealmLoader()
         vkRequest.getFriendsPhotoList(idFriend: String(selectedFriend.id)) { [weak self] result in
             guard let self = self else {return}
             switch result{
             case .failure(let error):
                 print (error)
             case .success(let photos):
-                mapping.createNewPhotoStruct(oldStruct: photos.response.items)
-                
+                mapping.savePhotos(jsonItems: photos.response.items)
+
                 DispatchQueue.main.async {
                     self.readRealm()
+                    self.pairTableAndRealm()
                     self.photosCollectoinView.reloadData()
                 }
             }
         }
     }
-    
+
     private func readRealm() {
         let photosRealmLists: Results<PhotosFriend>?
         do {
@@ -64,9 +66,24 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
             print(error)
         }
     }
-    
+
+    private func pairTableAndRealm() {
+        guard let realm = try? Realm() else {return}
+        let friends = realm.objects(Friends.self)
+        realmToken = friends.observe { [weak self]  (changes: RealmCollectionChange) in
+            guard let collectionView = self?.photosCollectoinView else {return}
+            switch changes {
+            case .initial: collectionView.reloadData()
+            case .update: collectionView.reloadData()
+            case .error(let error):
+                fatalError("\(error)")
+
+            }
+        }
+    }
+
     private func openPhoto (indexPhoto: Int) {
-        
+
         view.addSubview(viewPhoto)
         viewPhoto.alpha = 0
         viewPhoto.backgroundColor = .black
@@ -77,7 +94,7 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
             viewPhoto.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             viewPhoto.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
+
         viewPhoto.addSubview(photoImageView)
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -86,16 +103,16 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
             photoImageView.leadingAnchor.constraint(equalTo: viewPhoto.leadingAnchor, constant: 0),
             photoImageView.heightAnchor.constraint(equalToConstant: 500)
         ])
-        
+
         guard let url = URL(string: photosLists[indexPhoto].url) else {return}
         photoImageView.kf.setImage(with: url)
         photoImageView.clipsToBounds = true
         photoImageView.contentMode = .scaleAspectFill
-        
+
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
             self.viewPhoto.alpha = 1
         }, completion: nil)
-        
+
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(photoPan))
         let swipeUp = UISwipeGestureRecognizer()
         swipeUp.direction = [.up, .down]
@@ -104,7 +121,7 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
         viewPhoto.addGestureRecognizer(swipeUp)
         viewPhoto.addGestureRecognizer(panGestureRecognizer)
     }
-    
+
     //свайп вниз и вверх для закрытия фото
     @objc private func swipeUpGesture(_ swipeUp: UISwipeGestureRecognizer) {
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
@@ -114,22 +131,22 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
             self.viewPhoto.alpha = 1
         })
     }
-    
-    
+
+
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
-    
-    
+
+
     //перелистывание фото
     @objc func photoPan ( _ recognizer: UIPanGestureRecognizer) {
         let photoCount = photosLists.count
         var fullSwipe: CGFloat = 0
         switch recognizer.state {
-        
+
         case .changed:
             photoImageView.transform = CGAffineTransform(translationX: recognizer.translation(in: view).x, y: 0)
-            
+
             //если последняя фотография - стоп перелистывания
             if recognizer.translation(in: view).x < 0 && selectedPhoto == photoCount - 1 {
                 if recognizer.translation(in: view).x > -50 {
@@ -138,7 +155,7 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
                     return self.photoImageView.transform = CGAffineTransform(translationX: -50, y: 0)
                 }
             }
-            
+
             //если первая фотография - стоп перелистывания
             else if recognizer.translation(in: view).x > 0 && selectedPhoto == 0  {
                 if recognizer.translation(in: view).x < 50 {
@@ -148,23 +165,23 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
                     return self.photoImageView.transform = CGAffineTransform(translationX: 50, y: 0)
                 }
             }
-            
+
         case .ended:
-            
+
             // возвращает фото в исходное положение, если фото первое или последнее
             if (recognizer.translation(in: view).x < 0 && selectedPhoto == photoCount - 1) || (recognizer.translation(in: view).x > 0 && selectedPhoto == 0) {
                 return UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
                     self.photoImageView.transform = .identity
                 }, completion: nil)
             }
-            
+
             //возвращает фото в исходное положение, если недостаточно сильно смахнули
             guard recognizer.translation(in: view).x > 50 || recognizer.translation(in: view).x < -50 else {
                 return UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
                     self.photoImageView.transform = .identity
                 }, completion: nil)
             }
-            
+
             //определяет направление перелистывания фото и изменяет индекс фотографии
             if recognizer.translation(in: view).x < 0 {
                 fullSwipe = recognizer.translation(in: view).x - 300
@@ -174,7 +191,7 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
                 fullSwipe = recognizer.translation(in: view).x + 300
                 selectedPhoto -= 1
             }
-            
+
             //перелистывает фото
             UIView.animate(withDuration: 0.3) {[self] in
                 self.photoImageView.transform = CGAffineTransform(translationX: fullSwipe, y: 0)
@@ -202,22 +219,22 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
 //MARK:- Extesion
 
 extension FriendPhotosViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
+
     private func delegate() {
         self.photosCollectoinView.delegate = self
         self.photosCollectoinView.dataSource = self
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photosLists.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.reuseId, for: indexPath) as! PhotosCollectionViewCell
         cell.config(photosLists[indexPath.row].url)
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let url = URL(string: photosLists[indexPath.row].url) else {return}
         photoImageView.kf.setImage(with: url)

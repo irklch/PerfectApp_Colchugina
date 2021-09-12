@@ -39,6 +39,9 @@ class Friends: RealmSwift.Object {
         self.photo = photo
         self.id = id
     }
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
 
 

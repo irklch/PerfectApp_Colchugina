@@ -8,64 +8,61 @@
 import Foundation
 import RealmSwift
 
-class MappingJson {
-    func createNewFriendStruct (oldStruct: [FriendsList]) {
-        var newStruct = [Friends]()
-        oldStruct.forEach { friend in
-            let itemFriend = Friends()
-            itemFriend.firstName = friend.first_name
-            itemFriend.lastName = friend.last_name
-            itemFriend.photo = friend.photo_200_orig
-            itemFriend.id = friend.id
-            newStruct.append(itemFriend)
+class RealmLoader {
+    func saveFriends (jsonItems: [FriendsList]) {
+        var friendsList = [Friends]()
+        jsonItems.forEach { jsonItem in
+            let friend = Friends()
+            friend.firstName = jsonItem.first_name
+            friend.lastName = jsonItem.last_name
+            friend.photo = jsonItem.photo_200_orig
+            friend.id = jsonItem.id
+            friendsList.append(friend)
         }
         do {
             let realm = try Realm()
             realm.beginWrite()
-            let oldFriends = realm.objects(Friends.self)
-            realm.delete(oldFriends)
-            realm.add(newStruct)
+            realm.add(friendsList, update: .modified)
             try realm.commitWrite()
         } catch {
             print(error)
         }
     }
 
-    func createNewPhotoStruct (oldStruct: [PhotosSizes]) {
-        var newStruct = [PhotosFriend]()
-        oldStruct.forEach { photo in
-            if let oldPhoto = photo.sizes.last {
-                let itemPhoto = PhotosFriend()
-                itemPhoto.url = oldPhoto.url
-                newStruct.append(itemPhoto)
+    func savePhotos (jsonItems: [PhotosSizes]) {
+        var photosList = [PhotosFriend]()
+        jsonItems.forEach { jsonItem in
+            if let jsonPhoto = jsonItem.sizes.last {
+                let photo = PhotosFriend()
+                photo.url = jsonPhoto.url
+                photosList.append(photo)
             }
         }
         do {
             let realm = try Realm()
             realm.beginWrite()
-            let oldFriends = realm.objects(PhotosFriend.self)
-            realm.delete(oldFriends)
-            realm.add(newStruct)
+            let oldPhotos = realm.objects(PhotosFriend.self)
+            realm.delete(oldPhotos)
+            realm.add(photosList)
             try realm.commitWrite()
         } catch {
             print(error)
         }
     }
 
-    func createNewGoupsStruct (oldStruct: [GroupsList]) {
-        var newStruct = [Groups]()
-        oldStruct.forEach { group in
-            let itemGroup = Groups()
-            itemGroup.name = group.name
-            itemGroup.photo = group.photo_200
-            newStruct.append(itemGroup)
+    func saveGroups (jsonItems: [GroupsList]) {
+        var groupsList = [Groups]()
+        jsonItems.forEach { jsonItem in
+            let group = Groups()
+            group.name = jsonItem.name
+            group.photo = jsonItem.photo_200
+            group.id = jsonItem.id
+            groupsList.append(group)
         }
         do {
             let realm = try Realm()
             realm.beginWrite()
-            let oldFriends = realm.objects(Groups.self)
-            realm.delete(oldFriends)
-            realm.add(newStruct)
+            realm.add(groupsList, update: .modified)
             try realm.commitWrite()
         } catch {
             print(error)

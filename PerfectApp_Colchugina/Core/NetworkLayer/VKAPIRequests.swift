@@ -22,7 +22,9 @@ final class VKRequests: VKRequestsProtocol {
     func getGroupList (completion: @escaping(Result<GroupsResponse, Error>) -> Void) {
         downloadJson(url: URLs.groupList, completion: completion)
     }
+}
 
+extension VKRequests {
     private func downloadJson<T: Decodable>(url: String, completion: @escaping(Result<T, Error>) -> Void) {
         guard let url = URL(string: url) else {return}
         let session = URLSession.shared
