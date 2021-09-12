@@ -32,20 +32,7 @@ final class WebViewController: UIViewController, WKNavigationDelegate {
     //MARK:- Private methods
 
     private func openVKAuth() {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "oauth.vk.com"
-        urlComponents.path = "/authorize"
-        urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: "7730758"),
-            URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
-            URLQueryItem(name: "display", value: "mobile"),
-            URLQueryItem(name: "response_type", value: "token"),
-            URLQueryItem(name: "state", value: "12345"),
-            URLQueryItem(name: "v", value: "5.68")
-        ]
-
-        guard let url = urlComponents.url else {return}
+        guard let url = URLs.vkAuth() else {return}
         let request = URLRequest.init(url: url)
         vkWebView.load(request)
     }

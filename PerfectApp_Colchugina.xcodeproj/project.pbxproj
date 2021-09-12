@@ -128,17 +128,12 @@
 		A95DA8BC2632D98D005EA110 /* PerfectApp_Colchugina */ = {
 			isa = PBXGroup;
 			children = (
-				A95DA8C32632D98D005EA110 /* Main.storyboard */,
-				A95DA8BD2632D98D005EA110 /* AppDelegate.swift */,
-				A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */,
-				A9F7412626BBE38700C1B591 /* Session.swift */,
-				A9F02B892635CD4400E6D795 /* Extensions */,
+				A9A69A1526EE3EEC000B001D /* Storyboards */,
 				A9F83557264D2D10001B1023 /* UI */,
 				A9BDADCB26C3D75D004463CA /* Core */,
+				A9F02B892635CD4400E6D795 /* Extensions */,
 				A9BDADCC26C3DB53004463CA /* Helpers */,
-				A9F83554264D2CB1001B1023 /* Suppots */,
-				A95DA8CB2632D98E005EA110 /* Info.plist */,
-				A95DA8C82632D98E005EA110 /* LaunchScreen.storyboard */,
+				A9F83554264D2CB1001B1023 /* Supports */,
 			);
 			path = PerfectApp_Colchugina;
 			sourceTree = "<group>";
@@ -173,9 +168,36 @@
 			path = NetworkLayer;
 			sourceTree = "<group>";
 		};
+		A9A69A1426EE3D39000B001D /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				A9F7412626BBE38700C1B591 /* Session.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		A9A69A1526EE3EEC000B001D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A95DA8C32632D98D005EA110 /* Main.storyboard */,
+				A95DA8C82632D98E005EA110 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A9A69A1626EE3F25000B001D /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				A95DA8BD2632D98D005EA110 /* AppDelegate.swift */,
+				A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		A9BDADCB26C3D75D004463CA /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A9A69A1626EE3F25000B001D /* Delegates */,
 				A982CFE226BD81A500A070AE /* NetworkLayer */,
 			);
 			path = Core;
@@ -184,6 +206,7 @@
 		A9BDADCC26C3DB53004463CA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A9A69A1426EE3D39000B001D /* Session */,
 				A9BDADCD26C3DB64004463CA /* URLs */,
 			);
 			name = Helpers;
@@ -281,12 +304,13 @@
 			path = MyGroups;
 			sourceTree = "<group>";
 		};
-		A9F83554264D2CB1001B1023 /* Suppots */ = {
+		A9F83554264D2CB1001B1023 /* Supports */ = {
 			isa = PBXGroup;
 			children = (
+				A95DA8CB2632D98E005EA110 /* Info.plist */,
 				A95DA8C62632D98E005EA110 /* Assets.xcassets */,
 			);
-			path = Suppots;
+			path = Supports;
 			sourceTree = "<group>";
 		};
 		A9F83555264D2CF3001B1023 /* Login */ = {
@@ -304,8 +328,8 @@
 			children = (
 				A9F83555264D2CF3001B1023 /* Login */,
 				A9F8354E264D2BEC001B1023 /* Friends */,
-				A9F83569264D8041001B1023 /* NewsFeed */,
 				A9F8354F264D2BF6001B1023 /* Groups */,
+				A9F83569264D8041001B1023 /* NewsFeed */,
 				A9F02B8B2635CD7C00E6D795 /* TabBar */,
 			);
 			path = UI;
@@ -700,7 +724,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CY87MBJTCB;
-				INFOPLIST_FILE = PerfectApp_Colchugina/Info.plist;
+				INFOPLIST_FILE = PerfectApp_Colchugina/Supports/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -719,7 +743,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CY87MBJTCB;
-				INFOPLIST_FILE = PerfectApp_Colchugina/Info.plist;
+				INFOPLIST_FILE = PerfectApp_Colchugina/Supports/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
