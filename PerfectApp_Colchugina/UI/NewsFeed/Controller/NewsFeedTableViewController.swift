@@ -11,8 +11,6 @@ class NewsFeedTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
     // MARK: - Table view data source
@@ -27,7 +25,6 @@ class NewsFeedTableViewController: UITableViewController {
         return NewsFeed.list.count
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsFeedTableViewCell.reuseId, for: indexPath) as! NewsFeedTableViewCell
         let item = NewsFeed.list[indexPath.row]
@@ -37,11 +34,5 @@ class NewsFeedTableViewController: UITableViewController {
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//let cell = tableView.dequeueReusableCell(withIdentifier: NewsFeedTableViewCell.reuseId, for: indexPath) as! NewsFeedTableViewCell
-//        let item = News.list[indexPath.row]
-//       
-//    }
-    
-    
+
 }
