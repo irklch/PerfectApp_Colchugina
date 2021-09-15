@@ -32,7 +32,4 @@ final class URLs {
     
     static let groupList = "https://api.vk.com/method/groups.get?user_id=\(Session.shared.id)&access_token=\(Session.shared.token)&extended=1&v=5.131"
     
-    func groupListFromSearch (searchText text: String) -> String {
-        return "https://api.vk.com/method/friends.get?access_token=\(Session.shared.token)&q=\(text)&v=5.126"
-    }
 }

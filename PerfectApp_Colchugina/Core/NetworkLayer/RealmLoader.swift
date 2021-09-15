@@ -12,11 +12,10 @@ class RealmLoader {
     func saveFriends (jsonItems: [FriendsList]) {
         var friendsList = [Friends]()
         jsonItems.forEach { jsonItem in
-            let friend = Friends()
-            friend.firstName = jsonItem.first_name
-            friend.lastName = jsonItem.last_name
-            friend.photo = jsonItem.photo_200_orig
-            friend.id = jsonItem.id
+            let friend = Friends(firstName: jsonItem.first_name,
+                                 lastName: jsonItem.last_name,
+                                 photo: jsonItem.photo_200_orig,
+                                 id: jsonItem.id)
             friendsList.append(friend)
         }
         do {
@@ -29,21 +28,18 @@ class RealmLoader {
         }
     }
 
-    func savePhotos (jsonItems: [PhotosSizes]) {
+    func savePhotos (idFriend: Int, jsonItems: [PhotosSizes]) {
         var photosList = [PhotosFriend]()
         jsonItems.forEach { jsonItem in
             if let jsonPhoto = jsonItem.sizes.last {
-                let photo = PhotosFriend()
-                photo.url = jsonPhoto.url
+                let photo = PhotosFriend(id: idFriend, url: jsonPhoto.url)
                 photosList.append(photo)
             }
         }
         do {
             let realm = try Realm()
             realm.beginWrite()
-            let oldPhotos = realm.objects(PhotosFriend.self)
-            realm.delete(oldPhotos)
-            realm.add(photosList)
+            realm.add(photosList, update: .modified)
             try realm.commitWrite()
         } catch {
             print(error)
@@ -53,10 +49,9 @@ class RealmLoader {
     func saveGroups (jsonItems: [GroupsList]) {
         var groupsList = [Groups]()
         jsonItems.forEach { jsonItem in
-            let group = Groups()
-            group.name = jsonItem.name
-            group.photo = jsonItem.photo_200
-            group.id = jsonItem.id
+            let group = Groups(id: jsonItem.id,
+                               name: jsonItem.name,
+                               photo: jsonItem.photo_200)
             groupsList.append(group)
         }
         do {

@@ -568,104 +568,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsFeedTableViewCell" rowHeight="432" id="6kM-hg-dLk" customClass="NewsFeedTableViewCell" customModule="PerfectApp_Colchugina" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="432"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6kM-hg-dLk" id="Hwl-5K-gsI">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="432"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UF7-49-J9B">
-                                            <rect key="frame" x="0.0" y="169" width="414" height="209"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="209" id="7WL-dV-Nir"/>
-                                                <constraint firstAttribute="width" constant="414" id="lYy-0f-xlB"/>
-                                            </constraints>
-                                        </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XRN-1s-AIc">
-                                            <rect key="frame" x="20" y="11" width="40" height="40"/>
-                                            <color key="backgroundColor" red="0.96862745100000003" green="0.8980392157" blue="0.56470588239999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="JT7-Jz-Igh"/>
-                                                <constraint firstAttribute="width" constant="40" id="r1B-KT-oU9"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hm5-Ho-Dfz">
-                                            <rect key="frame" x="20" y="68" width="366" height="27.5"/>
-                                            <attributedString key="attributedText">
-                                                <fragment content="Title">
-                                                    <attributes>
-                                                        <font key="NSFont" size="20" name="AvenirNext-Bold"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="25" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gF-GS-hVs">
-                                            <rect key="frame" x="20" y="125" width="366" height="25"/>
-                                            <attributedString key="attributedText">
-                                                <fragment content="Feed's text">
-                                                    <attributes>
-                                                        <font key="NSFont" size="18" name="AvenirNext-Regular"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <nil key="highlightedColor"/>
-                                            <size key="shadowOffset" width="0.0" height="0.0"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MaH-9m-C0g">
-                                            <rect key="frame" x="78" y="19" width="99" height="24"/>
-                                            <attributedString key="attributedText">
-                                                <fragment content="Group name">
-                                                    <attributes>
-                                                        <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <font key="NSFont" size="17" name="AvenirNext-Medium"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIH-km-JEI" customClass="FeedControl" customModule="PerfectApp_Colchugina" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="386" width="374" height="27"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="XRN-1s-AIc" firstAttribute="centerY" secondItem="MaH-9m-C0g" secondAttribute="centerY" id="6xQ-ns-vjg"/>
-                                        <constraint firstAttribute="bottom" secondItem="OIH-km-JEI" secondAttribute="bottom" constant="19" id="DYK-9T-NzX"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="3gF-GS-hVs" secondAttribute="trailing" constant="8" id="FjP-J2-XP2"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="hm5-Ho-Dfz" secondAttribute="trailing" constant="8" id="HZV-Vt-HVH"/>
-                                        <constraint firstItem="3gF-GS-hVs" firstAttribute="leading" secondItem="Hwl-5K-gsI" secondAttribute="leadingMargin" id="Lbs-XA-FKr"/>
-                                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="MaH-9m-C0g" secondAttribute="trailing" constant="237" id="Nli-Jn-9J3"/>
-                                        <constraint firstItem="XRN-1s-AIc" firstAttribute="top" secondItem="Hwl-5K-gsI" secondAttribute="top" constant="11" id="Wwa-iY-CTn"/>
-                                        <constraint firstItem="3gF-GS-hVs" firstAttribute="top" secondItem="hm5-Ho-Dfz" secondAttribute="bottom" constant="29.5" id="X8g-lm-3Fl"/>
-                                        <constraint firstItem="hm5-Ho-Dfz" firstAttribute="leading" secondItem="Hwl-5K-gsI" secondAttribute="leadingMargin" id="Xtn-tC-LKz"/>
-                                        <constraint firstItem="UF7-49-J9B" firstAttribute="top" secondItem="3gF-GS-hVs" secondAttribute="bottom" constant="19" id="Y7a-p3-wjc"/>
-                                        <constraint firstAttribute="trailing" secondItem="OIH-km-JEI" secondAttribute="trailing" constant="20" symbolic="YES" id="eDT-41-by1"/>
-                                        <constraint firstItem="UF7-49-J9B" firstAttribute="centerX" secondItem="Hwl-5K-gsI" secondAttribute="centerX" id="fAw-Hj-pVv"/>
-                                        <constraint firstItem="MaH-9m-C0g" firstAttribute="leading" secondItem="XRN-1s-AIc" secondAttribute="trailing" constant="18" id="jNK-lZ-Yjw"/>
-                                        <constraint firstItem="OIH-km-JEI" firstAttribute="top" secondItem="UF7-49-J9B" secondAttribute="bottom" constant="8" symbolic="YES" id="k4y-gG-VvR"/>
-                                        <constraint firstItem="XRN-1s-AIc" firstAttribute="leading" secondItem="Hwl-5K-gsI" secondAttribute="leading" constant="20" symbolic="YES" id="mz1-7t-a0i"/>
-                                        <constraint firstItem="hm5-Ho-Dfz" firstAttribute="top" secondItem="XRN-1s-AIc" secondAttribute="bottom" constant="17" id="r5w-nc-LzI"/>
-                                        <constraint firstItem="MaH-9m-C0g" firstAttribute="top" secondItem="Hwl-5K-gsI" secondAttribute="top" constant="19" id="rSZ-or-RMu"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="UF7-49-J9B" secondAttribute="bottom" constant="43" id="rk2-Ga-KDK"/>
-                                        <constraint firstItem="OIH-km-JEI" firstAttribute="leading" secondItem="Hwl-5K-gsI" secondAttribute="leading" constant="20" symbolic="YES" id="wQB-sR-8K6"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="feedControl" destination="OIH-km-JEI" id="CZ1-hF-TZL"/>
-                                    <outlet property="groupIconImageView" destination="XRN-1s-AIc" id="OmN-vI-jvJ"/>
-                                    <outlet property="groupNameLable" destination="MaH-9m-C0g" id="pGA-fb-xbk"/>
-                                    <outlet property="newsImageView" destination="UF7-49-J9B" id="ixI-OR-4vT"/>
-                                    <outlet property="newsTextLabel" destination="3gF-GS-hVs" id="PxV-pE-e2e"/>
-                                    <outlet property="newsTitleLabel" destination="hm5-Ho-Dfz" id="q4c-c9-PhK"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="iqC-Zr-wya" id="PpT-Xk-oHB"/>
                             <outlet property="delegate" destination="iqC-Zr-wya" id="yN9-Ki-bM5"/>
@@ -730,7 +632,7 @@
         <image name="person.2" catalog="system" width="128" height="81"/>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
-        <image name="plus" catalog="system" width="32" height="32"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

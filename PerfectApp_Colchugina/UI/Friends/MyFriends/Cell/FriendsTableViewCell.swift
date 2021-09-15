@@ -48,8 +48,6 @@ final class FriendsTableViewCell: UITableViewCell {
         guard let url = URL(string: photo) else {return}
         photoImageView.kf.setImage(with: url)
         nameLabel.text = ("\(lastName) \(firstName)")
-        photoImageView.layer.cornerRadius = 25
-        photoImageView.layer.masksToBounds = true
     }
     
     //MARK:- Private methods
@@ -107,6 +105,8 @@ final class FriendsTableViewCell: UITableViewCell {
         //подогнать размер фото под вьюшку
         photoImageView.contentMode = .scaleAspectFill
         photoImageView.clipsToBounds = true
+        photoImageView.layer.cornerRadius = 25
+        photoImageView.layer.masksToBounds = true
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
