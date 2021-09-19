@@ -6,37 +6,41 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class AuthorOfFeedTableViewCell: UITableViewCell {
-
+    
     //MARK:- Public properties
     static let reuseId = "AuthorOfFeedTableViewCell"
-
+    
     //MARK:- Private properties
     private let authorPhotoImageView = UIImageView()
     private let authorNameLable = UILabel()
     private let dateOfPublicationLabel = UILabel()
-
+    
     //MARK:- Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: AuthorOfFeedTableViewCell.reuseId)
         setViews()
     }
-
+    
     @available (*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     //MARK:- Public methods
-    func config (authorName name: String, authorPhoto photo: String, dateOfPublication date: Date) {
+    func config (authorName name: String, authorPhoto photo: String, dateOfPublication date: Int) {
         authorNameLable.text = name
-        authorPhotoImageView.image = UIImage(named: photo)
+        guard let url = URL(string: photo) else {return}
+        authorPhotoImageView.kf.setImage(with: url)
+        let timeInterval = TimeInterval(date)
+        let trueDate = Date(timeIntervalSince1970: timeInterval)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
-        dateOfPublicationLabel.text = dateFormatter.string(from: date)
+        dateOfPublicationLabel.text = dateFormatter.string(from: trueDate)
     }
-
+    
     //MARK:- Private methods
     private func setViews() {
         self.addSubview(authorPhotoImageView)
@@ -50,7 +54,7 @@ final class AuthorOfFeedTableViewCell: UITableViewCell {
         ])
         authorPhotoImageView.layer.cornerRadius = 25
         authorPhotoImageView.layer.masksToBounds = true
-
+        
         self.addSubview(authorNameLable)
         authorNameLable.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -62,7 +66,7 @@ final class AuthorOfFeedTableViewCell: UITableViewCell {
         authorNameLable.font = UIFont(name: authorNameLable.font.fontName, size: 25)
         authorNameLable.font = UIFont.boldSystemFont(ofSize: 16.0)
         authorNameLable.lineBreakMode = .byWordWrapping
-
+        
         self.addSubview(dateOfPublicationLabel)
         dateOfPublicationLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

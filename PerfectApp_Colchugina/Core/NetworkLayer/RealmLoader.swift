@@ -63,4 +63,41 @@ class RealmLoader {
             print(error)
         }
     }
+
+    func saveNews (jsonItems: [NewsItems], jsonGroups: [NewsGroups], jsonProfiles: [NewsProfiles]){
+        var newsList = [News]()
+        jsonItems.forEach { jsonItem in
+            let news = News()
+            news.postId = jsonItem.post_id
+            for i in 0..<jsonGroups.count {
+                if abs(jsonItem.source_id) == jsonGroups[i].id {
+                    news.groupName = jsonGroups[i].name
+                    news.groupPhoto = jsonGroups[i].photo_200
+                }
+            }
+            for i in 0..<jsonProfiles.count {
+                if abs(jsonItem.signer_id ?? 0) == jsonProfiles[i].id {
+                    news.profileName = "\(jsonProfiles[i].first_name) \(jsonProfiles[i].last_name)"
+                    news.profilePhoto = jsonProfiles[i].photo_100
+                }
+            }
+            news.date = jsonItem.date
+            news.newsText = jsonItem.text
+            news.attachments = jsonItem.attachments?.last?.photo?.sizes.last?.url ?? jsonItem.attachments?.last?.video?.first_frame?.last?.url ?? ""
+            news.comments = jsonItem.comments.count
+            news.likes = jsonItem.likes.count
+            news.reposts = jsonItem.reposts.count
+            news.views = jsonItem.reposts.count
+            newsList.append(news)
+        }
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            realm.add(newsList, update: .modified)
+            
+            try realm.commitWrite()
+        } catch {
+            print(error)
+        }
+    }
 }

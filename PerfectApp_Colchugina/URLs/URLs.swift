@@ -20,6 +20,7 @@ final class URLs {
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "response_type", value: "token"),
             URLQueryItem(name: "state", value: "12345"),
+            URLQueryItem(name: "scope", value: "wall,friends"),
             URLQueryItem(name: "v", value: "5.68")
         ]
         return urlComponents.url
@@ -32,4 +33,5 @@ final class URLs {
     
     static let groupList = "https://api.vk.com/method/groups.get?user_id=\(Session.shared.id)&access_token=\(Session.shared.token)&extended=1&v=5.131"
     
+    static let newsList = "https://api.vk.com/method/newsfeed.get?user_id=\(Session.shared.id)&filters=post&max_photos=1&source_ids=groups&access_token=\(Session.shared.token)&extended=1&v=5.131"
 }
