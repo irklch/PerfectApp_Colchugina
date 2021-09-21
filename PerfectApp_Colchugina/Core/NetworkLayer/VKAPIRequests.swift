@@ -10,9 +10,6 @@ protocol VKRequestsProtocol: AnyObject{
     func getFriendList(completion: @escaping(Result<FriendsResponse, Error>) -> Void)
     func getFriendsPhotoList(idFriend: String, completion: @escaping(Result<PhotosResponse, Error>) -> Void)
     func getGroupList (completion: @escaping(Result<GroupsResponse, Error>) -> Void)
-    func getNewsItemsList (completion: @escaping(Result<NewsResponseItems, Error>) -> Void)
-    func getNewsProfilesList (completion: @escaping(Result<NewsResponseProfiles, Error>) -> Void)
-    func getNewsGroupsList (completion: @escaping(Result<NewsResponseGroups, Error>) -> Void)
 }
 
 final class VKRequests: VKRequestsProtocol {
@@ -27,19 +24,6 @@ final class VKRequests: VKRequestsProtocol {
 
     func getGroupList (completion: @escaping(Result<GroupsResponse, Error>) -> Void) {
         downloadJson(url: URLs.groupList, completion: completion)
-    }
-
-    func getNewsItemsList (completion: @escaping(Result<NewsResponseItems, Error>) -> Void) {
-        downloadJson(url: URLs.newsList, completion: completion)
-    }
-
-    func getNewsProfilesList(completion: @escaping (Result<NewsResponseProfiles, Error>) -> Void) {
-        downloadJson(url: URLs.newsList, completion: completion)
-    }
-
-    func getNewsGroupsList(completion: @escaping (Result<NewsResponseGroups, Error>) -> Void) {
-        
-        downloadJson(url: URLs.newsList, completion: completion)
     }
 }
 
