@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class PhotoOfFeedTableViewCell: UITableViewCell {
     
@@ -28,7 +29,8 @@ final class PhotoOfFeedTableViewCell: UITableViewCell {
     
     //MARK:- Public methods
     func config(photoOfFeed photo: String) {
-        photoOfFeedImageView.image = UIImage(named: photo)
+        guard let url = URL(string: photo) else {return}
+        photoOfFeedImageView.kf.setImage(with: url)
     }
     
     //MARK:- Private methods
@@ -42,6 +44,7 @@ final class PhotoOfFeedTableViewCell: UITableViewCell {
             photoOfFeedImageView.topAnchor.constraint(equalTo: self.topAnchor),
             photoOfFeedImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20)
         ])
+        photoOfFeedImageView.contentMode = .scaleAspectFit
     }
     
 }
