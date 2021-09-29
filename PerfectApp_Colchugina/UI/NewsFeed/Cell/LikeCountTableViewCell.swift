@@ -11,7 +11,7 @@ final class LikeCountTableViewCell: UITableViewCell {
     
     //MARK:- Public properties
     
-    let likeButton = UIButton(type: .system)
+     let likeButton = UIButton(type: .system)
     static let reuseId = "LikeCountTableViewCell"
     
     //MARK:- Private properties
@@ -33,29 +33,39 @@ final class LikeCountTableViewCell: UITableViewCell {
     
     //MARK:- Public methods
     
-    func config(likeCount likes: Int, commentCount comment: Int, shareCount share: Int, viewsCont views: Int) {
+    func config(likeCount likes: Int, commentCount comment: Int, shareCount share: Int, viewsCont views: Int, indexPath: Int, isLiked: Bool) {
         likeButton.setTitle("\(likes)", for: .normal)
         commentButton.setTitle("\(comment)", for: .normal)
         shareButton.setTitle("\(share)", for: .normal)
         viewsButton.setTitle("\(views)", for: .normal)
+        likeButton.tag = indexPath
+        if isLiked {
+            likeButton.setImage(UIImage.init(systemName: "suit.heart.fill"), for: .normal)
+            likeButton.tintColor = .red
+        }
+        else {
+            likeButton.setImage(UIImage.init(systemName: "suit.heart"), for: .normal)
+            likeButton.tintColor = .systemGray
+        }
+
     }
     
     //MARK:- Private methods
     
     private func setViews() {
-        self.addSubview(likeButton)
+        contentView.addSubview(likeButton)
         likeButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            likeButton.topAnchor.constraint(equalTo: self.topAnchor),
-            likeButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            likeButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
+            likeButton.topAnchor.constraint(equalTo: contentView.topAnchor),
+            likeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
             likeButton.heightAnchor.constraint(equalToConstant: 18)
         ])
         likeButton.setImage(UIImage.init(systemName: "suit.heart"), for: .normal)
         likeButton.tintColor = .systemGray
         likeButton.titleEdgeInsets.right = -7
         
-        self.addSubview(commentButton)
+        contentView.addSubview(commentButton)
         commentButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             commentButton.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor),
@@ -66,7 +76,7 @@ final class LikeCountTableViewCell: UITableViewCell {
         commentButton.tintColor = .systemGray
         commentButton.titleEdgeInsets.right = -7
         
-        self.addSubview(shareButton)
+        contentView.addSubview(shareButton)
         shareButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             shareButton.centerYAnchor.constraint(equalTo: commentButton.centerYAnchor),
@@ -77,16 +87,31 @@ final class LikeCountTableViewCell: UITableViewCell {
         shareButton.tintColor = .systemGray
         shareButton.titleEdgeInsets.right = -7
         
-        self.addSubview(viewsButton)
+        contentView.addSubview(viewsButton)
         viewsButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             viewsButton.centerYAnchor.constraint(equalTo: shareButton.centerYAnchor),
-            viewsButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            viewsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             viewsButton.heightAnchor.constraint(equalToConstant: 18)
         ])
         viewsButton.setImage(UIImage.init(systemName: "eye"), for: .normal)
         viewsButton.tintColor = .systemGray
         viewsButton.imageEdgeInsets.left = -7
     }
-    
+
+
+    @objc
+    private func tapToLike(_ button: UIButton) {
+        if button.tintColor != .red {
+            button.setImage(UIImage.init(systemName: "suit.heart.fill"), for: .normal)
+            let count = Int(button.titleLabel?.text ?? "0") ?? 0 + 1
+            button.setTitle("\(count)", for: .selected)
+            button.tintColor = .red
+        } else {
+            button.setImage(UIImage.init(systemName: "suit.heart"), for: .normal)
+            button.tintColor = .systemGray
+            let count = Int(button.titleLabel?.text ?? "0") ?? 0 - 1
+            button.setTitle("\(count)", for: .normal)
+        }
+    }
 }

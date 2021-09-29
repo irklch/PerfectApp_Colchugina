@@ -29,6 +29,7 @@ class NewsFeedTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = newsList[indexPath.section]
+        //        let newsCellTypeEnum = NewsCellTypeEnum(value(forKey: indexPath.row))
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: AuthorOfFeedTableViewCell.reuseId, for: indexPath) as! AuthorOfFeedTableViewCell
@@ -47,13 +48,45 @@ class NewsFeedTableViewController: UITableViewController {
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: LikeCountTableViewCell.reuseId) as! LikeCountTableViewCell
-            cell.config(likeCount: item.likes, commentCount: item.comments, shareCount: item.reposts, viewsCont: item.views)
+            cell.config(likeCount: item.likes, commentCount: item.comments, shareCount: item.reposts, viewsCont: item.views, indexPath: indexPath.section, isLiked: item.isLiked)
             cell.selectionStyle = .none
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapToLike(_:)))
-            cell.likeButton.addGestureRecognizer(tapGesture)
+            cell.likeButton.addTarget(self, action: #selector(tapToLike), for: .touchUpInside)
+
             return cell
         default:
             return UITableViewCell()
+        }
+    }
+
+    @objc
+    private func tapToLike(_ button: UIButton) {
+        if newsList[button.tag].isLiked {
+            do {
+                let realm = try Realm()
+                realm.beginWrite()
+                newsList[button.tag].isLiked = false
+                newsList[button.tag].likes -= 1
+//                button.setImage(UIImage.init(systemName: "suit.heart"), for: .normal)
+//                button.tintColor = .systemGray
+                try realm.commitWrite()
+            } catch {
+                print(error)
+            }
+            tableView.reloadData()
+        } else {
+
+            do {
+                let realm = try Realm()
+                realm.beginWrite()
+                newsList[button.tag].isLiked = true
+                newsList[button.tag].likes += 1
+//                button.setImage(UIImage.init(systemName: "suit.heart.fill"), for: .normal)
+//                button.tintColor = .red
+                try realm.commitWrite()
+            } catch {
+                print(error)
+            }
+            tableView.reloadData()
         }
     }
 
@@ -126,20 +159,20 @@ class NewsFeedTableViewController: UITableViewController {
         }
     }
 
-    @objc
-    private func tapToLike(_ button: UIButton) {
-        if button.tintColor != .red {
-            button.setImage(UIImage.init(systemName: "suit.heart.fill"), for: .normal)
-            let count = Int(button.titleLabel?.text ?? "0") ?? 0 + 1
-            button.setTitle("\(count)", for: .selected)
-            button.tintColor = .red
-        } else {
-            button.setImage(UIImage.init(systemName: "suit.heart"), for: .normal)
-            button.tintColor = .systemGray
-            let count = Int(button.titleLabel?.text ?? "0") ?? 0 - 1
-            button.setTitle("\(count)", for: .normal)
+    private func changeRealm<T>(value: T, primaryKey: Int) {
+        do {
+            let realm = try Realm()
+            try  realm.write {
+                let newsData = realm.objects(News.self)
+                newsData.setValue(value, forKey: "\(primaryKey)")
+            }
+
+        } catch let error as NSError {
+            fatalError(error.localizedDescription)
         }
     }
+
+    
 
     private func setViews() {
         tableView.register(AuthorOfFeedTableViewCell.self, forCellReuseIdentifier: AuthorOfFeedTableViewCell.reuseId)
