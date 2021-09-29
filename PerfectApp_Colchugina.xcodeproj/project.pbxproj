@@ -17,6 +17,11 @@
 		A91DF284263F31A9001CE958 /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF283263F31A9001CE958 /* GroupList.swift */; };
 		A91DF286263F3625001CE958 /* AllGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF285263F3625001CE958 /* AllGroupsTableViewController.swift */; };
 		A91DF28A2641A4D0001CE958 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF2892641A4D0001CE958 /* LikeControl.swift */; };
+		A959F53C26FA01A60088D05D /* FrinedsMakeApiDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A959F53B26FA01A60088D05D /* FrinedsMakeApiDataOperation.swift */; };
+		A959F53F26FA03630088D05D /* FrinedsParsingDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A959F53E26FA03630088D05D /* FrinedsParsingDataOperation.swift */; };
+		A959F54126FA11E50088D05D /* FrinedsSaveDataInRealmOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A959F54026FA11E50088D05D /* FrinedsSaveDataInRealmOperation.swift */; };
+		A959F54326FA18B50088D05D /* FrinedsLoadDataFromRealmOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A959F54226FA18B50088D05D /* FrinedsLoadDataFromRealmOperation.swift */; };
+		A959F54526FA1DAA0088D05D /* FrinedsSortDataOnSectionsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A959F54426FA1DAA0088D05D /* FrinedsSortDataOnSectionsOperation.swift */; };
 		A95DA8BE2632D98D005EA110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DA8BD2632D98D005EA110 /* AppDelegate.swift */; };
 		A95DA8C02632D98D005EA110 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */; };
 		A95DA8C22632D98D005EA110 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95DA8C12632D98D005EA110 /* LogInViewController.swift */; };
@@ -66,6 +71,11 @@
 		A91DF283263F31A9001CE958 /* GroupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupList.swift; sourceTree = "<group>"; };
 		A91DF285263F3625001CE958 /* AllGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsTableViewController.swift; sourceTree = "<group>"; };
 		A91DF2892641A4D0001CE958 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
+		A959F53B26FA01A60088D05D /* FrinedsMakeApiDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrinedsMakeApiDataOperation.swift; sourceTree = "<group>"; };
+		A959F53E26FA03630088D05D /* FrinedsParsingDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrinedsParsingDataOperation.swift; sourceTree = "<group>"; };
+		A959F54026FA11E50088D05D /* FrinedsSaveDataInRealmOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrinedsSaveDataInRealmOperation.swift; sourceTree = "<group>"; };
+		A959F54226FA18B50088D05D /* FrinedsLoadDataFromRealmOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrinedsLoadDataFromRealmOperation.swift; sourceTree = "<group>"; };
+		A959F54426FA1DAA0088D05D /* FrinedsSortDataOnSectionsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrinedsSortDataOnSectionsOperation.swift; sourceTree = "<group>"; };
 		A95DA8BA2632D98D005EA110 /* PerfectApp_Colchugina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerfectApp_Colchugina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95DA8BD2632D98D005EA110 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A95DA8BF2632D98D005EA110 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +129,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A959F53D26FA01AD0088D05D /* OperationMethods */ = {
+			isa = PBXGroup;
+			children = (
+				A959F53B26FA01A60088D05D /* FrinedsMakeApiDataOperation.swift */,
+				A959F53E26FA03630088D05D /* FrinedsParsingDataOperation.swift */,
+				A959F54026FA11E50088D05D /* FrinedsSaveDataInRealmOperation.swift */,
+				A959F54226FA18B50088D05D /* FrinedsLoadDataFromRealmOperation.swift */,
+				A959F54426FA1DAA0088D05D /* FrinedsSortDataOnSectionsOperation.swift */,
+			);
+			path = OperationMethods;
+			sourceTree = "<group>";
+		};
 		A95DA8B12632D98D005EA110 = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +283,7 @@
 				A966117D2663A4AD0041422B /* CunstomTransition */,
 				A9F83550264D2C01001B1023 /* MyFriends */,
 				A9F83551264D2C0C001B1023 /* Photos */,
+				A959F53D26FA01AD0088D05D /* OperationMethods */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -563,7 +586,10 @@
 				A9F83573264D8737001B1023 /* News.swift in Sources */,
 				A99BA92426F6781A00846D70 /* NewsItems.swift in Sources */,
 				A9F02B982635D9ED00E6D795 /* MyGroupsTableViewController.swift in Sources */,
+				A959F54526FA1DAA0088D05D /* FrinedsSortDataOnSectionsOperation.swift in Sources */,
+				A959F53F26FA03630088D05D /* FrinedsParsingDataOperation.swift in Sources */,
 				A91DF284263F31A9001CE958 /* GroupList.swift in Sources */,
+				A959F54326FA18B50088D05D /* FrinedsLoadDataFromRealmOperation.swift in Sources */,
 				A9BDADDA26C56A68004463CA /* RealmLoader.swift in Sources */,
 				A9F02B872635CD1E00E6D795 /* FriendsTableViewController.swift in Sources */,
 				A966117A26639DDB0041422B /* PushZoomAnimator.swift in Sources */,
@@ -575,12 +601,14 @@
 				A91DF278263EAA53001CE958 /* PhotosCollectionViewCell.swift in Sources */,
 				A966117F2663A4C20041422B /* CustomFriendsNavigationController.swift in Sources */,
 				A982CFDF26BD586900A070AE /* WebViewController.swift in Sources */,
+				A959F54126FA11E50088D05D /* FrinedsSaveDataInRealmOperation.swift in Sources */,
 				A982CFE126BD819800A070AE /* VKAPIRequests.swift in Sources */,
 				A9F83571264D86D5001B1023 /* NewsFeedTableViewController.swift in Sources */,
 				A99BA92626F6784900846D70 /* NewsProfiles.swift in Sources */,
 				A91DF27F263F30A1001CE958 /* MyGroupTableViewCell.swift in Sources */,
 				A966117626639DAF0041422B /* CustomGroupsNavigationController.swift in Sources */,
 				A966117826639DC90041422B /* CustomGroupsInteractiveTransition.swift in Sources */,
+				A959F53C26FA01A60088D05D /* FrinedsMakeApiDataOperation.swift in Sources */,
 				A95DA8BE2632D98D005EA110 /* AppDelegate.swift in Sources */,
 				A9E8D77726501FD7000805CF /* LoadingViewController.swift in Sources */,
 				A91DF275263EA3DC001CE958 /* FriendPhotosViewController.swift in Sources */,
