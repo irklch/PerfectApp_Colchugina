@@ -20,6 +20,7 @@ class News: Object {
     @objc dynamic var attachments = ""
     @objc dynamic var comments = 0
     @objc dynamic var likes = 0
+    @objc dynamic var isLiked = false
     @objc dynamic var reposts = 0
     @objc dynamic var views = 0
 
