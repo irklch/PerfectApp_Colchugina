@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import PromiseKit
 
 final class MyGroupsTableViewController: UITableViewController {
 
@@ -18,48 +19,75 @@ final class MyGroupsTableViewController: UITableViewController {
     //MARK:- Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        getGroupsList()
+
+        getGroupsFromNetwork()
+            .then { groups -> Promise<Bool> in
+                return self.saveGroupsInRealm(groupsList: groups)
+            }.then { feedback -> Promise<[Groups]> in
+                return self.readRealm()
+            }.then { groups -> Promise<Bool> in
+                return self.loadRealmData(groups: groups)
+            }.then { feedback -> Promise<Bool> in
+                return self.pairTableAndRealm()
+            }.done { feedback in
+                print(feedback)
+            }.catch { error in
+                print(error)
+            }
     }
 
-    //MARK:- Private methods
-
-    private func getGroupsList() {
+    private func getGroupsFromNetwork() -> Promise<GroupsResponse> {
+        let (promise, resolver) = Promise<GroupsResponse>.pending()
         let vkRequest = VKRequests()
-        let saving = RealmLoader()
-        vkRequest.getGroupList { [weak self] result in
-            guard let self = self else {return}
+        vkRequest.getGroupList { result in
             switch result{
             case .failure(let error):
-                print (error)
+                resolver.reject(error)
             case .success(let groups):
-                saving.saveGroups(jsonItems: groups.response.items)
-                DispatchQueue.main.async {
-                    self.readRealm()
-                    self.pairTableAndRealm()
-                    self.tableView.reloadData()
-                }
+                resolver.fulfill(groups)
             }
         }
+        return promise
     }
 
-    private func readRealm() {
+    private func saveGroupsInRealm(groupsList: GroupsResponse) -> Promise<Bool> {
+        let (promise, resolver) = Promise<Bool>.pending()
+        let saving = RealmLoader()
+        saving.saveGroups(jsonItems: groupsList.response.items)
+        resolver.fulfill(true)
+        return promise
+    }
+
+    private func readRealm() -> Promise<[Groups]> {
+        let (promise, resolver) = Promise<[Groups]>.pending()
+        var list = [Groups]()
         let groupsResults: Results<Groups>?
         do {
             let realm = try Realm()
             let groupsData = realm.objects(Groups.self)
             groupsResults = groupsData
-            guard let items = groupsResults else {return}
+            guard let items = groupsResults else {return promise}
             items.forEach { item in
-                groupsList.append(item)
+                list.append(item)
             }
+            resolver.fulfill(list)
         } catch {
-            print(error)
+            resolver.reject(error)
         }
+        return promise
+    }
+
+    private func loadRealmData(groups: [Groups]) -> Promise<Bool> {
+        let (promise, resolver) = Promise<Bool>.pending()
+        groupsList = groups
+        resolver.fulfill(true)
+        return promise
     }
 
 
-    private func pairTableAndRealm() {
-        guard let realm = try? Realm() else {return}
+    private func pairTableAndRealm() -> Promise<Bool> {
+        let (promise, resolver) = Promise<Bool>.pending()
+        guard let realm = try? Realm() else {return promise}
         let groups = realm.objects(Groups.self)
         realmToken = groups.observe { [weak self]  (changes: RealmCollectionChange) in
             guard let tableView = self?.tableView else {return}
@@ -74,10 +102,12 @@ final class MyGroupsTableViewController: UITableViewController {
                 tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
                                      with: .automatic)
                 tableView.endUpdates()
+                resolver.fulfill(true)
             case .error(let error):
-                fatalError("\(error)")
+                resolver.reject(error)
             }
         }
+        return promise
     }
 
     //MARK: - Table view data source

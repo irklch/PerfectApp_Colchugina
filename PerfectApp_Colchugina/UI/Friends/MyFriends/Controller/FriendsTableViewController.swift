@@ -36,7 +36,10 @@ final class FriendsTableViewController: UITableViewController {
         self.friendsLists = list
     }
 
-    func addSortedLists(friendsSortLists: [[Friends]], friendsReseveLists: [[Friends]], lettersLists: [String], lettersSortReserveLists: [String]) {
+    func addSortedLists(friendsSortLists: [[Friends]],
+                        friendsReseveLists: [[Friends]],
+                        lettersLists: [String],
+                        lettersSortReserveLists: [String]) {
         self.friendsSortLists = friendsSortLists
         self.friendsReseveLists = friendsReseveLists
         self.lettersLists = lettersLists
@@ -98,7 +101,8 @@ final class FriendsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderSectionForFriendsTable.reuseId) as? HeaderSectionForFriendsTable
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderSectionForFriendsTable.reuseId)
+        as? HeaderSectionForFriendsTable
         let title = lettersLists[section]
         header?.configure(title: title)
         return header
@@ -172,7 +176,8 @@ extension FriendsTableViewController: UISearchBarDelegate{
 
     private func configureKeyboard() {
         if isSearchBarActive {
-            let tapForHiddenKeybourd = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+            let tapForHiddenKeybourd = UITapGestureRecognizer(target: self,
+                                                              action: #selector(UIInputViewController.dismissKeyboard))
             view.addGestureRecognizer(tapForHiddenKeybourd)
         }
     }
