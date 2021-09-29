@@ -16,7 +16,7 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
     @IBOutlet var photosCollectoinView: UICollectionView!
     private var selectedPhoto = 0
     private var photosLists = [PhotosFriend]()
-    var selectedFriend = Friends()
+    var selectedFriend = 0
     private var viewPhoto = UIView()
     private var photoImageView = UIImageView()
     private var backButton = UIButton(type: .system)
@@ -35,13 +35,13 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
     private func getPhotoList() {
         let vkRequest = VKRequests()
         let mapping = RealmLoader()
-        vkRequest.getFriendsPhotoList(idFriend: String(selectedFriend.id)) { [weak self] result in
+        vkRequest.getFriendsPhotoList(idFriend: String(selectedFriend)) { [weak self] result in
             guard let self = self else {return}
             switch result{
             case .failure(let error):
                 print (error)
             case .success(let photos):
-                mapping.savePhotos(jsonItems: photos.response.items)
+                mapping.savePhotos(idFriend: self.selectedFriend, jsonItems: photos.response.items)
 
                 DispatchQueue.main.async {
                     self.readRealm()
@@ -59,7 +59,8 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
             let photosData = realm.objects(PhotosFriend.self)
             photosRealmLists = photosData
             guard let items = photosRealmLists else {return}
-            items.forEach { item in
+            let friendPhotos = items.filter{$0.id == self.selectedFriend}
+            friendPhotos.forEach { item in
                 photosLists.append(item)
             }
         } catch {
@@ -69,7 +70,7 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
 
     private func pairTableAndRealm() {
         guard let realm = try? Realm() else {return}
-        let friends = realm.objects(Friends.self)
+        let friends = realm.objects(PhotosFriend.self)
         realmToken = friends.observe { [weak self]  (changes: RealmCollectionChange) in
             guard let collectionView = self?.photosCollectoinView else {return}
             switch changes {

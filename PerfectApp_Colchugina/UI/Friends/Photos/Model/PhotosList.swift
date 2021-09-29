@@ -26,11 +26,16 @@ struct PhotosUrl: Decodable {
 }
 
 class PhotosFriend: Object {
+    @objc dynamic var id: Int = 0
     @objc dynamic var url = ""
 
-    convenience init (url: String) {
+    convenience init (id: Int, url: String) {
         self.init()
-
+        self.id = id
         self.url = url
+    }
+
+    override class func primaryKey() -> String? {
+        return "url"
     }
 }

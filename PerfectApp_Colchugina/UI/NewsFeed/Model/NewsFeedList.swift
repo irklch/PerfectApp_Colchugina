@@ -33,18 +33,6 @@ struct NewsFeed {
             shareCount: Int.random(in: 0...100),
             viewCount: Int.random(in: 0...100)),
         NewsFeed.init(
-            groupName: "Эксплойт",
-            groupIcon: "Эксплойт",
-            newsImage: "Эксплойт новость",
-            newsTitle: "​Вышла первая бета Python 3.10",
-            newsText: """
-                            И уже сейчас можно увидеть, в каком направлении движется язык. Тут и попытка реализовать свой switch/case, и улучшение отчётов об ошибках.
-                            """,
-            likeCount: Int.random(in: 0...100),
-            commentCount: Int.random(in: 0...100),
-            shareCount: Int.random(in: 0...100),
-            viewCount: Int.random(in: 0...100)),
-        NewsFeed.init(
             groupName: "СТАС БОМБИТ",
             groupIcon: "СТАС БОМБИТ",
             newsImage: "СТАС БОМБИТ новость",

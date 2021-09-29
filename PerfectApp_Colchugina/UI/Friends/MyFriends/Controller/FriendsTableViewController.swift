@@ -145,9 +145,9 @@ final class FriendsTableViewController: UITableViewController {
             let index = tableView.indexPathForSelectedRow
         else {return}
         friendsLists.forEach { item in
-            if item.lastName == friendsSortLists[index.section][index.row].lastName
+            if item.id == friendsSortLists[index.section][index.row].id
             {
-                destinationController.selectedFriend = item
+                destinationController.selectedFriend = item.id
             }
         }
     }
