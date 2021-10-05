@@ -20,6 +20,7 @@ class RealmLoader {
         }
         do {
             let realm = try Realm()
+            
             realm.beginWrite()
             realm.add(friendsList, update: .modified)
             try realm.commitWrite()

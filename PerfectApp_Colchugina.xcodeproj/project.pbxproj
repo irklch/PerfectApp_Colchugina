@@ -17,6 +17,7 @@
 		A91DF284263F31A9001CE958 /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF283263F31A9001CE958 /* GroupList.swift */; };
 		A91DF286263F3625001CE958 /* AllGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF285263F3625001CE958 /* AllGroupsTableViewController.swift */; };
 		A91DF28A2641A4D0001CE958 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF2892641A4D0001CE958 /* LikeControl.swift */; };
+		A935437F27050FA800DF2C6F /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = A935437E27050FA800DF2C6F /* PromiseKit */; };
 		A959F53C26FA01A60088D05D /* FrinedsMakeApiDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A959F53B26FA01A60088D05D /* FrinedsMakeApiDataOperation.swift */; };
 		A959F53F26FA03630088D05D /* FrinedsParsingDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A959F53E26FA03630088D05D /* FrinedsParsingDataOperation.swift */; };
 		A959F54126FA11E50088D05D /* FrinedsSaveDataInRealmOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A959F54026FA11E50088D05D /* FrinedsSaveDataInRealmOperation.swift */; };
@@ -123,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A90C4FE126CAAE6800C62BAF /* RealmSwift in Frameworks */,
+				A935437F27050FA800DF2C6F /* PromiseKit in Frameworks */,
 				A9BDADD826C40DFF004463CA /* Kingfisher in Frameworks */,
 				A9BDADD526C40DDD004463CA /* SwiftyJSON in Frameworks */,
 			);
@@ -521,6 +523,7 @@
 				A9BDADD426C40DDD004463CA /* SwiftyJSON */,
 				A9BDADD726C40DFF004463CA /* Kingfisher */,
 				A90C4FE026CAAE6800C62BAF /* RealmSwift */,
+				A935437E27050FA800DF2C6F /* PromiseKit */,
 			);
 			productName = PerfectApp_Colchugina;
 			productReference = A95DA8BA2632D98D005EA110 /* PerfectApp_Colchugina.app */;
@@ -553,6 +556,7 @@
 				A9BDADD326C40DDD004463CA /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				A9BDADD626C40DFF004463CA /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				A90C4FDF26CAAE6800C62BAF /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				A935437D27050FA800DF2C6F /* XCRemoteSwiftPackageReference "PromiseKit" */,
 			);
 			productRefGroup = A95DA8BB2632D98D005EA110 /* Products */;
 			projectDirPath = "";
@@ -839,6 +843,14 @@
 				minimumVersion = 10.12.0;
 			};
 		};
+		A935437D27050FA800DF2C6F /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit";
+			requirement = {
+				branch = v6;
+				kind = branch;
+			};
+		};
 		A9BDADD326C40DDD004463CA /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
@@ -862,6 +874,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A90C4FDF26CAAE6800C62BAF /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		A935437E27050FA800DF2C6F /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A935437D27050FA800DF2C6F /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
 		};
 		A9BDADD426C40DDD004463CA /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
