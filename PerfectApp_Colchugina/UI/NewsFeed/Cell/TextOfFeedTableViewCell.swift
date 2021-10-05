@@ -9,13 +9,13 @@ import UIKit
 
 final class TextOfFeedTableViewCell: UITableViewCell {
     
-    //MARK:- Public properties
+    //MARK: - Public properties
     static let reuseId = "TextOfFeedTableViewCell"
     
-    //MARK:- Private properties
+    //MARK: - Private properties
     private let textOfFeedLabel = UILabel()
     
-    //MARK:- Life cycle
+    //MARK: - Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: TextOfFeedTableViewCell.reuseId)
         setViews()
@@ -26,12 +26,12 @@ final class TextOfFeedTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK:- Public methods
+    //MARK: - Public methods
     func config(textOfFeed text: String) {
         textOfFeedLabel.text = text
     }
     
-    //MARK:- Private pethods
+    //MARK: - Private pethods
     private func setViews() {
         self.addSubview(textOfFeedLabel)
         textOfFeedLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -39,6 +39,7 @@ final class TextOfFeedTableViewCell: UITableViewCell {
         textOfFeedLabel.adjustsFontSizeToFitWidth = true
         textOfFeedLabel.minimumScaleFactor = 0.5
         textOfFeedLabel.numberOfLines = 0
+        textOfFeedLabel.backgroundColor = .white
         NSLayoutConstraint.activate([
             textOfFeedLabel.topAnchor.constraint(equalTo: self.topAnchor),
             textOfFeedLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),

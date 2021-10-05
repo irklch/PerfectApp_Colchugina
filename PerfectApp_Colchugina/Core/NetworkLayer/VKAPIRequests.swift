@@ -29,23 +29,25 @@ final class VKRequests: VKRequestsProtocol {
 
 extension VKRequests {
     private func downloadJson<T: Decodable>(url: String, completion: @escaping(Result<T, Error>) -> Void) {
-        guard let url = URL(string: url) else {return}
-        let session = URLSession.shared
+        DispatchQueue.global().async {
+            guard let url = URL(string: url) else {return}
+            let session = URLSession.shared
 
-        session.dataTask(with: url) { (data, request, error) in
-            if let error = error {
-                completion(.failure(error))
-            }
-            if let data = data {
-                do {
-                    let json = try JSONDecoder().decode(T.self, from: data)
-                    completion(.success(json))
-                }
-                catch {
+            session.dataTask(with: url) { (data, request, error) in
+                if let error = error {
                     completion(.failure(error))
                 }
-            }
-        }.resume()
+                if let data = data {
+                    do {
+                        let json = try JSONDecoder().decode(T.self, from: data)
+                        completion(.success(json))
+                    }
+                    catch {
+                        completion(.failure(error))
+                    }
+                }
+            }.resume()
 
+        }
     }
 }

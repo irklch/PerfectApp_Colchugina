@@ -10,11 +10,11 @@ import WebKit
 
 final class WebViewController: UIViewController, WKNavigationDelegate {
 
-    //MARK:- Private property
+    //MARK: - Private property
 
     private let vkRequest = VKRequests()
 
-    //MARK:- Public property
+    //MARK: - Public property
 
     @IBOutlet var vkWebView: WKWebView! {
         didSet {
@@ -22,14 +22,14 @@ final class WebViewController: UIViewController, WKNavigationDelegate {
         }
     }
 
-    //MARK:- Life cycle
+    //MARK: - Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         openVKAuth()
     }
 
-    //MARK:- Private methods
+    //MARK: - Private methods
 
     private func openVKAuth() {
         guard let url = URLs.vkAuth() else {return}
@@ -41,11 +41,15 @@ final class WebViewController: UIViewController, WKNavigationDelegate {
         self.performSegue(withIdentifier: "presentTabBar", sender: nil)
     }
 
-    //MARK:- Public method
+    //MARK: - Public method
 
-    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+    func webView(_ webView: WKWebView,
+                 decidePolicyFor navigationResponse: WKNavigationResponse,
+                 decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
 
-        guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment else {
+        guard let url = navigationResponse.response.url,
+                url.path == "/blank.html",
+                let fragment = url.fragment else {
             decisionHandler(.allow)
             return
         }

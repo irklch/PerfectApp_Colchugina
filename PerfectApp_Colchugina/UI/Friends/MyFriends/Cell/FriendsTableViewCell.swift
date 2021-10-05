@@ -10,58 +10,25 @@ import Kingfisher
 
 final class FriendsTableViewCell: UITableViewCell {
     
-    //MARK:- Public properties
-    
+    //MARK: - Public properties
     static var reuseId = "FriendsTableViewCell"
     
-    //MARK:- Private properies
-    
+    //MARK: - Private properies
     private let nameLabel = UILabel()
     private let photoImageView = UIImageView()
     private let shadowView = UIView()
-    
-    @IBInspectable private var shadowColor: UIColor = .black {
-        didSet {
-            self.updateShadowColor()
-        }
-    }
-    @IBInspectable private var shadowOpacity: Float = 0.4 {
-        didSet {
-            self.updateShadowOpacity()
-        }
-    }
-    
-    @IBInspectable private var shadowRadius: CGFloat = 8 {
-        didSet {
-            self.updateShadowRadius()
-        }
-    }
-    //MARK:- Life cycle
-    
+
+    //MARK: - Life cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         setViews()
     }
     
-    //MARK:- Public properties
+    //MARK: - Public properties
     func config (firstName: String, lastName: String, photo: String) {
         guard let url = URL(string: photo) else {return}
         photoImageView.kf.setImage(with: url)
         nameLabel.text = ("\(lastName) \(firstName)")
-    }
-    
-    //MARK:- Private methods
-    
-    private func updateShadowColor() {
-        shadowView.layer.shadowColor = shadowColor.cgColor
-    }
-    
-    private func updateShadowOpacity() {
-        shadowView.layer.shadowOpacity = shadowOpacity
-    }
-
-    private func updateShadowRadius() {
-        shadowView.layer.shadowRadius = shadowRadius
     }
     
     private func setViews() {
@@ -73,7 +40,8 @@ final class FriendsTableViewCell: UITableViewCell {
             nameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor)
         ])
-        
+        nameLabel.backgroundColor = .white
+
         //добавить вьюшку для тени и задать констреинты
         self.addSubview(shadowView)
         shadowView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,12 +52,11 @@ final class FriendsTableViewCell: UITableViewCell {
             shadowView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -15),
             shadowView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
-        
-        //настроить тень
-        self.updateShadowColor()
-        self.updateShadowRadius()
-        self.updateShadowOpacity()
+        shadowView.layer.shadowColor = UIColor.black.cgColor
+        shadowView.layer.shadowOpacity = Float(0.4)
+        shadowView.layer.shadowRadius = CGFloat (8)
         shadowView.layer.shadowOffset = CGSize.zero
+//        shadowView.backgroundColor = .white
         
         //добавить photoImageView и задать констреинты
         shadowView.addSubview(photoImageView)
@@ -101,6 +68,7 @@ final class FriendsTableViewCell: UITableViewCell {
             photoImageView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor),
             photoImageView.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor)
         ])
+        photoImageView.backgroundColor = .white
         
         //подогнать размер фото под вьюшку
         photoImageView.contentMode = .scaleAspectFill

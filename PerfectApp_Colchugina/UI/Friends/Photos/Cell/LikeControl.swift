@@ -8,11 +8,14 @@
 import UIKit
 
 class LikeControl: UIControl {
+
+    //MARK: - Private properties
     private let likeCountLabel = UILabel()
     private let likeButton = UIButton(type: .system)
     private var isToggled: Bool = false
     private var likeCount: Int = Int.random(in: 1...1000)
 
+    //MARK: - Life cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setViews()
@@ -20,21 +23,12 @@ class LikeControl: UIControl {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setViews()
     }
 
+    //MARK: - Private methods
     private func setViews() {
-        setLikeButton()
-        setLikeCountLabel()
-    }
 
-    private func setLikeButton() {
-        likeButton.setImage(UIImage.init(systemName: "suit.heart"), for: .normal)
-        likeButton.tintColor = .systemGray
-        likeCountLabel.tintColor = .systemGray
-        likeButton.addTarget(self, action: #selector(tapToLike(_:)), for: .touchUpInside)
-        self.addTarget(self, action: #selector(tapToLike(_:)), for: .touchUpInside)
-
+        //        self.addTarget(self, action: #selector(tapToLike(_:)), for: .touchUpInside)
 
         self.addSubview(likeButton)
         likeButton.translatesAutoresizingMaskIntoConstraints = false
@@ -42,18 +36,21 @@ class LikeControl: UIControl {
             likeButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             likeButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 50)
         ])
-    }
+        likeButton.setImage(UIImage.init(systemName: "suit.heart"), for: .normal)
+        likeButton.tintColor = .systemGray
+//        likeButton.backgroundColor = .white
+        likeButton.addTarget(self, action: #selector(tapToLike(_:)), for: .touchUpInside)
 
-    private func setLikeCountLabel() {
-        likeCountLabel.text = "\(likeCount)"
         self.addSubview(likeCountLabel)
         likeCountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             likeCountLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             likeCountLabel.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor, constant: 5)
         ])
+        likeCountLabel.tintColor = .systemGray
+//        likeCountLabel.backgroundColor = .white
+        likeCountLabel.text = "\(likeCount)"
     }
-
 
     @objc private func tapToLike(_ button: UIButton) {
         isToggled.toggle()
@@ -74,7 +71,6 @@ class LikeControl: UIControl {
                     self.likeCountLabel.text = "\(self.likeCount + 1)"
                 },
                 completion: nil)
-
         } else {
             UIView.animate(
                 withDuration: 1,
@@ -90,9 +86,7 @@ class LikeControl: UIControl {
                     self.likeCountLabel.text = "\(self.likeCount)"
                 },
                 completion: nil)
-
-
         }
-
     }
+
 }

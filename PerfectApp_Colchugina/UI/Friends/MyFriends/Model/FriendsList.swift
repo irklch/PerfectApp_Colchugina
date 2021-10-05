@@ -33,7 +33,6 @@ class Friends: RealmSwift.Object {
 
     convenience init(firstName: String, lastName: String, photo: String, id: Int) {
         self.init()
-
         self.firstName = firstName
         self.lastName = lastName
         self.photo = photo

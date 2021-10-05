@@ -10,13 +10,13 @@ import Kingfisher
 
 final class PhotoOfFeedTableViewCell: UITableViewCell {
     
-    //MARK:- Public properties
+    //MARK: - Public properties
     static let reuseId = "PhotoOfFeedTableViewCell"
     
-    //MARK:- Private properties
+    //MARK: - Private properties
     private let photoOfFeedImageView = UIImageView()
     
-    //MARK:- Life cycle
+    //MARK: - Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: PhotoOfFeedTableViewCell.reuseId)
         setViews()
@@ -27,13 +27,13 @@ final class PhotoOfFeedTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK:- Public methods
+    //MARK: - Public methods
     func config(photoOfFeed photo: String) {
         guard let url = URL(string: photo) else {return}
         photoOfFeedImageView.kf.setImage(with: url)
     }
     
-    //MARK:- Private methods
+    //MARK: - Private methods
     private func setViews() {
         self.addSubview(photoOfFeedImageView)
         photoOfFeedImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,6 +45,7 @@ final class PhotoOfFeedTableViewCell: UITableViewCell {
             photoOfFeedImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20)
         ])
         photoOfFeedImageView.contentMode = .scaleAspectFit
+        photoOfFeedImageView.backgroundColor = .white
     }
     
 }
