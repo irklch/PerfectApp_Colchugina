@@ -9,18 +9,18 @@ import UIKit
 
 final class LikeCountTableViewCell: UITableViewCell {
     
-    //MARK:- Public properties
+    //MARK: - Public properties
     
      let likeButton = UIButton(type: .system)
     static let reuseId = "LikeCountTableViewCell"
     
-    //MARK:- Private properties
+    //MARK: - Private properties
     
     private let commentButton = UIButton(type: .system)
     private let shareButton = UIButton(type: .system)
     private let viewsButton = UIButton(type: .system)
     
-    //MARK:- Life cycle
+    //MARK: - Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: LikeCountTableViewCell.reuseId)
         setViews()
@@ -31,7 +31,7 @@ final class LikeCountTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK:- Public methods
+    //MARK: - Public methods
     
     func config(likeCount likes: Int, commentCount comment: Int, shareCount share: Int, viewsCont views: Int, indexPath: Int, isLiked: Bool) {
         likeButton.setTitle("\(likes)", for: .normal)
@@ -50,7 +50,7 @@ final class LikeCountTableViewCell: UITableViewCell {
 
     }
     
-    //MARK:- Private methods
+    //MARK: - Private methods
     
     private func setViews() {
         contentView.addSubview(likeButton)
@@ -64,6 +64,7 @@ final class LikeCountTableViewCell: UITableViewCell {
         likeButton.setImage(UIImage.init(systemName: "suit.heart"), for: .normal)
         likeButton.tintColor = .systemGray
         likeButton.titleEdgeInsets.right = -7
+        likeButton.backgroundColor = .white
         
         contentView.addSubview(commentButton)
         commentButton.translatesAutoresizingMaskIntoConstraints = false
@@ -75,6 +76,7 @@ final class LikeCountTableViewCell: UITableViewCell {
         commentButton.setImage(UIImage.init(systemName: "message"), for: .normal)
         commentButton.tintColor = .systemGray
         commentButton.titleEdgeInsets.right = -7
+        commentButton.backgroundColor = .white
         
         contentView.addSubview(shareButton)
         shareButton.translatesAutoresizingMaskIntoConstraints = false
@@ -86,6 +88,7 @@ final class LikeCountTableViewCell: UITableViewCell {
         shareButton.setImage(UIImage.init(systemName: "arrowshape.turn.up.right"), for: .normal)
         shareButton.tintColor = .systemGray
         shareButton.titleEdgeInsets.right = -7
+        shareButton.backgroundColor = .white
         
         contentView.addSubview(viewsButton)
         viewsButton.translatesAutoresizingMaskIntoConstraints = false
@@ -97,6 +100,7 @@ final class LikeCountTableViewCell: UITableViewCell {
         viewsButton.setImage(UIImage.init(systemName: "eye"), for: .normal)
         viewsButton.tintColor = .systemGray
         viewsButton.imageEdgeInsets.left = -7
+        viewsButton.backgroundColor = .white
     }
 
 

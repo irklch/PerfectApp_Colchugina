@@ -9,7 +9,7 @@ import Foundation
 
 final class FrinedsSaveDataInRealmOperation: Operation {
 
-    //MARK:- Public method
+    //MARK: - Public method
     override func main() {
         guard let friendsData = dependencies.first as? FrinedsParsingDataOperation,
               let friendsList = friendsData.getFrindsList()?.response.items

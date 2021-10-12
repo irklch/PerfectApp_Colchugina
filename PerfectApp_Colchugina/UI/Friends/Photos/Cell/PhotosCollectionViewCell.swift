@@ -9,22 +9,22 @@ import UIKit
 
 final class PhotosCollectionViewCell: UICollectionViewCell {
     
-    //MARK:- Public properties
+    //MARK: - Public properties
     
     static let reuseId = "PhotosCollectionViewCell"
     
-    //MARK:- Private properties
+    //MARK: - Private properties
     
     @IBOutlet private var photoImageView: UIImageView!
     @IBOutlet private var likeCintrol: LikeControl!
     
-    //MARK:- Life cycle
+    //MARK: - Life cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    //MARK:- Public methods
+    //MARK: - Public methods
     
     func config (_ photo: String) {
         guard let url = URL(string: photo) else {return}

@@ -10,17 +10,17 @@ import RealmSwift
 
 final class FrinedsLoadAndPairRealmOperation: Operation {
 
-    //MARK:- Private properties
+    //MARK: - Private properties
     private let vc: FriendsTableViewController
     private var friendsList = [Friends]()
     private var realmToken: NotificationToken?
 
-    //MARK:- Initialization
+    //MARK: - Life cycle
     init(viewController: FriendsTableViewController) {
         self.vc = viewController
     }
 
-    //MARK:- Public methods
+    //MARK: - Public methods
     override func main() {
         let friendsRealmLists: Results<Friends>?
         do {

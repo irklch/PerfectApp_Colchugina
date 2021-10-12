@@ -9,21 +9,21 @@ import UIKit
 
 final class MyGroupTableViewCell: UITableViewCell {
 
-    //MARK:- Public properties
+    //MARK: - Public properties
     static var reuseId = "MyGroupTableViewCell"
 
-    //MARK:- Private properties
+    //MARK: - Private properties
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var photoImageView: UIImageView!
 
-    //MARK:- Public methods
+    //MARK: - Public methods
     func config (name: String, photo: String) {
         nameLabel.text = name
         guard let url = URL(string: photo) else {return}
         photoImageView.kf.setImage(with: url)
     }
 
-    //MARK:- Private properties
+    //MARK: - Private properties
     private func animatePhoto () {
         photoImageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         UIView.animate(
@@ -43,7 +43,7 @@ final class MyGroupTableViewCell: UITableViewCell {
     }
 
 
-    //MARK:- Life cycle
+    //MARK: - Life cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         setCorneerRadious()

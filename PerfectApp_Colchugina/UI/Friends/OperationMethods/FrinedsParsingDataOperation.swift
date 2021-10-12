@@ -9,10 +9,10 @@ import Foundation
 
 final class FrinedsParsingDataOperation: Operation {
     
-    //MARK:- Private properties
+    //MARK: - Private properties
     private var list: FriendsResponse?
     
-    //MARK:- Public methods
+    //MARK: - Public methods
     override func main() {
         guard let friendsData = dependencies.first as? FrinedsMakeApiDataOperation,
               let data = friendsData.getData()

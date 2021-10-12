@@ -10,15 +10,15 @@ import Kingfisher
 
 final class AuthorOfFeedTableViewCell: UITableViewCell {
     
-    //MARK:- Public properties
+    //MARK: - Public properties
     static let reuseId = "AuthorOfFeedTableViewCell"
     
-    //MARK:- Private properties
+    //MARK: - Private properties
     private let authorPhotoImageView = UIImageView()
     private let authorNameLable = UILabel()
     private let dateOfPublicationLabel = UILabel()
     
-    //MARK:- Life cycle
+    //MARK: - Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: AuthorOfFeedTableViewCell.reuseId)
         setViews()
@@ -29,19 +29,23 @@ final class AuthorOfFeedTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK:- Public methods
+    //MARK: - Public methods
     func config (authorName name: String, authorPhoto photo: String, dateOfPublication date: Int) {
-        authorNameLable.text = name
-        guard let url = URL(string: photo) else {return}
-        authorPhotoImageView.kf.setImage(with: url)
-        let timeInterval = TimeInterval(date)
-        let trueDate = Date(timeIntervalSince1970: timeInterval)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
-        dateOfPublicationLabel.text = dateFormatter.string(from: trueDate)
+        DispatchQueue.global().async {
+            let timeInterval = TimeInterval(date)
+            let trueDate = Date(timeIntervalSince1970: timeInterval)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+            DispatchQueue.main.async {
+                self.authorNameLable.text = name
+                guard let url = URL(string: photo) else {return}
+                self.authorPhotoImageView.kf.setImage(with: url)
+                self.dateOfPublicationLabel.text = dateFormatter.string(from: trueDate)
+            }
+        }
     }
     
-    //MARK:- Private methods
+    //MARK: - Private methods
     private func setViews() {
         self.addSubview(authorPhotoImageView)
         authorPhotoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,6 +58,7 @@ final class AuthorOfFeedTableViewCell: UITableViewCell {
         ])
         authorPhotoImageView.layer.cornerRadius = 25
         authorPhotoImageView.layer.masksToBounds = true
+        authorPhotoImageView.backgroundColor = .white
         
         self.addSubview(authorNameLable)
         authorNameLable.translatesAutoresizingMaskIntoConstraints = false
@@ -66,6 +71,7 @@ final class AuthorOfFeedTableViewCell: UITableViewCell {
         authorNameLable.font = UIFont(name: authorNameLable.font.fontName, size: 25)
         authorNameLable.font = UIFont.boldSystemFont(ofSize: 16.0)
         authorNameLable.lineBreakMode = .byWordWrapping
+        authorNameLable.backgroundColor = .white
         
         self.addSubview(dateOfPublicationLabel)
         dateOfPublicationLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -78,6 +84,7 @@ final class AuthorOfFeedTableViewCell: UITableViewCell {
         dateOfPublicationLabel.font = UIFont(name: dateOfPublicationLabel.font.fontName, size: 13)
         dateOfPublicationLabel.textColor = .systemGray
         dateOfPublicationLabel.lineBreakMode = .byWordWrapping
+        dateOfPublicationLabel.backgroundColor = .white
     }
     
 }

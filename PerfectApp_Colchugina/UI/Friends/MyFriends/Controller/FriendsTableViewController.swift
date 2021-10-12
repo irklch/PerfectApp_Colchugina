@@ -10,7 +10,7 @@ import RealmSwift
 
 final class FriendsTableViewController: UITableViewController {
 
-    //MARK:- Private properties
+    //MARK: - Private properties
     private var friendsLists = [Friends]()
     private var friendsSortLists = [[Friends]]()
     private var friendsReseveLists = [[Friends]]()
@@ -19,7 +19,7 @@ final class FriendsTableViewController: UITableViewController {
     private var realmToken: NotificationToken?
     @IBOutlet private weak var searchBar: UISearchBar!
 
-    //MARK:- Life cycle
+    //MARK: - Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,23 +30,19 @@ final class FriendsTableViewController: UITableViewController {
         setSearchBarPlaceholder()
     }
 
-    //MARK:- Public methods
+    //MARK: - Public methods
 
     func addFriendsList(list: [Friends]) {
         self.friendsLists = list
     }
 
-    func addSortedLists(friendsSortLists: [[Friends]],
-                        friendsReseveLists: [[Friends]],
-                        lettersLists: [String],
-                        lettersSortReserveLists: [String]) {
+    func addFriendsSortedList(friendsSortLists: [[Friends]],
+                        lettersLists: [String]) {
         self.friendsSortLists = friendsSortLists
-        self.friendsReseveLists = friendsReseveLists
         self.lettersLists = lettersLists
-        self.lettersSortReserveLists = lettersSortReserveLists
     }
 
-    //MARK:- Private methods
+    //MARK: - Private methods
 
     @IBAction func unwindToFriendsAction(unwindSegue: UIStoryboardSegue) {}
 
@@ -129,38 +125,49 @@ final class FriendsTableViewController: UITableViewController {
 }
 
 
-//MARK:- Extension
+//MARK: - Extension
 
 extension FriendsTableViewController: UISearchBarDelegate{
 
 
-    //MARK:- Public methods
+    //MARK: - Public methods
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.setShowsCancelButton(true, animated: true)
-        var friendsSearch = [Friends]()
-        for item in friendsLists {
-            friendsSortLists.removeAll()
-            lettersLists.removeAll()
-            let itemString = "\(item.lastName) \(item.firstName)"
-            if itemString.lowercased().contains(searchText.lowercased()) {
-                friendsSearch.append(item)
+        DispatchQueue.global().async { [weak self] in
+            var friendsSearch = [Friends]()
+            guard let self = self else {return}
+            for item in self.friendsLists {
+                self.friendsSortLists = [[Friends]]()
+                self.lettersLists =  [String]()
+                let itemString = "\(item.lastName) \(item.firstName)"
+                if itemString.lowercased().contains(searchText.lowercased()) {
+                    friendsSearch.append(item)
+                }
+                self.friendsSortLists.append(friendsSearch)
+                self.lettersLists.append("Search result")
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
-            friendsSortLists.append(friendsSearch)
-            lettersLists.append("Search result")
-            self.tableView.reloadData()
+            
         }
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.setShowsCancelButton(false, animated: true)
-        friendsSortLists = friendsReseveLists
-        lettersLists = lettersSortReserveLists
-        view.endEditing(true)
-        tableView.reloadData()
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else {return}
+            self.friendsSortLists = self.friendsReseveLists
+            self.lettersLists = self.lettersSortReserveLists
+            DispatchQueue.main.async {
+                searchBar.setShowsCancelButton(false, animated: true)
+                self.view.endEditing(true)
+                self.tableView.reloadData()
+            }
+        }
     }
 
 
-    //MARK:- Private methods
+    //MARK: - Private methods
     private var isSearchBarActive: Bool {
         if searchBar.text == nil {
             return false

@@ -33,52 +33,21 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
     // MARK: - Private methods
 
     private func getPhotoList() {
-        let vkRequest = VKRequests()
-        let mapping = RealmLoader()
-        vkRequest.getFriendsPhotoList(idFriend: String(selectedFriend)) { [weak self] result in
+        DispatchQueue.global().async { [weak self] in
             guard let self = self else {return}
-            switch result{
-            case .failure(let error):
-                print (error)
-            case .success(let photos):
-                mapping.savePhotos(idFriend: self.selectedFriend, jsonItems: photos.response.items)
-
-                DispatchQueue.main.async {
-                    self.readRealm()
-                    self.pairTableAndRealm()
-                    self.photosCollectoinView.reloadData()
+            let vkRequest = VKRequests()
+            let mapping = RealmLoader()
+            vkRequest.getFriendsPhotoList(idFriend: String(self.selectedFriend)) { [weak self] result in
+                guard let self = self else {return}
+                switch result{
+                case .failure(let error):
+                    print (error)
+                case .success(let photos):
+                    self.photosLists = mapping.savePhotos(idFriend: self.selectedFriend, jsonItems: photos.response.items)
+                    DispatchQueue.main.async {
+                        self.photosCollectoinView.reloadData()
+                    }
                 }
-            }
-        }
-    }
-
-    private func readRealm() {
-        let photosRealmLists: Results<PhotosFriend>?
-        do {
-            let realm = try Realm()
-            let photosData = realm.objects(PhotosFriend.self)
-            photosRealmLists = photosData
-            guard let items = photosRealmLists else {return}
-            let friendPhotos = items.filter{$0.id == self.selectedFriend}
-            friendPhotos.forEach { item in
-                photosLists.append(item)
-            }
-        } catch {
-            print(error)
-        }
-    }
-
-    private func pairTableAndRealm() {
-        guard let realm = try? Realm() else {return}
-        let friends = realm.objects(PhotosFriend.self)
-        realmToken = friends.observe { [weak self]  (changes: RealmCollectionChange) in
-            guard let collectionView = self?.photosCollectoinView else {return}
-            switch changes {
-            case .initial: collectionView.reloadData()
-            case .update: collectionView.reloadData()
-            case .error(let error):
-                fatalError("\(error)")
-
             }
         }
     }
@@ -109,6 +78,7 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
         photoImageView.kf.setImage(with: url)
         photoImageView.clipsToBounds = true
         photoImageView.contentMode = .scaleAspectFill
+//        photoImageView.backgroundColor = .white
 
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
             self.viewPhoto.alpha = 1
