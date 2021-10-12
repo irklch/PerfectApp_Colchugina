@@ -30,10 +30,9 @@ final class AuthorOfFeedTableViewCell: UITableViewCell {
     }
     
     //MARK: - Public methods
-    func config (authorName name: String, authorPhoto photo: String, dateOfPublication date: Int) {
+    func config (authorName name: String, authorPhoto photo: String, dateOfPublication date: TimeInterval) {
         DispatchQueue.global().async {
-            let timeInterval = TimeInterval(date)
-            let trueDate = Date(timeIntervalSince1970: timeInterval)
+            let trueDate = Date(timeIntervalSince1970: date)            
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
             DispatchQueue.main.async {

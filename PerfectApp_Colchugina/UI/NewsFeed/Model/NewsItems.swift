@@ -17,7 +17,7 @@ struct NewsResponseItemsList: Decodable {
 
 struct NewsItems: Decodable {
     var source_id: Int
-    var date: Int
+    var date: TimeInterval
     var text: String
     var signer_id: Int?
     let attachments: [NewsAttachments]?
@@ -39,6 +39,8 @@ struct NewsAttachmentsListPhoto: Decodable {
 
 struct NewsAttachmentsListPhotoSizes: Decodable {
     var url: String
+    let height: Int
+    let width: Int
 }
 
 struct NewsAttachmentsListVideo: Decodable {

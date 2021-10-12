@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-//MARK:- Public properties
+//MARK: - Public properties
 
 struct FriendsResponse: Decodable {
     let response: FriendsItems

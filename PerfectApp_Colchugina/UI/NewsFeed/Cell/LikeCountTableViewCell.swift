@@ -11,7 +11,7 @@ final class LikeCountTableViewCell: UITableViewCell {
     
     //MARK: - Public properties
     
-     let likeButton = UIButton(type: .system)
+    let likeButton = UIButton(type: .system)
     static let reuseId = "LikeCountTableViewCell"
     
     //MARK: - Private properties

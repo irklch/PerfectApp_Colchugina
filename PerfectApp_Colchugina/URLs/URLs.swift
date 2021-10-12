@@ -33,5 +33,32 @@ final class URLs {
     
     static let groupList = "https://api.vk.com/method/groups.get?user_id=\(Session.shared.id)&access_token=\(Session.shared.token)&extended=1&v=5.131"
     
-    static let newsList = "https://api.vk.com/method/newsfeed.get?user_id=\(Session.shared.id)&filters=post&max_photos=1&source_ids=groups&access_token=\(Session.shared.token)&extended=1&v=5.131"
+    static func newsList (startTime: TimeInterval? = nil, startFrom: String? = nil) -> URL? {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "api.vk.com"
+        urlComponents.path = "/method/newsfeed.get"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "user_id", value: "\(Session.shared.id)"),
+            URLQueryItem(name: "filters", value: "post"),
+            URLQueryItem(name: "max_photos", value: "1"),
+            URLQueryItem(name: "source_ids", value: "groups"),
+            URLQueryItem(name: "access_token", value: "\(Session.shared.token)"),
+            URLQueryItem(name: "extended", value: "1"),
+            URLQueryItem(name: "v", value: "5.131")
+        ]
+
+        if startTime != nil {
+            urlComponents.queryItems?.append(
+                URLQueryItem(name: "start_time", value: "\(startTime ?? 0)")
+            )
+        }
+
+        if startFrom != nil {
+            urlComponents.queryItems?.append(
+                URLQueryItem(name: "start_from", value: "\(startFrom ?? "")")
+            )
+        }
+        return urlComponents.url
+    }
 }

@@ -9,24 +9,30 @@ import UIKit
 import RealmSwift
 
 class NewsFeedTableViewController: UITableViewController {
-    var newsList = [News]()
-
+    private var nextFrom = ""
+    private var newsList = [News]()
+    private var isLoading = false
+    private let feedApi = FeedAPI()
+    private var expandableTextRange: NSRange?
+    
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.prefetchDataSource = self
         setViews()
         downloadJson()
+        setupToRefreshConstrol()
     }
-
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return newsList.count
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = newsList[indexPath.section]
         switch indexPath.row {
@@ -37,7 +43,8 @@ class NewsFeedTableViewController: UITableViewController {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: TextOfFeedTableViewCell.reuseId, for: indexPath) as! TextOfFeedTableViewCell
-            cell.config(textOfFeed: item.newsText)
+            cell.config(textOfFeed: item.newsText, isTappedShowMore: item.isTappedShowMore)
+            cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return cell
         case 2:
@@ -55,141 +62,112 @@ class NewsFeedTableViewController: UITableViewController {
             return UITableViewCell()
         }
     }
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = newsList[indexPath.section]
+        switch indexPath.row {
+        case 1:
+            if item.isTappedShowMore {
+                item.isTappedShowMore = false
+            } else {
+                item.isTappedShowMore = true
+            }
+            tableView.reloadData()
+        default:
+            return
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        func currentPhotoHeight(_ item: News) -> CGFloat {
+            let height = item.attachmentHeight
+            let width = item.attachmentWidth
+            guard height != 0 else {return UITableView.automaticDimension}
+            guard width != 0 else {return UITableView.automaticDimension}
+            let tableWidth = tableView.bounds.width
+            let aspectRatio = CGFloat(height) / CGFloat(width)
+            let cellHeight = tableWidth * aspectRatio
+            return cellHeight
+        }
+        let currentFeedItem = newsList[indexPath.section]
+        switch indexPath.row {
+        case 2:
+            return currentPhotoHeight(currentFeedItem)
+        default:
+            return UITableView.automaticDimension
+        }
+    }
+    
+    
+    //MARK: - Private methods
+    
     @objc
     private func tapToLike(_ button: UIButton) {
         if newsList[button.tag].isLiked {
-            do {
-                let realm = try Realm()
-                realm.beginWrite()
-                newsList[button.tag].isLiked = false
-                newsList[button.tag].likes -= 1
-                try realm.commitWrite()
-            } catch {
-                print(error)
-            }
+            newsList[button.tag].isLiked = false
+            newsList[button.tag].likes -= 1
             tableView.reloadData()
         } else {
-            do {
-                let realm = try Realm()
-                realm.beginWrite()
-                newsList[button.tag].isLiked = true
-                newsList[button.tag].likes += 1
-                try realm.commitWrite()
-            } catch {
-                print(error)
-            }
+            newsList[button.tag].isLiked = true
+            newsList[button.tag].likes += 1
             tableView.reloadData()
         }
     }
-
-    //MARK: - Private methods
-
+    
+    private func setupToRefreshConstrol() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Loading...")
+        refreshControl?.tintColor = .red
+        refreshControl?.addTarget(self, action: #selector(refreshNews), for: .valueChanged)
+    }
+    
+    @objc
+    func refreshNews() {
+        self.refreshControl?.beginRefreshing()
+        let mostFreshNewsDate = self.newsList.first?.date ?? Date().timeIntervalSince1970
+        feedApi.getFeed(startTime: mostFreshNewsDate+1) { [weak self] result in
+            guard let self = self else {return}
+            self.refreshControl?.endRefreshing()
+            guard  result.count > 0 else {return}
+            self.newsList = result + self.newsList
+            let indexSet = IndexSet(integersIn: 0..<result.count)
+            self.tableView.insertSections(indexSet, with: .automatic)
+        }
+    }
+    
     private func downloadJson() {
-        let dispatchGroup = DispatchGroup()
-        var itemsResponse = [NewsItems]()
-        var groupsResponse = [NewsGroups]()
-        var profileResponse = [NewsProfiles]()
-        let saving = RealmLoader()
-        guard let url = URL(string: URLs.newsList) else {return}
-        let session = URLSession.shared
-        DispatchQueue.global(qos: .userInitiated).async(group: dispatchGroup) {
-            session.dataTask(with: url) { (data, request, error) in
-
-                if let error = error {
-                    print(error)
-                }
-                if let data = data {
-                    do {
-                        let json = try JSONDecoder().decode(NewsResponseItems.self, from: data)
-                        itemsResponse = json.response.items
-                    }
-                    catch {
-                        print(error)
-                    }
-                }
-            }.resume()
-        }
-        DispatchQueue.global(qos: .userInitiated).async(group: dispatchGroup) {
-            session.dataTask(with: url) { (data, request, error) in
-
-                if let error = error {
-                    print(error)
-                }
-                if let data = data {
-                    do {
-                        let json = try JSONDecoder().decode(NewsResponseGroups.self, from: data)
-                        groupsResponse = json.response.groups
-
-                    }
-                    catch {
-                        print(error)
-                    }
-                }
-            }.resume()
-        }
-        DispatchQueue.global(qos: .userInitiated).async(group: dispatchGroup) {
-            session.dataTask(with: url) { (data, request, error) in
-
-                if let error = error {
-                    print(error)
-                }
-                if let data = data {
-                    do {
-                        let json = try JSONDecoder().decode(NewsResponseProfiles.self, from: data)
-                        profileResponse = json.response.profiles
-
-                    }
-                    catch {
-                        print(error)
-                    }
-                }
-            }.resume()
-        }
-        dispatchGroup.notify(queue: .main) {
-            saving.saveNews(jsonItems: itemsResponse, jsonGroups: groupsResponse, jsonProfiles: profileResponse)
-            self.readRealm()
-            self.tableView.reloadData()
-        }
-
-    }
-
-
-    private func readRealm() {
-        let newsRealmLists: Results<News>?
-        do {
-            let realm = try Realm()
-            let newsData = realm.objects(News.self)
-            newsRealmLists = newsData
-            guard let items = newsRealmLists else {return}
-            items.forEach { item in
-                newsList.append(item)
+        feedApi.getFeed { result in
+            self.newsList = result
+            self.nextFrom = result.first?.nextFrom ?? ""
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
-        } catch {
-            print(error)
         }
     }
-
-    private func changeRealm<T>(value: T, primaryKey: Int) {
-        do {
-            let realm = try Realm()
-            try  realm.write {
-                let newsData = realm.objects(News.self)
-                newsData.setValue(value, forKey: "\(primaryKey)")
-            }
-
-        } catch let error as NSError {
-            fatalError(error.localizedDescription)
-        }
-    }
-
-
-
+    
     private func setViews() {
         tableView.register(AuthorOfFeedTableViewCell.self, forCellReuseIdentifier: AuthorOfFeedTableViewCell.reuseId)
         tableView.register(TextOfFeedTableViewCell.self, forCellReuseIdentifier: TextOfFeedTableViewCell.reuseId)
         tableView.register(PhotoOfFeedTableViewCell.self, forCellReuseIdentifier: PhotoOfFeedTableViewCell.reuseId)
         tableView.register(LikeCountTableViewCell.self, forCellReuseIdentifier: LikeCountTableViewCell.reuseId)
     }
+}
 
+extension NewsFeedTableViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        guard let maxSection = indexPaths.map({$0.section}).max() else {return}
+        if maxSection > newsList.count - 3,
+           !isLoading {
+            isLoading = true
+            feedApi.getFeed(startFrom: nextFrom) { [weak self] result in
+                guard let self = self else { return }
+                guard  result.count > 0 else {return}
+                let indexSet = IndexSet(integersIn: self.newsList.count..<self.newsList.count + result.count)
+                self.newsList.append(contentsOf: result)
+                self.nextFrom = result.first?.nextFrom ?? ""
+                self.tableView.insertSections(indexSet, with: .automatic)
+                self.isLoading = false
+            }
+        }
+    }
+    
 }
