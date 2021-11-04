@@ -27,8 +27,28 @@ final class TextOfFeedTableViewCell: UITableViewCell {
     }
     
     //MARK: - Public methods
-    func config(textOfFeed text: String) {
-        textOfFeedLabel.text = text
+    func config(textOfFeed text: String, isTappedShowMore: Bool) {
+
+        if text.count > 200 && text != "" {
+            if isTappedShowMore {
+                let newString = text + " Show Less"
+                let lessString = "Show Less"
+                let range = (newString as NSString).range(of: lessString)
+                let mutableAttributedString = NSMutableAttributedString.init(string: String(newString))
+                mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.blue, range: range)
+                textOfFeedLabel.attributedText = mutableAttributedString
+            } else {
+                let droppedString = text.dropLast(text.count - 200) + "... Show More"
+                let moreString = "Show More"
+                let range = (droppedString as NSString).range(of: moreString)
+                let mutableAttributedString = NSMutableAttributedString.init(string: String(droppedString))
+                mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.blue, range: range)
+                textOfFeedLabel.attributedText = mutableAttributedString
+            }
+        }
+        else {
+            textOfFeedLabel.text = text
+        }
     }
     
     //MARK: - Private pethods

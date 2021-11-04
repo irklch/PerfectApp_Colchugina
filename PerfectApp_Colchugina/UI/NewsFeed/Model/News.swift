@@ -9,20 +9,25 @@ import Foundation
 import RealmSwift
 
 
-class News: Object {
-    @objc dynamic var postId = 0
-    @objc dynamic var groupName = ""
-    @objc dynamic var groupPhoto = ""
-    @objc dynamic var profileName: String?
-    @objc dynamic var profilePhoto: String?
-    @objc dynamic var newsText = ""
-    @objc dynamic var date = 0
-    @objc dynamic var attachments = ""
-    @objc dynamic var comments = 0
-    @objc dynamic var likes = 0
-    @objc dynamic var isLiked = false
-    @objc dynamic var reposts = 0
-    @objc dynamic var views = 0
+class News {
+    var postId = 0
+    var groupName = ""
+    var groupPhoto = ""
+    var profileName: String?
+    var profilePhoto: String?
+    var newsText = ""
+    var date = TimeInterval()
+    var attachments = ""
+    var attachmentHeight = 0
+    var attachmentWidth = 0
+    var comments = 0
+    var likes = 0
+    var isLiked = false
+    var reposts = 0
+    var views = 0
+    var nextFrom = ""
+    var isTappedShowMore = false
+
 
     convenience init(postId: Int,
                      groupName: String,
@@ -30,12 +35,15 @@ class News: Object {
                      profileName: String,
                      profilePhoto: String,
                      newsText: String,
-                     date: Int,
+                     date: TimeInterval,
                      attachments: String,
+                     attachmentHeight: Int,
+                     attachmentWidth: Int,
                      comments: Int,
                      likes: Int,
                      reposts: Int,
-                     views: Int) {
+                     views: Int,
+                     nextFrom: String) {
         self.init()
         self.postId = postId
         self.groupName = groupName
@@ -45,13 +53,14 @@ class News: Object {
         self.newsText = newsText
         self.date = date
         self.attachments = attachments
+        self.attachmentHeight = attachmentHeight
+        self.attachmentWidth = attachmentWidth
         self.comments = comments
         self.likes = likes
         self.reposts = reposts
         self.views = views
-    }
-    override class func primaryKey() -> String? {
-        return "postId"
+        self.nextFrom = nextFrom
+
     }
 }
 
