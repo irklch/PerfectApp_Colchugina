@@ -12,7 +12,7 @@ protocol VKRequestsProtocol: AnyObject{
     func getGroupList (completion: @escaping(Result<GroupsResponse, Error>) -> Void)
 }
 
-final class VKRequests: VKRequestsProtocol {
+final class VKRequestsAdapter: VKRequestsProtocol {
 
     func getFriendList(completion: @escaping(Result<FriendsResponse, Error>) -> Void) {
         downloadJson(url: URLs.friendsList, completion: completion)
@@ -27,7 +27,7 @@ final class VKRequests: VKRequestsProtocol {
     }
 }
 
-extension VKRequests {
+extension VKRequestsAdapter {
     private func downloadJson<T: Decodable>(url: String, completion: @escaping(Result<T, Error>) -> Void) {
         DispatchQueue.global().async {
             guard let url = URL(string: url) else {return}

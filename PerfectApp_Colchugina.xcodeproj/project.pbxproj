@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A903789127343893007B2B09 /* TextOfFeedModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903789027343893007B2B09 /* TextOfFeedModelFactory.swift */; };
 		A9082C6627147D67007BA8FD /* FeedAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9082C6527147D67007BA8FD /* FeedAPI.swift */; };
 		A9082C682714826A007BA8FD /* NewsNextFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9082C672714826A007BA8FD /* NewsNextFrom.swift */; };
 		A91DF275263EA3DC001CE958 /* FriendPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91DF274263EA3DC001CE958 /* FriendPhotosViewController.swift */; };
@@ -38,7 +39,7 @@
 		A96611832663A5670041422B /* PushSliderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96611822663A5670041422B /* PushSliderAnimator.swift */; };
 		A96611852663A5720041422B /* PopSliderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96611842663A5720041422B /* PopSliderAnimator.swift */; };
 		A982CFDF26BD586900A070AE /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A982CFDE26BD586900A070AE /* WebViewController.swift */; };
-		A982CFE126BD819800A070AE /* VKAPIRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A982CFE026BD819800A070AE /* VKAPIRequests.swift */; };
+		A982CFE126BD819800A070AE /* VKRequestsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A982CFE026BD819800A070AE /* VKRequestsAdapter.swift */; };
 		A99BA92426F6781A00846D70 /* NewsItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BA92326F6781A00846D70 /* NewsItems.swift */; };
 		A99BA92626F6784900846D70 /* NewsProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BA92526F6784900846D70 /* NewsProfiles.swift */; };
 		A99BA92826F6787C00846D70 /* NewsGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BA92726F6787C00846D70 /* NewsGroups.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A903789027343893007B2B09 /* TextOfFeedModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOfFeedModelFactory.swift; sourceTree = "<group>"; };
 		A9082C6527147D67007BA8FD /* FeedAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAPI.swift; sourceTree = "<group>"; };
 		A9082C672714826A007BA8FD /* NewsNextFrom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsNextFrom.swift; sourceTree = "<group>"; };
 		A91DF274263EA3DC001CE958 /* FriendPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotosViewController.swift; sourceTree = "<group>"; };
@@ -99,7 +101,7 @@
 		A96611822663A5670041422B /* PushSliderAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSliderAnimator.swift; sourceTree = "<group>"; };
 		A96611842663A5720041422B /* PopSliderAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopSliderAnimator.swift; sourceTree = "<group>"; };
 		A982CFDE26BD586900A070AE /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
-		A982CFE026BD819800A070AE /* VKAPIRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAPIRequests.swift; sourceTree = "<group>"; };
+		A982CFE026BD819800A070AE /* VKRequestsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKRequestsAdapter.swift; sourceTree = "<group>"; };
 		A99BA92326F6781A00846D70 /* NewsItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItems.swift; sourceTree = "<group>"; };
 		A99BA92526F6784900846D70 /* NewsProfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsProfiles.swift; sourceTree = "<group>"; };
 		A99BA92726F6787C00846D70 /* NewsGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsGroups.swift; sourceTree = "<group>"; };
@@ -137,6 +139,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A903788F2734387D007B2B09 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A903789027343893007B2B09 /* TextOfFeedModelFactory.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		A959F53D26FA01AD0088D05D /* OperationMethods */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +178,7 @@
 		A95DA8BC2632D98D005EA110 /* PerfectApp_Colchugina */ = {
 			isa = PBXGroup;
 			children = (
+				A903788F2734387D007B2B09 /* Common */,
 				A9A69A1526EE3EEC000B001D /* Storyboards */,
 				A9F83557264D2D10001B1023 /* UI */,
 				A9BDADCB26C3D75D004463CA /* Core */,
@@ -202,7 +213,7 @@
 		A982CFE226BD81A500A070AE /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
-				A982CFE026BD819800A070AE /* VKAPIRequests.swift */,
+				A982CFE026BD819800A070AE /* VKRequestsAdapter.swift */,
 				A9BDADD926C56A68004463CA /* RealmLoader.swift */,
 				A9082C6527147D67007BA8FD /* FeedAPI.swift */,
 			);
@@ -617,7 +628,7 @@
 				A982CFDF26BD586900A070AE /* WebViewController.swift in Sources */,
 				A959F54726FA6EAD0088D05D /* NewsCellTypeEnum.swift in Sources */,
 				A959F54126FA11E50088D05D /* FrinedsSaveDataInRealmOperation.swift in Sources */,
-				A982CFE126BD819800A070AE /* VKAPIRequests.swift in Sources */,
+				A982CFE126BD819800A070AE /* VKRequestsAdapter.swift in Sources */,
 				A9082C682714826A007BA8FD /* NewsNextFrom.swift in Sources */,
 				A9F83571264D86D5001B1023 /* NewsFeedTableViewController.swift in Sources */,
 				A99BA92626F6784900846D70 /* NewsProfiles.swift in Sources */,
@@ -635,6 +646,7 @@
 				A99BA92826F6787C00846D70 /* NewsGroups.swift in Sources */,
 				A9F8354D264D2BCC001B1023 /* HeaderSectionForFriendsTable.swift in Sources */,
 				A9A69A1826EE79C9000B001D /* TextOfFeedTableViewCell.swift in Sources */,
+				A903789127343893007B2B09 /* TextOfFeedModelFactory.swift in Sources */,
 				A95DA8C02632D98D005EA110 /* SceneDelegate.swift in Sources */,
 				A96611832663A5670041422B /* PushSliderAnimator.swift in Sources */,
 				A9A69A1C26EE8BF7000B001D /* LikeCountTableViewCell.swift in Sources */,

@@ -14,7 +14,7 @@ final class PhotoOfFeedTableViewCell: UITableViewCell {
     static let reuseId = "PhotoOfFeedTableViewCell"
     
     //MARK: - Private properties
-    private let photoOfFeedImageView = UIImageView()
+    private var photoOfFeedImageView = UIImageView()
     
     //MARK: - Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -28,9 +28,8 @@ final class PhotoOfFeedTableViewCell: UITableViewCell {
     }
     
     //MARK: - Public methods
-    func config(photoOfFeed photo: String) {
-        guard let url = URL(string: photo) else {return}
-        photoOfFeedImageView.kf.setImage(with: url)
+    func config(from viewModel: NewsCellViewModel) {
+        photoOfFeedImageView.kf.setImage(with: viewModel.photoOfFeedImageView) 
     }
     
     //MARK: - Private methods

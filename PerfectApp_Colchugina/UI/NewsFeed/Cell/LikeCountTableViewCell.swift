@@ -16,9 +16,9 @@ final class LikeCountTableViewCell: UITableViewCell {
     
     //MARK: - Private properties
     
-    private let commentButton = UIButton(type: .system)
-    private let shareButton = UIButton(type: .system)
-    private let viewsButton = UIButton(type: .system)
+    private var commentButton = UIButton(type: .system)
+    private var shareButton = UIButton(type: .system)
+    private var viewsButton = UIButton(type: .system)
     
     //MARK: - Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -33,13 +33,13 @@ final class LikeCountTableViewCell: UITableViewCell {
     
     //MARK: - Public methods
     
-    func config(likeCount likes: Int, commentCount comment: Int, shareCount share: Int, viewsCont views: Int, indexPath: Int, isLiked: Bool) {
-        likeButton.setTitle("\(likes)", for: .normal)
-        commentButton.setTitle("\(comment)", for: .normal)
-        shareButton.setTitle("\(share)", for: .normal)
-        viewsButton.setTitle("\(views)", for: .normal)
+    func config(from viewModel: NewsCellViewModel, with indexPath: Int) {
         likeButton.tag = indexPath
-        if isLiked {
+        likeButton.setTitle("\(viewModel.likeButton)", for: .normal)
+        commentButton.setTitle("\(viewModel.commentButton)", for: .normal)
+        shareButton.setTitle("\(viewModel.shareButton)", for: .normal)
+        viewsButton.setTitle("\(viewModel.viewsButton)", for: .normal)
+        if viewModel.isLiked {
             likeButton.setImage(UIImage.init(systemName: "suit.heart.fill"), for: .normal)
             likeButton.tintColor = .red
         }
@@ -47,7 +47,6 @@ final class LikeCountTableViewCell: UITableViewCell {
             likeButton.setImage(UIImage.init(systemName: "suit.heart"), for: .normal)
             likeButton.tintColor = .systemGray
         }
-
     }
     
     //MARK: - Private methods

@@ -38,7 +38,7 @@ final class MyGroupsTableViewController: UITableViewController {
 
     private func getGroupsFromNetwork() -> Promise<GroupsResponse> {
         let (promise, resolver) = Promise<GroupsResponse>.pending()
-        let vkRequest = VKRequests()
+        let vkRequest = VKRequestsAdapter()
         vkRequest.getGroupList { result in
             switch result{
             case .failure(let error):

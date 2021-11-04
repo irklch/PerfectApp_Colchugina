@@ -38,6 +38,7 @@ class LogInViewController: UIViewController {
         logInButtonOutlet.layer.shadowOffset = CGSize(width: 0, height: 3)
         logInButtonOutlet.layer.shadowRadius = 4
         logInButtonOutlet.layer.shadowOpacity = 0.15
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {

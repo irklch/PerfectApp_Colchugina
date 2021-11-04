@@ -19,7 +19,7 @@ class HeaderSectionForFriendsTable: UITableViewHeaderFooterView{
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .appCustomYellowColor.withAlphaComponent(0.5)
+        contentView.backgroundColor = .brandYellow.withAlphaComponent(0.5)
         setViews()
     }
     
