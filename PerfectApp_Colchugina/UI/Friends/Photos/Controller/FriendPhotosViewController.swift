@@ -35,7 +35,7 @@ class FriendPhotosViewController: UIViewController, UIGestureRecognizerDelegate 
     private func getPhotoList() {
         DispatchQueue.global().async { [weak self] in
             guard let self = self else {return}
-            let vkRequest = VKRequests()
+            let vkRequest = VKRequestsAdapter()
             let mapping = RealmLoader()
             vkRequest.getFriendsPhotoList(idFriend: String(self.selectedFriend)) { [weak self] result in
                 guard let self = self else {return}

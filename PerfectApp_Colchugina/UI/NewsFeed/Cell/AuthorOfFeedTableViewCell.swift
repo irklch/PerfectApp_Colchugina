@@ -14,9 +14,9 @@ final class AuthorOfFeedTableViewCell: UITableViewCell {
     static let reuseId = "AuthorOfFeedTableViewCell"
     
     //MARK: - Private properties
-    private let authorPhotoImageView = UIImageView()
-    private let authorNameLable = UILabel()
-    private let dateOfPublicationLabel = UILabel()
+    private var authorPhotoImageView = UIImageView()
+    private var authorNameLable = UILabel()
+    private var dateOfPublicationLabel = UILabel()
     
     //MARK: - Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -30,18 +30,10 @@ final class AuthorOfFeedTableViewCell: UITableViewCell {
     }
     
     //MARK: - Public methods
-    func config (authorName name: String, authorPhoto photo: String, dateOfPublication date: TimeInterval) {
-        DispatchQueue.global().async {
-            let trueDate = Date(timeIntervalSince1970: date)            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
-            DispatchQueue.main.async {
-                self.authorNameLable.text = name
-                guard let url = URL(string: photo) else {return}
-                self.authorPhotoImageView.kf.setImage(with: url)
-                self.dateOfPublicationLabel.text = dateFormatter.string(from: trueDate)
-            }
-        }
+    func config (from viewModel: NewsCellViewModel) {
+        authorPhotoImageView.kf.setImage(with: viewModel.authorPhotoImageView)
+        authorNameLable.text = viewModel.authorNameLable
+        dateOfPublicationLabel.text = viewModel.dateOfPublicationLabel
     }
     
     //MARK: - Private methods

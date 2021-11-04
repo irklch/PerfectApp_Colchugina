@@ -11,6 +11,7 @@ import RealmSwift
 class NewsFeedTableViewController: UITableViewController {
     private var nextFrom = ""
     private var newsList = [News]()
+    private var viewModel = [NewsCellViewModel]()
     private var isLoading = false
     private let feedApi = FeedAPI()
     private var expandableTextRange: NSRange?
@@ -26,7 +27,7 @@ class NewsFeedTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return newsList.count
+        return viewModel.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,27 +35,27 @@ class NewsFeedTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = newsList[indexPath.section]
+        let item = viewModel[indexPath.section]
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: AuthorOfFeedTableViewCell.reuseId, for: indexPath) as! AuthorOfFeedTableViewCell
-            cell.config(authorName: item.profileName ?? item.groupName, authorPhoto: item.profilePhoto ?? item.groupPhoto, dateOfPublication: item.date)
+            cell.config(from: item)
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: TextOfFeedTableViewCell.reuseId, for: indexPath) as! TextOfFeedTableViewCell
-            cell.config(textOfFeed: item.newsText, isTappedShowMore: item.isTappedShowMore)
+            cell.config(from: item)
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: PhotoOfFeedTableViewCell.reuseId) as! PhotoOfFeedTableViewCell
-            cell.config(photoOfFeed: item.attachments)
+            cell.config(from: item)
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: LikeCountTableViewCell.reuseId) as! LikeCountTableViewCell
-            cell.config(likeCount: item.likes, commentCount: item.comments, shareCount: item.reposts, viewsCont: item.views, indexPath: indexPath.section, isLiked: item.isLiked)
+            cell.config(from: item, with: indexPath.section)
             cell.selectionStyle = .none
             cell.likeButton.addTarget(self, action: #selector(tapToLike), for: .touchUpInside)
             return cell
@@ -137,6 +138,7 @@ class NewsFeedTableViewController: UITableViewController {
     private func downloadJson() {
         feedApi.getFeed { result in
             self.newsList = result
+            self.viewModel = TextOfFeedModelFactory.makeViewModels(from: result)
             self.nextFrom = result.first?.nextFrom ?? ""
             DispatchQueue.main.async {
                 self.tableView.reloadData()

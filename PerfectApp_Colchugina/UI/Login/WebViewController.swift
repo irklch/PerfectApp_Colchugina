@@ -12,7 +12,7 @@ final class WebViewController: UIViewController, WKNavigationDelegate {
 
     //MARK: - Private property
 
-    private let vkRequest = VKRequests()
+    private let vkRequest = VKRequestsAdapter()
 
     //MARK: - Public property
 
